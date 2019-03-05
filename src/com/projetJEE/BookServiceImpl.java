@@ -1,7 +1,9 @@
+package com.projetJEE;
+
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-	private BookDAO bookDao = new BookDAOImpl();
+	private BookDAO bookDao = new BookDAOMockImpl();
 	@Override
 	public List<Book> getAllBooks() {
 		return bookDao.findByAll();

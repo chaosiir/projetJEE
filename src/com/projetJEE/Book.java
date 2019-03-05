@@ -1,3 +1,4 @@
+package com.projetJEE;
 
 public class Book {
 	private int id;

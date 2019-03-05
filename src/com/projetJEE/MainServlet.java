@@ -1,3 +1,5 @@
+package com.projetJEE;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/MainServlet")
+@WebServlet("/com.projetJEE.MainServlet")
 public class MainServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -15,8 +17,9 @@ public class MainServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public MainServlet() {
-
         super();
+        System.out.println("MainServlet constr");
+        RestWBClient.getInfo();
         // TODO Auto-generated constructor stub
     }
 
@@ -47,7 +50,7 @@ public class MainServlet extends HttpServlet {
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             BookService bs = new BookServiceImpl();
-            request.setAttribute("listBooks", bs.getBooksByTitle("9"));
+            request.setAttribute("listBooks", bs.getAllBooks());
             rd.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
