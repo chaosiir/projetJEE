@@ -1,3 +1,4 @@
+package com.projetJEE;
 
 import com.mysql.cj.jdbc.Driver;
 

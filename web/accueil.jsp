@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%> <!--,org.tutorial.Book"%-->
+<%@page import="java.util.List, com.projetJEE.Book"%>
 <%
-    List<Integer> listBooks = (List<Integer>) request.getAttribute("listBooks");
+    List<Book> listBooks = (List<Book>) request.getAttribute("listBooks");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,9 +19,9 @@ liste des livres:
         <th>Auteur</th>
     </tr>
     <%
-        for (Integer book : listBooks) {
-            String title = "titre n°"+book;  //book.getTitle();
-            String author = "author n°"+book; // book.getAuthor();
+        for (Book book : listBooks) {
+            String title = book.getTitle();
+            String author = book.getAuthor();
     %>
     <tr>
         <td><%=title%></td>

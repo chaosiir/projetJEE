@@ -7,7 +7,7 @@
     <servlet>
         <display-name>Main</display-name>
         <servlet-name>Main</servlet-name>
-        <servlet-class>MainServlet</servlet-class>
+        <servlet-class>com.projetJEE.MainServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
