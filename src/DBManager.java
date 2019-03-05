@@ -1,4 +1,5 @@
-import com.mysql.jdbc.Driver;
+
+import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 import java.util.Enumeration;
