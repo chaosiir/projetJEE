@@ -1,7 +1,5 @@
 package com.projetJEE;
 
-import com.google.gson.Gson;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 
 @WebServlet("/com.projetJEE.MainServlet")
 public class MainServlet extends HttpServlet {
@@ -18,15 +17,14 @@ public class MainServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainServlet() {
+    public MainServlet() throws ParseException {
         super();
         System.out.println("MainServlet constr");
-        String json = WebServiceGetter.jsonGetRequest("https://stormy-lowlands-39083.herokuapp.com/etudiants/");
-        Gson gson = new Gson();
-        Student[] students = gson.fromJson(json, Student[].class);
-        for (Student s : students) {
-            System.out.println(s);
-        }
+
+//        for (Student s : StudentWS.getAllStudents()) {
+//            System.out.println(s);
+//        }
+        System.out.println(StudentWS.getStudentById(0));
     }
 
     /**
