@@ -20,4 +20,11 @@ public class Student {
 
     private String emailPro;
     private String emailPerso;
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += numetudiant + " " + nom + " " + prenom;
+        return str;
+    }
 }

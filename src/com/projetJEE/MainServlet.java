@@ -23,11 +23,11 @@ public class MainServlet extends HttpServlet {
         System.out.println("MainServlet constr");
         String json = WebServiceGetter.jsonGetRequest("https://stormy-lowlands-39083.herokuapp.com/etudiants/");
         System.out.println(json);
-       // Gson gson = new Gson();
-//        Student[] students = gson.fromJson(json, Student[].class);
-//        for (Student s : students) {
-//            System.out.println(s);
-//        }
+        Gson gson = new Gson();
+        Student[] students = gson.fromJson(json, Student[].class);
+        for (Student s : students) {
+            System.out.println(s);
+        }
     }
 
     /**
