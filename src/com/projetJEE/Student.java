@@ -2,24 +2,22 @@ package com.projetJEE;
 
 public class Student {
 
-    private int id;
-    private String sexe;
-    private String num;
+    private String numetudiant;
+    private String S;
 
-    private String firstname;
-    private String lastname;
-    private String birth;
+    private String nom;
+    private String prenom;
+    private String ddn;
 
     private String bac;
-    private int bacYear;
-    private String bacGrade;
+    private String anBac;
+    private String menBac;
 
-    private String degree;
-    private int degreeYear;
-    private String degreeCity;
-    private int registrationYear;
+    private String diplome;
+    private String anDiplome;
+    private String villeDiplome;
+    private String inscription;
 
-    private String mailPri;
-    private String mailPro;
-
+    private String emailPro;
+    private String emailPerso;
 }

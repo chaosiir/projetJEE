@@ -1,5 +1,7 @@
 package com.projetJEE;
 
+import com.google.gson.Gson;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +21,13 @@ public class MainServlet extends HttpServlet {
     public MainServlet() {
         super();
         System.out.println("MainServlet constr");
-        RestWBClient.getInfo();
-        // TODO Auto-generated constructor stub
+        String json = WebServiceGetter.jsonGetRequest("https://stormy-lowlands-39083.herokuapp.com/etudiants/");
+        System.out.println(json);
+       // Gson gson = new Gson();
+//        Student[] students = gson.fromJson(json, Student[].class);
+//        for (Student s : students) {
+//            System.out.println(s);
+//        }
     }
 
     /**
