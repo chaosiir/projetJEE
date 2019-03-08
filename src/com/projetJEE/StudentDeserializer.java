@@ -20,9 +20,9 @@ public class StudentDeserializer implements JsonDeserializer<Student> {
         String gender = jobject.get("S").getAsString();
         String firstname = jobject.get("nom").getAsString();
         String lastname = jobject.get("prenom").getAsString();
-        Date birthDate = null;
+        Date birthday = null;
         try {
-            birthDate = dateFormat.parse(jobject.get("ddn").getAsString());
+            birthday = dateFormat.parse(jobject.get("ddn").getAsString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -32,14 +32,14 @@ public class StudentDeserializer implements JsonDeserializer<Student> {
         String degree = jobject.get("diplome").getAsString();
         int degreeYear = jobject.get("anDiplome").getAsInt();
         String degreeCity = jobject.get("villeDiplome").getAsString();
-        String registration = jobject.get("inscription").getAsString();
+        int registrationYear = jobject.get("inscription").getAsInt();
         String emailPro = jobject.get("emailPro").getAsString();
         String emailPer = jobject.get("emailPerso").getAsString();
 
         return new Student(
-                ID, gender, firstname, lastname, birthDate,
+                ID, gender, firstname, lastname, birthday,
                 bac, bacYear, grade,
-                degree, degreeYear, degreeCity, registration,
+                degree, degreeYear, degreeCity, registrationYear,
                 emailPro, emailPer);
     }
 }

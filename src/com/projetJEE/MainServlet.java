@@ -21,10 +21,12 @@ public class MainServlet extends HttpServlet {
         super();
         System.out.println("MainServlet constr");
 
-//        for (Student s : StudentWS.getAllStudents()) {
-//            System.out.println(s);
+        /* Decomment these lines to initialize database with web service */
+//        Student[] students = StudentWS.getAllStudents();
+//        StudentService studentService = new StudentServiceImpl();
+//        for (Student student : students) {
+//            studentService.insertStudent(student);
 //        }
-        System.out.println(StudentWS.getStudentById(0));
     }
 
     /**
@@ -53,8 +55,8 @@ public class MainServlet extends HttpServlet {
         String pageName = "/accueil.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
-            BookService bs = new BookServiceImpl();
-            request.setAttribute("listBooks", bs.getAllBooks());
+            StudentService bs = new StudentServiceImpl();
+            request.setAttribute("students", bs.getAllStudents());
             rd.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();

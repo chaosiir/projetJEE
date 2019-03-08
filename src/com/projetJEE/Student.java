@@ -9,37 +9,37 @@ public class Student {
 
     private String firstname;
     private String lastname;
-    private Date birthDate;
+    private Date birthday;
 
     private String bac;
     private int bacYear;
-    private String grade;
+    private String bacGrade;
 
     private String degree;
     private int degreeYear;
     private String degreeCity;
-    private String registration;
+    private int registrationYear;
 
     private String emailPro;
     private String emailPer;
 
     public Student(
-            String ID, String gender, String firstname, String lastname, Date birthDate,
-            String bac, int bacYear, String grade,
-            String degree, int degreeYear, String degreeCity, String registration,
+            String ID, String gender, String firstname, String lastname, Date birthday,
+            String bac, int bacYear, String bacGrade,
+            String degree, int degreeYear, String degreeCity, int registrationYear,
             String emailPro, String emailPer) {
         this.ID = ID;
         this.gender = gender;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.birthDate = birthDate;
+        this.birthday = birthday;
         this.bac = bac;
         this.bacYear = bacYear;
-        this.grade = grade;
+        this.bacGrade = bacGrade;
         this.degree = degree;
         this.degreeYear = degreeYear;
         this.degreeCity = degreeCity;
-        this.registration = registration;
+        this.registrationYear = registrationYear;
         this.emailPro = emailPro;
         this.emailPer = emailPer;
     }
@@ -49,16 +49,16 @@ public class Student {
         return "Student{" +
                 "ID='" + ID + '\'' +
                 ", gender='" + gender + '\'' +
-                ", firstname='" + firstname + '\'' +
+                ", firstname='" +  + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthday=" + birthday +
                 ", bac='" + bac + '\'' +
                 ", bacYear=" + bacYear +
-                ", grade='" + grade + '\'' +
+                ", bacGrade='" + bacGrade + '\'' +
                 ", degree='" + degree + '\'' +
                 ", degreeYear=" + degreeYear +
                 ", degreeCity='" + degreeCity + '\'' +
-                ", registration='" + registration + '\'' +
+                ", registrationYear='" + registrationYear + '\'' +
                 ", emailPro='" + emailPro + '\'' +
                 ", emailPer='" + emailPer + '\'' +
                 '}';
@@ -80,8 +80,8 @@ public class Student {
         return lastname;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Date getBirthday() {
+        return birthday;
     }
 
     public String getBac() {
@@ -92,8 +92,8 @@ public class Student {
         return bacYear;
     }
 
-    public String getGrade() {
-        return grade;
+    public String getBacGrade() {
+        return bacGrade;
     }
 
     public String getDegree() {
@@ -108,15 +108,13 @@ public class Student {
         return degreeCity;
     }
 
-    public String getRegistration() {
-        return registration;
+    public int getRegistrationYear() {
+        return registrationYear;
     }
 
     public String getEmailPro() {
         return emailPro;
     }
 
-    public String getEmailPer() {
-        return emailPer;
-    }
+    public String getEmailPer() { return emailPer; }
 }
