@@ -1,6 +1,6 @@
 USE sql7283170;
 
-CREATE TABLE Students(
+CREATE TABLE Student(
 	ID varchar(9) NOT NULL,
 	Gender varchar(1) NOT NULL,
 	FirstName varchar(64) NOT NULL,

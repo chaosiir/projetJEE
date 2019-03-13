@@ -24,9 +24,7 @@ public class MainServlet extends HttpServlet {
         /* Decomment these lines to initialize database with web service */
 //        Student[] students = StudentWS.getAllStudents();
 //        StudentService studentService = new StudentServiceImpl();
-//        for (Student student : students) {
-//            studentService.insertStudent(student);
-//        }
+//        studentService.insertStudents(students);
     }
 
     /**

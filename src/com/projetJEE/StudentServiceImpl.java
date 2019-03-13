@@ -21,4 +21,9 @@ public class StudentServiceImpl implements StudentService {
         studentDAO.insert(student);
     }
 
+    @Override
+    public void insertStudents(Student[] students) {
+        studentDAO.insertAll(students);
+    }
+
 }
