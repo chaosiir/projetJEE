@@ -1,4 +1,4 @@
-USE projetJEE;
+USE sql7283170;
 
 CREATE TABLE Students(
 	ID varchar(9) NOT NULL,
