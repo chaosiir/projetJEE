@@ -1,4 +1,4 @@
-package com.projetJEE;
+package com.projetJEE.Student;
 
 import java.util.ArrayList;
 import java.util.Date;

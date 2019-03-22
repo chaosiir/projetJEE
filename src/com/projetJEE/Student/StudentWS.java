@@ -1,7 +1,8 @@
-package com.projetJEE;
+package com.projetJEE.Student;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.projetJEE.WebServiceGetter;
 
 public class StudentWS {
 

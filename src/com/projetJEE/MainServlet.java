@@ -1,5 +1,10 @@
 package com.projetJEE;
 
+import com.projetJEE.Student.Student;
+import com.projetJEE.Student.StudentService;
+import com.projetJEE.Student.StudentServiceImpl;
+import com.projetJEE.Student.StudentWS;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

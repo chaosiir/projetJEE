@@ -1,4 +1,6 @@
-package com.projetJEE;
+package com.projetJEE.Student;
+
+import com.projetJEE.DBManager;
 
 import java.sql.*;
 import java.util.ArrayList;
