@@ -2,24 +2,24 @@ package com.projetJEE.Group;
 
 public class Group {
 
-    private int ID_group;
+    private int ID;
     private String name;
 
-    public Group(int ID_group, String name) {
-        this.ID_group = ID_group;
+    public Group(int ID, String name) {
+        this.ID = ID;
         this.name = name;
     }
 
     @Override
     public String toString() {
         return "Group{" +
-                "ID_group=" + ID_group +
+                "ID=" + ID +
                 ", name='" + name + '\'' +
                 '}';
     }
 
-    public int getID_group() {
-        return ID_group;
+    public int getID() {
+        return ID;
     }
 
     public String getName() {

@@ -1,7 +1,6 @@
 package com.projetJEE.Group;
 
 import com.projetJEE.DBManager;
-import com.projetJEE.Student.Student;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,8 +17,8 @@ public class GroupDAOImpl implements GroupDAO {
     }
 
     @Override
-    public Group findByID(int ID_group) {
-        List<Group> groups = groupsFromQuery("select * from Group where ID_group=" + ID_group);
+    public Group findByID(int ID) {
+        List<Group> groups = groupsFromQuery("select * from Group where ID_group=" + ID);
         return groups.isEmpty() ? null : groups.get(0);
     }
 
@@ -53,10 +52,10 @@ public class GroupDAOImpl implements GroupDAO {
         ArrayList<Group> groups = new ArrayList<>();
 
         while(resultSet.next()) {
-            int ID_group = resultSet.getInt("ID_group");
+            int ID = resultSet.getInt("ID_group");
             String name = resultSet.getString("name");
 
-            groups.add(new Group(ID_group, name));
+            groups.add(new Group(ID, name));
         }
         return groups;
     }

@@ -14,8 +14,8 @@ public class GroupDAOMockImpl implements GroupDAO {
     }
 
     @Override
-    public Group findByID(int ID_group) {
-        return new Group(ID_group, "groupe_" + ID_group);
+    public Group findByID(int ID) {
+        return new Group(ID, "groupe_" + ID);
     }
 
     @Override

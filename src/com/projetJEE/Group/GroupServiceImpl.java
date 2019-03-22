@@ -12,8 +12,8 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group getGroupByID(int ID_group) {
-        return groupDAO.findByID(ID_group);
+    public Group getGroupByID(int ID) {
+        return groupDAO.findByID(ID);
     }
 
     @Override
