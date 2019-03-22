@@ -29,15 +29,7 @@ public class StudentDAOImpl implements StudentDAO {
             e.printStackTrace();
         }
     }
-   public void delete(Student student){
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            delete(student, con);
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private void insert(Student student, Connection con) throws SQLException {
         String query = " insert into Student values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -62,28 +54,22 @@ public class StudentDAOImpl implements StudentDAO {
         System.out.println("Successfully inserted " + student);
     }
 
-    private void delete(Student student, Connection con) throws SQLException {
-        String query = " DELETE FROM Student values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement preparedStatement = con.prepareStatement(query);
 
-        preparedStatement.setString(1, student.getID());
-        preparedStatement.setString(2, student.getGender());
-        preparedStatement.setString(3, student.getFirstname());
-        preparedStatement.setString(4, student.getLastname());
-        preparedStatement.setDate(5, new java.sql.Date(student.getBirthday().getTime()));
-        preparedStatement.setString(6, student.getBac());
-        preparedStatement.setInt(7, student.getBacYear());
-        preparedStatement.setString(8, student.getBacGrade());
-        preparedStatement.setString(9, student.getDegree());
-        preparedStatement.setInt(10, student.getDegreeYear());
-        preparedStatement.setString(11, student.getDegreeCity());
-        preparedStatement.setInt(12, student.getRegistrationYear());
-        preparedStatement.setString(13, student.getEmailPro());
-        preparedStatement.setString(14, student.getEmailPer());
+/*
+    private void delete(Student student)  {
 
-        preparedStatement.execute();
-        System.out.println("Successfully deleted " + student);
-    }
+        try {
+            Connection con = DBManager.getInstance().getConnection();
+            String query = " DELETE FROM Student where ID_student="+student.getID();
+            Statement statement = con.createStatement();
+            statement.executeQuery(query);
+
+            System.out.println("Successfully deleted " + student);
+            con.close();
+
+        }catch (SQLException e){e.printStackTrace();}
+
+    }*/
 
     @Override
     public void insertAll(Student[] students) {

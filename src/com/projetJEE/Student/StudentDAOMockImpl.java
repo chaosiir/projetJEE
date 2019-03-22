@@ -27,7 +27,7 @@ public class StudentDAOMockImpl implements StudentDAO {
 
     @Override
     public void insertAll(Student[] students) { }
-    @Override
-    public void delete(Student student) { }
+    /*@Override
+    public void delete(Student student) { }*/
 
 }
