@@ -56,7 +56,7 @@ public class MainServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-        String pageName = "/accueil.jsp";
+        String pageName = "/Login.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             StudentService bs = new StudentServiceImpl();

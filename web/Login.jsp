@@ -3,23 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
     <meta charset="UTF-8">
-    <title> Login</title>
+    <title > Login</title>
+    <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
+
 </head>
-<body>
-<h1>Login</h1>
-Please enter your ID and your Password :
-<form>
-    <div class="form-group">
-        <label for="Email">Email </label>
-        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<body class="text-center">
+<form class="form-signin">
+    <h1 align="center">Login</h1>
+    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
+    <label  for="inputID" class="sr-only">ID</label>
+    <input type="text" id="inputID" class="form-control" placeholder="ID" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 </form>
 </body>
 </html>
