@@ -1,4 +1,4 @@
-package com.projetJEE;
+package com.projetJEE.Student;
 
 import java.util.List;
 
@@ -19,6 +19,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void insertStudent(Student student) {
         studentDAO.insert(student);
+    }
+
+    @Override
+    public void insertStudents(Student[] students) {
+        studentDAO.insertAll(students);
     }
 
 }

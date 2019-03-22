@@ -1,10 +1,10 @@
-package com.projetJEE;
+package com.projetJEE.Student;
 
 import java.util.Date;
 
 public class Student {
 
-    private String ID;
+    private String ID_student;
     private String gender;
 
     private String firstname;
@@ -24,11 +24,11 @@ public class Student {
     private String emailPer;
 
     public Student(
-            String ID, String gender, String firstname, String lastname, Date birthday,
+            String ID_student, String gender, String firstname, String lastname, Date birthday,
             String bac, int bacYear, String bacGrade,
             String degree, int degreeYear, String degreeCity, int registrationYear,
             String emailPro, String emailPer) {
-        this.ID = ID;
+        this.ID_student = ID_student;
         this.gender = gender;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -47,7 +47,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "ID='" + ID + '\'' +
+                "ID_student='" + ID_student + '\'' +
                 ", gender='" + gender + '\'' +
                 ", firstname='" +  + '\'' +
                 ", lastname='" + lastname + '\'' +
@@ -65,7 +65,7 @@ public class Student {
     }
 
     public String getID() {
-        return ID;
+        return ID_student;
     }
 
     public String getGender() {

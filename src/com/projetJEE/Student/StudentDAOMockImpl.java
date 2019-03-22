@@ -1,4 +1,4 @@
-package com.projetJEE;
+package com.projetJEE.Student;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,4 +24,7 @@ public class StudentDAOMockImpl implements StudentDAO {
 
     @Override
     public void insert(Student student) { }
+
+    @Override
+    public void insertAll(Student[] students) { }
 }

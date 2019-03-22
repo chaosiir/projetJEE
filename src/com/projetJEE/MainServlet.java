@@ -1,5 +1,10 @@
 package com.projetJEE;
 
+import com.projetJEE.Student.Student;
+import com.projetJEE.Student.StudentService;
+import com.projetJEE.Student.StudentServiceImpl;
+import com.projetJEE.Student.StudentWS;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,9 +29,7 @@ public class MainServlet extends HttpServlet {
         /* Decomment these lines to initialize database with web service */
 //        Student[] students = StudentWS.getAllStudents();
 //        StudentService studentService = new StudentServiceImpl();
-//        for (Student student : students) {
-//            studentService.insertStudent(student);
-//        }
+//        studentService.insertStudents(students);
     }
 
     /**
