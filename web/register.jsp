@@ -13,16 +13,17 @@
 <body>
     <h1>Please register</h1>
     <form action="/register" method="post">
-        Fisrt name:<br>
-        <input type="text" name="fisrtname"><br>
-        Last name:<br>
-        <input type="text" name="lastname"><br>
-        Email address:<br>
-        <input type="email" name="email"><br>
-        Password:<br>
-        <input type="password" name="pwd1"><br>
-        Confirm password:<br>
-        <input type="password" name="pwd2"><br>
+        User name :<br>
+        <input type="text" name="username" required><br>
+        Password :<br>
+        <input type="password" name="pwd1" required><br>
+        Confirm password :<br>
+        <input type="password" name="pwd2" required><br>
+        <br>
+        Secret question :<br>
+        <input type="text" name="question" required><br>
+        Answer :<br>
+        <input type="text" name="answer" required><br>
         <input type="submit" value="Submit">
     </form>
 </body>

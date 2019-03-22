@@ -1,4 +1,4 @@
-package com.projetJEE;
+package com.projetJEE.Servlet;
 
 import com.projetJEE.Student.Student;
 import com.projetJEE.Student.StudentService;
@@ -40,8 +40,8 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // TODO Auto-generated method stub
-        //doProcess(request, response);
-        response.sendRedirect("login");
+        doProcess(request, response);
+        //response.sendRedirect("login");
     }
 
     /**

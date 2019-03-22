@@ -1,4 +1,4 @@
-package com.projetJEE;
+package com.projetJEE.Servlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
