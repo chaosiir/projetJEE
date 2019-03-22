@@ -15,8 +15,9 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public List<Student> findByID(String ID_student) {
-        return studentsFromQuery("select * from Student where ID_student=" + ID_student);
+    public Student findByID(String ID) {
+        List<Student> students = studentsFromQuery("select * from Student where ID_student=" + ID);
+        return students.isEmpty() ? null : students.get(0);
     }
 
     @Override
@@ -84,19 +85,19 @@ public class StudentDAOImpl implements StudentDAO {
 
         while(resultSet.next()) {
             String ID_student = resultSet.getString("ID_student");
-            String gender = resultSet.getString("Gender");
-            String firstname = resultSet.getString("FirstName");
-            String lastname = resultSet.getString("LastName");
-            Date birthday = resultSet.getDate("Birthday");
-            String bac = resultSet.getString("Bac");
-            int bacYear = resultSet.getInt("BacYear");
-            String bacGrade = resultSet.getString("BacGrade");
-            String degree = resultSet.getString("Degree");
-            int degreeYear = resultSet.getInt("DegreeYear");
-            String degreeCity = resultSet.getString("DegreeCity");
-            int registrationYear = resultSet.getInt("RegistrationYear");
-            String emailPro = resultSet.getString("EmailPro");
-            String emailPer = resultSet.getString("EmailPer");
+            String gender = resultSet.getString("gender");
+            String firstname = resultSet.getString("firstname");
+            String lastname = resultSet.getString("lastname");
+            Date birthday = resultSet.getDate("birthday");
+            String bac = resultSet.getString("bac");
+            int bacYear = resultSet.getInt("bacYear");
+            String bacGrade = resultSet.getString("bacGrade");
+            String degree = resultSet.getString("degree");
+            int degreeYear = resultSet.getInt("degreeYear");
+            String degreeCity = resultSet.getString("degreeCity");
+            int registrationYear = resultSet.getInt("registrationYear");
+            String emailPro = resultSet.getString("emailPro");
+            String emailPer = resultSet.getString("emailPer");
 
             students.add(new Student(
                     ID_student, gender, firstname, lastname, birthday,
