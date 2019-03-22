@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/com.projetJEE.Login")
-public class Login extends HttpServlet {
+@WebServlet(name = "Login", urlPatterns = {"/login"})
+public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public LoginServlet() {
         super();
-        System.out.println("Login constr");
+        System.out.println("LoginServlet constr");
         // TODO Auto-generated constructor stub
     }
 
@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-        String pageName = "/Login.jsp";
+        String pageName = "/LoginServlet.jsp";
         System.out.println("aaa");
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
