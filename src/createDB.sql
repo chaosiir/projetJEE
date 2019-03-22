@@ -24,7 +24,8 @@ USE `sql7283170` ;
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `sql7283170`.`Group` (
-  `ID_group` VARCHAR(20) NOT NULL,
+  `ID_group` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`ID_group`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -59,7 +60,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `sql7283170`.`IncludedStudent` (
-  `ID_group` VARCHAR(20) NOT NULL,
+  `ID_group` INT NOT NULL,
   `ID_student` VARCHAR(9) NOT NULL,
   PRIMARY KEY (`ID_group`, `ID_student`),
   CONSTRAINT `IncludedStudent_Group_ID_group_fk`
@@ -82,7 +83,7 @@ DEFAULT CHARACTER SET = latin1;
 
 CREATE TABLE IF NOT EXISTS `sql7283170`.`ExcludedStudent` (
   `ID_student` VARCHAR(9) NOT NULL,
-  `ID_group` VARCHAR(20) NOT NULL,
+  `ID_group` INT NOT NULL,
   PRIMARY KEY (`ID_student`, `ID_group`),
   CONSTRAINT `ExcludedStudent_Student_ID_student_fk`
     FOREIGN KEY (`ID_student`)
@@ -102,19 +103,19 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `sql7283170`.`IncludedGroup` (
-  `ID_group` VARCHAR(20) NOT NULL,
-  `ID_group_child` VARCHAR(20) NOT NULL,
+  `ID_group` INT NOT NULL,
+  `ID_group_child` INT NOT NULL,
   PRIMARY KEY (`ID_group`, `ID_group_child`),
   CONSTRAINT `IncludedGroup_Group_ID_group_fk`
     FOREIGN KEY (`ID_group`)
     REFERENCES `sql7283170`.`Group` (`ID_group`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `IncludedGroup_Group_ID_group_child_fk`
     FOREIGN KEY (`ID_group_child`)
     REFERENCES `sql7283170`.`Group` (`ID_group`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
