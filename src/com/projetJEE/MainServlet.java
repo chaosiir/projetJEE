@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 
-@WebServlet("/com.projetJEE.MainServlet")
+@WebServlet(name = "Main")
 public class MainServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
