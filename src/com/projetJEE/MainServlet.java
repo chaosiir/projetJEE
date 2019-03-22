@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 
-@WebServlet(name = "Main")
+@WebServlet(name = "Main", urlPatterns = {"/"})
 public class MainServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
