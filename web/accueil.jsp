@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.projetJEE.Student" %>
+<%@ page import="com.projetJEE.Student.Student" %>
 <%
     List<Student> students = (List<Student>) request.getAttribute("students");
 %>
@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
 </head>
 <body>
 <h1>Students</h1>

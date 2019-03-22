@@ -1,4 +1,4 @@
-package com.projetJEE;
+package com.projetJEE.Student;
 
 import com.google.gson.*;
 
