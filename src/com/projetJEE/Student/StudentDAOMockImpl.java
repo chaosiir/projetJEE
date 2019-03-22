@@ -18,12 +18,17 @@ public class StudentDAOMockImpl implements StudentDAO {
     }
 
     @Override
-    public List<Student> findByID(String ID) {
-        return new ArrayList<Student>();
+    public Student findByID(String ID) {
+        return new Student(ID, "gender", "firstname", "lastname", new Date(),
+                "bac", 2000, "grade",
+                "degree", 2000, "degreeCity", 2000,
+                "emailPro", "emailPer");
     }
 
     @Override
-    public void insert(Student student) { }
+    public void insert(Student student) {
+
+    }
 
     @Override
     public void insertAll(Student[] students) { }
