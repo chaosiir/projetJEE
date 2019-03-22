@@ -28,10 +28,10 @@ public class StudentWS {
     /**
      * DONT USE THAT FUNCTION (WS IS BROKEN)
      */
-    public static Student getStudentById(int id) {
+    public static Student getStudentById(int ID) {
         if (gson == null)
             createGson();
-        String json = WebServiceGetter.jsonGetRequest(ws_uri + id);
+        String json = WebServiceGetter.jsonGetRequest(ws_uri + ID);
         Student student = gson.fromJson(json, Student.class);
         return student;
     }

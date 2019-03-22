@@ -12,7 +12,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> getStudentByID(String ID) {
+    public Student getStudentByID(String ID) {
         return studentDAO.findByID(ID);
     }
 

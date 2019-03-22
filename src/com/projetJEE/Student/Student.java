@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Student {
 
-    private String ID_student;
+    private String ID;
     private String gender;
 
     private String firstname;
@@ -24,11 +24,11 @@ public class Student {
     private String emailPer;
 
     public Student(
-            String ID_student, String gender, String firstname, String lastname, Date birthday,
+            String ID, String gender, String firstname, String lastname, Date birthday,
             String bac, int bacYear, String bacGrade,
             String degree, int degreeYear, String degreeCity, int registrationYear,
             String emailPro, String emailPer) {
-        this.ID_student = ID_student;
+        this.ID = ID;
         this.gender = gender;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -47,7 +47,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "ID_student='" + ID_student + '\'' +
+                "ID='" + ID + '\'' +
                 ", gender='" + gender + '\'' +
                 ", firstname='" +  + '\'' +
                 ", lastname='" + lastname + '\'' +
@@ -65,7 +65,7 @@ public class Student {
     }
 
     public String getID() {
-        return ID_student;
+        return ID;
     }
 
     public String getGender() {
@@ -116,5 +116,7 @@ public class Student {
         return emailPro;
     }
 
-    public String getEmailPer() { return emailPer; }
+    public String getEmailPer() {
+        return emailPer;
+    }
 }
