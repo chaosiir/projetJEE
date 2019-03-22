@@ -1,9 +1,7 @@
 package com.projetJEE.Servlet;
 
-import com.projetJEE.Student.Student;
 import com.projetJEE.Student.StudentService;
 import com.projetJEE.Student.StudentServiceImpl;
-import com.projetJEE.Student.StudentWS;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,7 +54,7 @@ public class MainServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-        String pageName = "/accueil.jsp";
+        String pageName = "/Login.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             StudentService bs = new StudentServiceImpl();

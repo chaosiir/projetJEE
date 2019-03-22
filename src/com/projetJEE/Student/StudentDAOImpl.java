@@ -84,7 +84,7 @@ public class StudentDAOImpl implements StudentDAO {
         }
     }
 
-    private List<Student> studentsFromQuery(String query) {
+    private List<Student> studentsFromQuery(String query) { //todo use preparedStatement for safety reason
         List<Student> students = new ArrayList<Student>();
         try {
             Connection con = DBManager.getInstance().getConnection();
