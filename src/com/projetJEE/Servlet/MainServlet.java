@@ -1,4 +1,9 @@
-package com.projetJEE;
+package com.projetJEE.Servlet;
+
+import com.projetJEE.Student.Student;
+import com.projetJEE.Student.StudentService;
+import com.projetJEE.Student.StudentServiceImpl;
+import com.projetJEE.Student.StudentWS;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -7,19 +12,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "Main", urlPatterns = {"/"})
+public class MainServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public MainServlet() throws ParseException {
         super();
-        System.out.println("LoginServlet constr");
-        // TODO Auto-generated constructor stub
+        System.out.println("MainServlet constr");
+
+        /* Decomment these lines to initialize database with web service */
+//        Student[] students = StudentWS.getAllStudents();
+//        StudentService studentService = new StudentServiceImpl();
+//        studentService.insertStudents(students);
     }
 
     /**
@@ -31,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 
         // TODO Auto-generated method stub
         doProcess(request, response);
+        //response.sendRedirect("login");
     }
 
     /**
@@ -45,10 +56,11 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-        String pageName = "/Login.jsp";
-        System.out.println("aaa");
+        String pageName = "/accueil.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
+            StudentService bs = new StudentServiceImpl();
+            request.setAttribute("students", bs.getAllStudents());
             rd.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
