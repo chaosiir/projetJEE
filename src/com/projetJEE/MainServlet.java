@@ -40,7 +40,8 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // TODO Auto-generated method stub
-        doProcess(request, response);
+        //doProcess(request, response);
+        response.sendRedirect("login");
     }
 
     /**

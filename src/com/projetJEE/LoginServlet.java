@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-        String pageName = "/LoginServlet.jsp";
+        String pageName = "/Login.jsp";
         System.out.println("aaa");
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
