@@ -16,7 +16,7 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pageName = "/Home.jsp";
+        String pageName = "/acceuil.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         rd.forward(request, response);
     }

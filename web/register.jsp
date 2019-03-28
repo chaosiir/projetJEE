@@ -13,7 +13,6 @@
 <body class="text-center">
 <form class="form-signin" method="post">
     <h1 align="center">Register</h1>
-    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <label  for="inputID" class="sr-only">ID</label>
     <input type="text" id="inputID" class="form-control" placeholder="ID" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Password</label>

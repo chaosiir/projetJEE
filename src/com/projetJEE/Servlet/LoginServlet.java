@@ -38,10 +38,8 @@ public class LoginServlet extends HttpServlet {
      * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String pageName = "/Home.jsp";
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-        rd.forward(request, response);
+    System.out.println("post");
+       response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Home");
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
