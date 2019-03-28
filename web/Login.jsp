@@ -11,7 +11,7 @@
 
 </head>
 <body class="text-center">
-<form class="form-signin">
+<form class="form-signin" method="post">
     <h1 align="center">Login</h1>
     <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
@@ -29,6 +29,7 @@
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 </form>
+<a href="https://docinfo.univ-rennes1.fr/documentation/compte-jai-oublie-mon-mot-de-passe" target="_blank">Mot de passe oublié ?</a>
 </body>
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 

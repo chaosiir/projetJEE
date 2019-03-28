@@ -37,22 +37,16 @@ public class LoginServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      * response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // TODO Auto-generated method stub
-        doProcess(request, response);
+        String pageName = "/Home.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
+        rd.forward(request, response);
     }
 
-    private void doProcess(HttpServletRequest request, HttpServletResponse response) {
+    private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageName = "/projetJEE_war_exploded/Login.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-        try {
-            rd.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        rd.forward(request, response);
     }
 }
