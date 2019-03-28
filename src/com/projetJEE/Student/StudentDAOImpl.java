@@ -97,30 +97,32 @@ public class StudentDAOImpl implements StudentDAO {
 
     private List<Student> studentsFromResultSet(ResultSet resultSet) throws SQLException {
         ArrayList<Student> students = new ArrayList<>();
-
         while(resultSet.next()) {
-            String ID_student = resultSet.getString("ID_student");
-            String gender = resultSet.getString("gender");
-            String firstname = resultSet.getString("firstname");
-            String lastname = resultSet.getString("lastname");
-            Date birthday = resultSet.getDate("birthday");
-            String bac = resultSet.getString("bac");
-            int bacYear = resultSet.getInt("bacYear");
-            String bacGrade = resultSet.getString("bacGrade");
-            String degree = resultSet.getString("degree");
-            int degreeYear = resultSet.getInt("degreeYear");
-            String degreeCity = resultSet.getString("degreeCity");
-            int registrationYear = resultSet.getInt("registrationYear");
-            String emailPro = resultSet.getString("emailPro");
-            String emailPer = resultSet.getString("emailPer");
-
-            students.add(new Student(
-                    ID_student, gender, firstname, lastname, birthday,
-                    bac, bacYear, bacGrade,
-                    degree, degreeYear, degreeCity, registrationYear,
-                    emailPro, emailPer)
-            );
+            students.add(StudentDAOImpl.fromResultSet(resultSet));
         }
         return students;
+    }
+
+    private static Student fromResultSet(ResultSet resultSet) throws SQLException {
+        String ID_student = resultSet.getString("ID_student");
+        String gender = resultSet.getString("gender");
+        String firstname = resultSet.getString("firstname");
+        String lastname = resultSet.getString("lastname");
+        Date birthday = resultSet.getDate("birthday");
+        String bac = resultSet.getString("bac");
+        int bacYear = resultSet.getInt("bacYear");
+        String bacGrade = resultSet.getString("bacGrade");
+        String degree = resultSet.getString("degree");
+        int degreeYear = resultSet.getInt("degreeYear");
+        String degreeCity = resultSet.getString("degreeCity");
+        int registrationYear = resultSet.getInt("registrationYear");
+        String emailPro = resultSet.getString("emailPro");
+        String emailPer = resultSet.getString("emailPer");
+
+        return new Student(
+                ID_student, gender, firstname, lastname, birthday,
+                bac, bacYear, bacGrade,
+                degree, degreeYear, degreeCity, registrationYear,
+                emailPro, emailPer);
     }
 }

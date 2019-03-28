@@ -16,7 +16,6 @@ public class DBManager {
 
 	private Driver driver;
 
-
 	private static String resourceBundle = "config";
 
 	private DBManager() {

@@ -1,5 +1,6 @@
 package com.projetJEE.Group;
 
+import com.projetJEE.User.User;
 import java.util.List;
 
 public class GroupServiceImpl implements GroupService {
@@ -22,5 +23,5 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void newGroup(String name) { groupDAO.createGroup(name); }
+    public void newGroup(Group group) { groupDAO.createGroup(group); }
 }

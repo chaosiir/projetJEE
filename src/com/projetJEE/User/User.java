@@ -1,26 +1,36 @@
 package com.projetJEE.User;
 
 public class User {
-    private int ID_user;
+
+    public enum Rights {
+        USER,
+        EDITOR,
+        ADMIN
+    }
+
+    private int ID;
     private String login;
     private String pwdHash;
     private String question;
     private String answerHash;
 
-    public User(int ID_user, String login, String pwdHash, String question, String answerHash) {
-        this.ID_user = ID_user;
+    private Rights rights;
+
+    public User(String login, String pwdHash, String question, String answerHash, Rights rights) {
+        this.ID = -1;
         this.login = login;
         this.pwdHash = pwdHash;
         this.question = question;
         this.answerHash = answerHash;
+        this.rights = rights;
     }
 
-    public int getID_user() {
-        return ID_user;
+    public int getID() {
+        return ID;
     }
 
-    public void setID_user(int ID_user) {
-        this.ID_user = ID_user;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getLogin() {
@@ -55,14 +65,19 @@ public class User {
         this.answerHash = answerHash;
     }
 
+    public Rights getRights() {
+        return rights;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "ID_user=" + ID_user +
+                "ID=" + ID +
                 ", login='" + login + '\'' +
                 ", pwdHash='" + pwdHash + '\'' +
                 ", question='" + question + '\'' +
                 ", answerHash='" + answerHash + '\'' +
+                ", rights=" + rights +
                 '}';
     }
 }

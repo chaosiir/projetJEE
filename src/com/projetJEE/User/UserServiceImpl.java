@@ -14,13 +14,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insertUser(User user) {
-        userDAO.insert(user);
+    public User getUserByLogin(String login) {
+        return userDAO.findByLogin(login);
     }
 
     @Override
-    public void insertUsers(User[] users) {
-
+    public void newUser(User user) {
+        // TODO : hash user password and answer
+        userDAO.create(user);
     }
 
     public String hash(String str){

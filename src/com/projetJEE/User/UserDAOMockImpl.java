@@ -3,17 +3,14 @@ package com.projetJEE.User;
 public class UserDAOMockImpl implements UserDAO {
     @Override
     public User findByID(int ID) {
-        return new User(ID, "tony", "hash", "question", "hash_answer");
+        return new User("tony", "hash", "question", "hash_answer", User.Rights.USER);
     }
 
     @Override
     public User findByLogin(String login) {
-        return new User(42, login, "hash", "question", "hash_answer");
+        return new User(login, "hash", "question", "hash_answer", User.Rights.USER);
     }
 
     @Override
-    public void insert(User user) {
-        System.err.println("impossible to insert a new user with the "+UserDAOMockImpl.class.getName());
-
-    }
+    public void create(User user) { }
 }
