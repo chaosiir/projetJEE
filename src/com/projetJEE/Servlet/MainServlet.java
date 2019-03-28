@@ -3,8 +3,10 @@ package com.projetJEE.Servlet;
 import com.projetJEE.Group.Group;
 import com.projetJEE.Group.GroupService;
 import com.projetJEE.Group.GroupServiceImpl;
+import com.projetJEE.Student.Student;
 import com.projetJEE.Student.StudentService;
 import com.projetJEE.Student.StudentServiceImpl;
+import com.projetJEE.Student.StudentWS;
 import com.projetJEE.User.User;
 import com.projetJEE.User.UserService;
 import com.projetJEE.User.UserServiceImpl;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(name = "Main", urlPatterns = {"/"})
 public class MainServlet extends HttpServlet {
@@ -32,19 +35,13 @@ public class MainServlet extends HttpServlet {
         System.out.println("MainServlet constr");
         GroupService gs = new GroupServiceImpl();
         UserService us = new UserServiceImpl();
-
-//        User user = new User("login0", "password", "question", "answer", User.Rights.USER);
-//        us.newUser(user);
-//        Group group = new Group("group_login0", user);
-//        gs.newGroup(group);
-//
-//        user = us.getUserByLogin("login0");
-//        System.out.println(user);
+        StudentService ss = new StudentServiceImpl();
 
         /* Decomment these lines to initialize database with web service */
 //        Student[] students = StudentWS.getAllStudents();
-//        StudentService studentService = new StudentServiceImpl();
-//        studentService.insertStudents(students);
+//        for (Student s: students) {
+//            ss.insertStudent(s);
+//        }
     }
 
     /**

@@ -1,83 +1,74 @@
 package com.projetJEE.User;
 
-import com.projetJEE.DBManager;
+import com.projetJEE.DAOImpl;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl extends DAOImpl<User> implements UserDAO {
+
+    @Override
+    public void create(User user) {
+        String query = "insert into User (login, pwdHash, question, answerHash, rights) values (?, ?, ?, ?, ?)";
+        executeUpdateQuery(query,
+                preparedStatement -> { buildUserStatement(user, preparedStatement); },
+                generatedKeys -> {
+                    if (generatedKeys.next()) {
+                        user.setID(generatedKeys.getInt(1));
+                        System.out.println("Successfully created " + user);
+                    } else {
+                        throw new SQLException("No ID generated for " + user);
+                    }
+                });
+    }
+
+    @Override
+    public List<User> findAll() {
+        String query = "select * from User";
+        return getEntriesFromQuery(query, preparedStatement -> {});
+    }
 
     @Override
     public User findByID(int ID) {
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            String query = "select * from User where ID_user=?";
-            PreparedStatement preparedStatement = con.prepareStatement(query);
+        String query = "select * from User where ID_user=?";
+        return getUniqueEntryFromQuery(query, preparedStatement -> {
             preparedStatement.setInt(1, ID);
-            ResultSet rs = preparedStatement.executeQuery();
-            User user = usersFromResultSet(rs).get(0);
-            con.close();
-            return user;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        });
     }
 
     @Override
     public User findByLogin(String login) {
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            String query = "select * from User where login=?";
-            PreparedStatement preparedStatement = con.prepareStatement(query);
+        String query = "select * from User where login=?";
+        return getUniqueEntryFromQuery(query, preparedStatement -> {
             preparedStatement.setString(1, login);
-            ResultSet rs = preparedStatement.executeQuery();
-            User user = usersFromResultSet(rs).get(0);
-            con.close();
-            return user;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        });
     }
 
     @Override
-    public void create(User user) {
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            String query = "insert into User (login, pwdHash, question, answerHash, rights) values (?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPwdHash());
-            preparedStatement.setString(3, user.getQuestion());
-            preparedStatement.setString(4, user.getAnswerHash());
-            preparedStatement.setString(5, user.getRights().toString());
-
-            preparedStatement.executeUpdate();
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                user.setID(generatedKeys.getInt(1));
-                System.out.println("Successfully created user " + user);
-            } else {
-                throw new SQLException("NO ID GENERATED FOR USER");
-            }
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void update(User user) {
+        String query = "update User set " +
+                "login=?," +
+                "pwdHash=?," +
+                "question=?," +
+                "answerHash=?," +
+                "rights=? " +
+                "where ID_user=?";
+        executeUpdateQuery(query, preparedStatement -> {
+            buildUserStatement(user, preparedStatement);
+            preparedStatement.setInt(6, user.getID());
+        });
     }
 
-    private List<User> usersFromResultSet(ResultSet resultSet) throws SQLException {
-        ArrayList<User> users = new ArrayList<>();
-        while(resultSet.next()) {
-            users.add(UserDAOImpl.fromResultSet(resultSet));
-        }
-        return users;
+    @Override
+    public void delete(User user) {
+        String query = "delete from User where ID_user=?";
+        executeUpdateQuery(query, preparedStatement -> {
+           preparedStatement.setInt(1, user.getID());
+        });
     }
 
-    public static User fromResultSet(ResultSet resultSet) throws SQLException {
+    @Override
+    public User entryFromResultSet(ResultSet resultSet) throws SQLException {
         int ID = resultSet.getInt("ID_user");
         String login = resultSet.getString("login");
         String pwdHash = resultSet.getString("pwdHash");
@@ -87,5 +78,13 @@ public class UserDAOImpl implements UserDAO {
         User user = new User(login, pwdHash, question, answerHash, rights);
         user.setID(ID);
         return user;
+    }
+
+    private void buildUserStatement(User user, PreparedStatement preparedStatement) throws SQLException {
+        preparedStatement.setString(1, user.getLogin());
+        preparedStatement.setString(2, user.getPwdHash());
+        preparedStatement.setString(3, user.getQuestion());
+        preparedStatement.setString(4, user.getAnswerHash());
+        preparedStatement.setString(5, user.getRights().toString());
     }
 }

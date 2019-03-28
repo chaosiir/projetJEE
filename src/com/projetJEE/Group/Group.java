@@ -31,13 +31,15 @@ public class Group {
         return name;
     }
 
+    public void setName(String name) { this.name = name; }
+
     public User getOwner() {
         return owner;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+    public void setOwner(User owner) { this.owner = owner; }
+
+    public Date getCreationDate() { return creationDate; }
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;

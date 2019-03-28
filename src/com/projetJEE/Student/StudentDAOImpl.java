@@ -1,109 +1,73 @@
 package com.projetJEE.Student;
 
-import com.projetJEE.DBManager;
+import com.projetJEE.DAOImpl;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
 
     @Override
     public List<Student> findAll() {
-        return studentsFromQuery("select * from Student");
+        String query = "select * from Student";
+        return getEntriesFromQuery(query, preparedStatement -> {});
     }
 
     @Override
     public Student findByID(String ID) {
-        List<Student> students = studentsFromQuery("select * from Student where ID_student=" + ID);
-        return students.isEmpty() ? null : students.get(0);
+        String query = "select * from Student where ID_student=?";
+        return getUniqueEntryFromQuery(query, preparedStatement -> {
+           preparedStatement.setString(1, ID);
+        });
     }
 
     @Override
     public void insert(Student student) {
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            insert(student, con);
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String query = " insert into Student values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        executeUpdateQuery(query,
+                preparedStatement -> {
+                    preparedStatement.setString(1, student.getID());
+                    buildStudentStatement(student, preparedStatement, 1);
+                },
+                generatedKeys -> {
+                    System.out.println("Successfully inserted " + student);
+                });
     }
 
-
-    private void insert(Student student, Connection con) throws SQLException {
-        String query = " insert into Student values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement preparedStatement = con.prepareStatement(query);
-
-        preparedStatement.setString(1, student.getID());
-        preparedStatement.setString(2, student.getGender());
-        preparedStatement.setString(3, student.getFirstname());
-        preparedStatement.setString(4, student.getLastname());
-        preparedStatement.setDate(5, new java.sql.Date(student.getBirthday().getTime()));
-        preparedStatement.setString(6, student.getBac());
-        preparedStatement.setInt(7, student.getBacYear());
-        preparedStatement.setString(8, student.getBacGrade());
-        preparedStatement.setString(9, student.getDegree());
-        preparedStatement.setInt(10, student.getDegreeYear());
-        preparedStatement.setString(11, student.getDegreeCity());
-        preparedStatement.setInt(12, student.getRegistrationYear());
-        preparedStatement.setString(13, student.getEmailPro());
-        preparedStatement.setString(14, student.getEmailPer());
-
-        preparedStatement.execute();
-        System.out.println("Successfully inserted " + student);
+    @Override
+    public void update(Student student) {
+        String query = "update Student set " +
+                "gender=?," +
+                "firstname=?," +
+                "lastname=?," +
+                "birthday=?," +
+                "bac=?," +
+                "bacYear=?," +
+                "bacGrade=?," +
+                "degree=?," +
+                "degreeYear=?," +
+                "degreeCity=?," +
+                "registrationYear=?," +
+                "emailPro=?," +
+                "emailPer=? " +
+                "where ID_student=?";
+        executeUpdateQuery(query, preparedStatement -> {
+            buildStudentStatement(student, preparedStatement, 0);
+            preparedStatement.setString(14, student.getID());
+        });
     }
 
     @Override
     public void delete(Student student)  {
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            String query = " DELETE FROM Student where ID_student="+student.getID();
-            Statement statement = con.createStatement();
-            statement.executeQuery(query);
-
-            System.out.println("Successfully deleted " + student);
-            con.close();
-        }catch (SQLException e){e.printStackTrace();}
-
+        String query = "delete from Student where ID_student=?";
+        executeUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, student.getID());
+        });
     }
 
     @Override
-    public void insertAll(Student[] students) {
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            for(Student student : students)
-                insert(student, con);
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private List<Student> studentsFromQuery(String query) { //todo use preparedStatement for safety reason
-        List<Student> students = new ArrayList<Student>();
-        try {
-            Connection con = DBManager.getInstance().getConnection();
-            Statement sta = con.createStatement();
-            ResultSet rs = sta.executeQuery(query);
-            students = studentsFromResultSet(rs);
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return students;
-    }
-
-    private List<Student> studentsFromResultSet(ResultSet resultSet) throws SQLException {
-        ArrayList<Student> students = new ArrayList<>();
-        while(resultSet.next()) {
-            students.add(StudentDAOImpl.fromResultSet(resultSet));
-        }
-        return students;
-    }
-
-    private static Student fromResultSet(ResultSet resultSet) throws SQLException {
+    public Student entryFromResultSet(ResultSet resultSet) throws SQLException {
         String ID_student = resultSet.getString("ID_student");
         String gender = resultSet.getString("gender");
         String firstname = resultSet.getString("firstname");
@@ -124,5 +88,21 @@ public class StudentDAOImpl implements StudentDAO {
                 bac, bacYear, bacGrade,
                 degree, degreeYear, degreeCity, registrationYear,
                 emailPro, emailPer);
+    }
+
+    private void buildStudentStatement(Student student, PreparedStatement preparedStatement, int offset) throws SQLException{
+        preparedStatement.setString(offset + 1, student.getGender());
+        preparedStatement.setString(offset + 2, student.getFirstname());
+        preparedStatement.setString(offset + 3, student.getLastname());
+        preparedStatement.setDate(offset + 4, new java.sql.Date(student.getBirthday().getTime()));
+        preparedStatement.setString(offset + 5, student.getBac());
+        preparedStatement.setInt(offset + 6, student.getBacYear());
+        preparedStatement.setString(offset + 7, student.getBacGrade());
+        preparedStatement.setString(offset + 8, student.getDegree());
+        preparedStatement.setInt(offset + 9, student.getDegreeYear());
+        preparedStatement.setString(offset + 10, student.getDegreeCity());
+        preparedStatement.setInt(offset + 11, student.getRegistrationYear());
+        preparedStatement.setString(offset + 12, student.getEmailPro());
+        preparedStatement.setString(offset + 13, student.getEmailPer());
     }
 }

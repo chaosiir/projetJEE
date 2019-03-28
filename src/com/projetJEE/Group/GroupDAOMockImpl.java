@@ -3,29 +3,43 @@ package com.projetJEE.Group;
 import com.projetJEE.User.User;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GroupDAOMockImpl implements GroupDAO {
 
     @Override
+    public void create(Group group) { }
+
+    @Override
     public List<Group> findAll() {
         List<Group> groups = new ArrayList<Group>();
-        groups.add(new Group("groupe_1", null));
-        groups.add(new Group("groupe_2", null));
+        groups.add(new Group("group_0", null));
+        groups.add(new Group("group_1", null));
+        return groups;
+    }
+
+    @Override
+    public List<Group> findByOwner(User owner) {
+        List<Group> groups = new ArrayList<Group>();
+        groups.add(new Group("group_0", owner));
+        groups.add(new Group("group_1", owner));
         return groups;
     }
 
     @Override
     public Group findByID(int ID) {
-        return new Group("groupe_" + ID, null);
+        return new Group("group" + ID, null);
     }
 
     @Override
     public Group findByName(String name) {
-        return new Group("name", null);
+        return new Group(name, null);
     }
 
     @Override
-    public void createGroup(Group group) { }
+    public void update(Group group) { }
+
+    @Override
+    public void delete(Group group) { }
+
 }

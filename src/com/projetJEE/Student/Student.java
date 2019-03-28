@@ -49,7 +49,7 @@ public class Student {
         return "Student{" +
                 "ID='" + ID + '\'' +
                 ", gender='" + gender + '\'' +
-                ", firstname='" +  + '\'' +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", birthday=" + birthday +
                 ", bac='" + bac + '\'' +

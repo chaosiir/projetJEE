@@ -78,7 +78,6 @@ public class DBManager {
 			}
 		}
 	}
-
 	/**
 	 * permet de tester la connexion à la DB
 	 * 

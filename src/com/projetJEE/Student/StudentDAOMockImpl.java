@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 public class StudentDAOMockImpl implements StudentDAO {
+
+    @Override
+    public void insert(Student student) { }
+
     @Override
     public List<Student> findAll() {
         List<Student> students = new ArrayList<Student>();
@@ -26,15 +30,8 @@ public class StudentDAOMockImpl implements StudentDAO {
     }
 
     @Override
-    public void insert(Student student) {
-
-    }
+    public void update(Student student) { }
 
     @Override
-    public void insertAll(Student[] students) { }
-
-    @Override
-    public void delete(Student student) {
-
-    }
+    public void delete(Student student) { }
 }

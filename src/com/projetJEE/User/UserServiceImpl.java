@@ -3,10 +3,20 @@ package com.projetJEE.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO = new UserDAOImpl();
+
+    @Override
+    public void newUser(User user) {
+        // TODO : hash user password and answer
+        userDAO.create(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() { return userDAO.findAll(); }
 
     @Override
     public User getUserByID(int ID) {
@@ -19,10 +29,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void newUser(User user) {
-        // TODO : hash user password and answer
-        userDAO.create(user);
-    }
+    public void updateUser(User user) { userDAO.update(user); }
+
+    @Override
+    public void deleteUser(User user) { userDAO.delete(user); }
 
     public String hash(String str){
         try {

@@ -5,9 +5,11 @@ import com.projetJEE.User.User;
 import java.util.List;
 
 public interface GroupDAO {
+    void create(Group group);
     List<Group> findAll();
+    List<Group> findByOwner(User owner);
     Group findByID(int ID);
-    //Group findByOwner(User owner);
     Group findByName(String name);
-    void createGroup(Group group);
+    void update(Group group);
+    void delete(Group group);
 }
