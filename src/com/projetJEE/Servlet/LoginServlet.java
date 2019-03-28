@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pageName = "/projetJEE_war_exploded/Login.jsp";
+        String pageName = "/Login.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         rd.forward(request, response);
     }

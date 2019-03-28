@@ -5,7 +5,7 @@
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
     <meta charset="UTF-8">
-    <title > Login</title>
+    <title > Register</title>
     <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
@@ -26,7 +26,7 @@
 
     <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Regsiter</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>
 </body>
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
