@@ -26,7 +26,14 @@ USE `sql7283170` ;
 CREATE TABLE IF NOT EXISTS `sql7283170`.`Group` (
   `ID_group` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
-  PRIMARY KEY (`ID_group`))
+  `ID_owner` INT NOT NULL,
+  `creationDate` DATE NOT NULL,
+  PRIMARY KEY (`ID_group`),
+  CONSTRAINT `Group_User_ID_owner_fk`
+    FOREIGN KEY (`ID_owner`)
+    REFERENCES `sql7283170`.`User` (`ID_user`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
