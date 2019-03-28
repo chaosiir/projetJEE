@@ -25,7 +25,7 @@
             <input type="checkbox" value="remember-me"> Remember me
         </label>
     </div>
-    <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" ></div><br>
+    <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 </form>

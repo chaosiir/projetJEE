@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-        String pageName = "/Login.jsp";
+        String pageName = "/projetJEE_war_exploded/Login.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
