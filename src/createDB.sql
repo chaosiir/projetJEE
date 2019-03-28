@@ -92,7 +92,7 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `sql7283170`.`ExcludedStudent`
+-- Table `sql7283170`.`IncludedStudent`
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `sql7283170`.`ExcludedStudent` (

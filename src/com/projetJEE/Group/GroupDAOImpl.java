@@ -2,10 +2,7 @@ package com.projetJEE.Group;
 
 import com.projetJEE.DBManager;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +27,19 @@ public class GroupDAOImpl implements GroupDAO {
 
     @Override
     public void createGroup(String name) {
-
+        try {
+            String query = " insert into `Group` (name) values (?)";
+            System.out.println(query);
+            Connection con = DBManager.getInstance().getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            System.out.println(preparedStatement);
+            preparedStatement.execute();
+            con.close();
+            System.out.println("Successfully inserted group " + name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // TODO : refactor function ___FromQuery

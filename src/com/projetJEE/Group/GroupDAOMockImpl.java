@@ -25,6 +25,6 @@ public class GroupDAOMockImpl implements GroupDAO {
 
     @Override
     public void createGroup(String name) {
-        // create group in DB
+
     }
 }

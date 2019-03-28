@@ -22,7 +22,5 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void newGroup(String name) {
-        groupDAO.createGroup(name);
-    }
+    public void newGroup(String name) { groupDAO.createGroup(name); }
 }

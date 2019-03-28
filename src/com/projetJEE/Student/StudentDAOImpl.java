@@ -55,10 +55,8 @@ public class StudentDAOImpl implements StudentDAO {
         System.out.println("Successfully inserted " + student);
     }
 
-
-/*
-    private void delete(Student student)  {
-
+    @Override
+    public void delete(Student student)  {
         try {
             Connection con = DBManager.getInstance().getConnection();
             String query = " DELETE FROM Student where ID_student="+student.getID();
@@ -67,10 +65,9 @@ public class StudentDAOImpl implements StudentDAO {
 
             System.out.println("Successfully deleted " + student);
             con.close();
-
         }catch (SQLException e){e.printStackTrace();}
 
-    }*/
+    }
 
     @Override
     public void insertAll(Student[] students) {

@@ -7,9 +7,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentDAO studentDAO = new StudentDAOImpl();
 
     @Override
-    public List<Student> getAllStudents() {
-        return studentDAO.findAll();
-    }
+    public List<Student> getAllStudents() { return studentDAO.findAll(); }
 
     @Override
     public Student getStudentByID(String ID) {
@@ -26,8 +24,6 @@ public class StudentServiceImpl implements StudentService {
         studentDAO.insertAll(students);
     }
 
-    /*@Override
-    public void deleteStudent(Student student) {
-        studentDAO.delete(student);
-    }*/
+    @Override
+    public void deleteStudent(Student student) { studentDAO.delete(student); }
 }

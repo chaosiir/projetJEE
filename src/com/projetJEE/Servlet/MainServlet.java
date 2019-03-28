@@ -1,5 +1,8 @@
 package com.projetJEE.Servlet;
 
+import com.projetJEE.Group.Group;
+import com.projetJEE.Group.GroupService;
+import com.projetJEE.Group.GroupServiceImpl;
 import com.projetJEE.Student.StudentService;
 import com.projetJEE.Student.StudentServiceImpl;
 
@@ -23,7 +26,11 @@ public class MainServlet extends HttpServlet {
     public MainServlet() throws ParseException {
         super();
         System.out.println("MainServlet constr");
-
+        GroupService gs = new GroupServiceImpl();
+        gs.newGroup("group_test");
+//        for (Group g : gs.getAllGroups()) {
+//            System.out.println(g);
+//        }
         /* Decomment these lines to initialize database with web service */
 //        Student[] students = StudentWS.getAllStudents();
 //        StudentService studentService = new StudentServiceImpl();
