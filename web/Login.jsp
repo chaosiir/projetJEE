@@ -11,7 +11,7 @@
 
 </head>
 <body class="text-center">
-<form class="form-signin" method="post">
+<form class="form-signin" method="post" action="/projetJEE_war_exploded/login">
     <h1 align="center">Login</h1>
     <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
     <label  for="inputID" class="sr-only">ID</label>

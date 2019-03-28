@@ -12,9 +12,7 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     System.out.println("post");
-        String pageName = "/Login.jsp";
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-        rd.forward(request, response);
+        response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Login");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
