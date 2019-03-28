@@ -1,30 +1,42 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Colin
-  Date: 07/03/2019
-  Time: 11:28
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
+    <meta charset="UTF-8">
+    <title > Login</title>
+    <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
 </head>
-<body>
-    <h1>Please register</h1>
-    <form action="/register" method="post">
-        User name :<br>
-        <input type="text" name="username" required><br>
-        Password :<br>
-        <input type="password" name="pwd1" required><br>
-        Confirm password :<br>
-        <input type="password" name="pwd2" required><br>
-        <br>
-        Secret question :<br>
-        <input type="text" name="question" required><br>
-        Answer :<br>
-        <input type="text" name="answer" required><br>
-        <input type="submit" value="Submit">
-    </form>
+<body class="text-center">
+<form class="form-signin" method="post">
+    <h1 align="center">Register</h1>
+    <label  for="inputID" class="sr-only">ID</label>
+    <input type="text" id="inputID" class="form-control" placeholder="ID" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <label for="inputPassword2" class="sr-only">Password</label>
+    <input type="password" id="inputPassword2" class="form-control" placeholder="Password" required="">
+    <label  for="inputQ" class="sr-only">Question</label>
+    <input type="text" id="inputQ" class="form-control" placeholder="Question" required="" autofocus="">
+    <label for="answer" class="sr-only">Answer</label>
+    <input type="password" id="answer" class="form-control" placeholder="Answer" required="">
+
+    <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Regsiter</button>
+</form>
 </body>
+<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+
+
+
 </html>
+

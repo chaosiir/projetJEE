@@ -11,9 +11,8 @@
 
 </head>
 <body class="text-center">
-<form class="form-signin">
+<form class="form-signin" method="post">
     <h1 align="center">Login</h1>
-    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
     <label  for="inputID" class="sr-only">ID</label>
     <input type="text" id="inputID" class="form-control" placeholder="ID" required="" autofocus="">
@@ -25,10 +24,12 @@
             <input type="checkbox" value="remember-me"> Remember me
         </label>
     </div>
-    <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" ></div><br>
+    <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+    <a href="http://localhost:8080/projetJEE_war_exploded/mdp_oublie" target="_blank">Mot de passe oublié ?</a>
 </form>
+
 </body>
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 
