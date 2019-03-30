@@ -27,10 +27,24 @@
     <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-    <a href="http://localhost:8080/projetJEE_war_exploded/mdp_oublie" target="_blank">Mot de passe oublié ?</a>
+    <a href="" onclick="question()" target="_blank">Mot de passe oublié ?</a>
+
 </form>
 
 </body>
+<script>
+    function question(){
+        var question=prompt("What is the answer to your question ?");
+        alert("your password is");
+       /*
+        if (question=="answer"){
+            alert("your password is");}
+        else{
+            alert("wrong please try again")
+            }
+       */
+    }
+</script>
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

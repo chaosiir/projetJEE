@@ -24,11 +24,15 @@
     <label for="answer" class="sr-only">Answer</label>
     <input type="password" id="answer" class="form-control" placeholder="Answer" required="">
 
+
+    <a href="edit.jsp?answer=${answer}" />
+
     <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>
 </body>
+
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
