@@ -32,7 +32,7 @@
     <label  for="inputQ" class="sr-only">Question</label>
     <input type="text" id="inputQ"  name="Q" class="form-control" placeholder="Question" required autofocus="">
     <label for="answer" class="sr-only">Answer</label>
-    <input type="password" id="answer"  name="Awns" class="form-control" placeholder="Answer" required>
+    <input type="password" id="answer"  name="Answ" class="form-control" placeholder="Answer" required>
 
 
     <%--<a href="edit.jsp?answer=${answer}" />--%>
