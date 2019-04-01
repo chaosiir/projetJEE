@@ -13,13 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "Home", urlPatterns = {"/Home"})
-public class HomeServlet extends HttpServlet {
+public class StudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getParameter("id");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pageName = "/Home.jsp";
+        String pageName = "/Student.jsp";
+        StudentService bs = new StudentServiceImpl();
+        request.setAttribute("students", bs.getAllStudents());
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
