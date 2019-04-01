@@ -15,13 +15,13 @@
     <h1 align="center">Login</h1>
     <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
     <label  for="inputID" class="sr-only">ID</label>
-    <input type="text" id="inputID" class="form-control" placeholder="ID" required="" autofocus="">
+    <input type="text" id="inputID" name="inputID" class="form-control" placeholder="ID" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required="">
 
     <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" name="remembermer" value="remember-me"> Remember me
         </label>
     </div>
     <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
