@@ -7,29 +7,58 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "Mdp", urlPatterns = {"/mdp"})
 public class MdpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("post");
 
-        User us=new User(request.getParameter("id"),request.getParameter("id"),request.getParameter("id"),request.getParameter("id"), User.Rights.USER);
-        String x=request.getParameter("answer");
+       // User us=new User(request.getParameter("id"),request.getParameter("id"),request.getParameter("id"),request.getParameter("id"), User.Rights.USER);
+        UserServiceImpl usimp=new UserServiceImpl();
+        User verif=usimp.getUserByLogin(request.getParameter("inputID"));
+        if(verif.getAnswerHash().compareTo(usimp.hash(request.getParameter("answer")))==0){
+            System.out.println("verification ok");
+            PrintWriter out = response.getWriter();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Verification ok');");
+            out.println("</script>");
+            response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/update");
+        }
+        else {
+            System.out.println("non");
+            PrintWriter out = response.getWriter();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User or password incorrect');");
+            out.println("</script>");
+            /*String pageName = "/Login.jsp";
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
+            rd.forward(request, response);*/
+        }
+      /*  String x=request.getParameter("answer");
         System.out.println(x);
      //   String y=us.getAnswerHash();
         String y="Bonjour"; //exemple
         System.out.println(y);
         String x1= UserServiceImpl.getInstance().hash(x);
-        if (x1.equals(y)){
+        String x2= UserServiceImpl.getInstance().hash(y); // TEST
+
+        if (x1.equals(x2)){
             System.out.println("verification ok");
+            response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/update");
+
         }
         else{
             System.out.println("non");
-            //  response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/login");
+            PrintWriter out = response.getWriter();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('User or password incorrect');");
+            out.println("</script>");
         }
 
-
+*/
 
     }
 

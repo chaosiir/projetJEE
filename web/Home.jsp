@@ -8,7 +8,7 @@
 </head>
 <body>
     <div style="width: 40%; margin: auto">
-        <h1>Acceuil</h1>
+        <h1>Accueil</h1>
         <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Students" style="alignment: left">Liste des etudiants</a>
         <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Groups" style="alignment: left">Liste des Groups</a>
     </div>
