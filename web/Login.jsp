@@ -28,9 +28,9 @@
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
     <a href="" onclick="question()" target="_blank">Mot de passe oublié ?</a>
-
+    <br>
+    <a href="http://localhost:8080/projetJEE_war_exploded/register" >Register </a>
 </form>
-
 </body>
 <script>
     function question(){
