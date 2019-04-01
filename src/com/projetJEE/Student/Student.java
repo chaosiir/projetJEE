@@ -1,5 +1,7 @@
 package com.projetJEE.Student;
 
+import com.projetJEE.Group.Group;
+
 import java.util.Date;
 
 public class Student {
@@ -23,6 +25,8 @@ public class Student {
     private String emailPro;
     private String emailPer;
 
+    private Group group;
+
     public Student(
             String ID, String gender, String firstname, String lastname, Date birthday,
             String bac, int bacYear, String bacGrade,
@@ -42,6 +46,7 @@ public class Student {
         this.registrationYear = registrationYear;
         this.emailPro = emailPro;
         this.emailPer = emailPer;
+        this.group = null;
     }
 
     @Override
@@ -119,4 +124,8 @@ public class Student {
     public String getEmailPer() {
         return emailPer;
     }
+
+    public void setGroup(Group group) { this.group = group; }
+
+    public Group getGroup() { return group; }
 }

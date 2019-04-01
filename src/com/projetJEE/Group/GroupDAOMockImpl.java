@@ -1,5 +1,6 @@
 package com.projetJEE.Group;
 
+import com.projetJEE.Student.Student;
 import com.projetJEE.User.User;
 
 import java.util.ArrayList;
@@ -35,6 +36,12 @@ public class GroupDAOMockImpl implements GroupDAO {
     public Group findByName(String name) {
         return new Group(name, null);
     }
+
+    @Override
+    public void addStudent(Group group, Student student) {}
+
+    @Override
+    public void removeStudent(Group group, Student student) { }
 
     @Override
     public void update(Group group) { }
