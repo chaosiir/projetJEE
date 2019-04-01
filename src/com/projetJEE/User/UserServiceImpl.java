@@ -5,6 +5,7 @@ import com.projetJEE.DBManager;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -24,7 +25,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void newUser(User user) {
-        // TODO : hash user password and answer
+        //hash password and answer
+        user.setPwdHash(hash(user.getPwdHash()));
+        user.setAnswerHash(hash(user.getAnswerHash()));
         userDAO.create(user);
     }
 
@@ -48,10 +51,13 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(User user) { userDAO.delete(user); }
 
     public String hash(String str){
+
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest("password".getBytes(StandardCharsets.UTF_8));
-            return new String(hash, StandardCharsets.UTF_8);
+            byte[] hash = digest.digest(str.getBytes(StandardCharsets.UTF_8));
+            String hashStr = Base64.getEncoder().encodeToString(hash);
+            System.out.println("hash -> " + hashStr);
+            return hashStr;
         } catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
         return null;
     }

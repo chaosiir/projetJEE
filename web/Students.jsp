@@ -10,10 +10,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
 <h1>Students</h1>
+<a class="btn btn-sm btn-primary" href="./new">insert student</a>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -30,6 +31,7 @@
         <th>RegistrationYear</th>
         <th>EmailPro</th>
         <th>EmailPer</th>
+        <th></th>
     </tr>
     <%
         for (Student student : students) {
@@ -49,6 +51,10 @@
         <td><%=student.getRegistrationYear()%></td>
         <td><%=student.getEmailPro()%></td>
         <td><%=student.getEmailPer()%></td>
+        <td class="btn-group-sm">
+            <a class="btn btn-sm btn-primary" href="./modify?id=<%=student.getID()%>">modify</a>
+            <a class="btn btn-sm btn-danger" href="./delete?id=<%=student.getID()%>">delete</a>
+        </td>
     </tr>
     <%
         }
