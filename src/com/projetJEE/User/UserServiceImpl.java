@@ -1,11 +1,24 @@
 package com.projetJEE.User;
 
+import com.projetJEE.DBManager;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
+    private static UserServiceImpl instance;
+
+    public static UserServiceImpl getInstance() {
+        if (instance == null) {
+            synchronized (UserServiceImpl.class) {
+                instance = new UserServiceImpl();
+            }
+        }
+        return instance;
+    }
 
     private UserDAO userDAO = new UserDAOImpl();
 

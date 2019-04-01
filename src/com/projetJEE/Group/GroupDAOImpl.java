@@ -1,6 +1,8 @@
 package com.projetJEE.Group;
 
 import com.projetJEE.DAOImpl;
+import com.projetJEE.Student.Student;
+import com.projetJEE.Student.StudentDAOImpl;
 import com.projetJEE.User.User;
 import com.projetJEE.User.UserDAOImpl;
 
@@ -11,15 +13,16 @@ import java.util.List;
 public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
 
     private UserDAOImpl userDAO;
+    private StudentDAOImpl studentDAO;
 
-
-    public GroupDAOImpl(UserDAOImpl userDAO) {
+    public GroupDAOImpl(UserDAOImpl userDAO, StudentDAOImpl studentDAO) {
         this.userDAO = userDAO;
+        this.studentDAO = studentDAO;
     }
 
     @Override
     public void create(Group group) {
-        String query = " insert into `Group` (name, ID_owner, creationDate) values (?, ?, ?)";
+        String query = "insert into `Group` (name, ID_owner, creationDate) values (?, ?, ?)";
         executeUpdateQuery(query,
                 preparedStatement -> { buildGroupStatement(group, preparedStatement); },
                 generatedKeys -> {
@@ -39,14 +42,6 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
     }
 
     @Override
-    public Group findByID(int ID) {
-        String query = "select * from `Group`, User where ID_group=? and ID_owner=ID_user";
-        return getUniqueEntryFromQuery(query, preparedStatement -> {
-            preparedStatement.setInt(1, ID);
-        });
-    }
-
-    @Override
     public List<Group> findByOwner(User owner) {
         String query = "select * from `Group`, User where ID_owner=?";
         return getEntriesFromQuery(query, preparedStatement -> {
@@ -55,11 +50,43 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
     }
 
     @Override
+    public Group findByID(int ID) {
+        String query = "select * from `Group`, User where ID_group=? and ID_owner=ID_user";
+        Group group = getUniqueEntryFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, ID);
+        });
+        addStudents(group);
+        return group;
+    }
+
+    @Override
     public Group findByName(String name) {
         String query = "select * from `Group`, User where name=? and ID_owner=ID_user";
-        return getUniqueEntryFromQuery(query, preparedStatement -> {
+        Group group = getUniqueEntryFromQuery(query, preparedStatement -> {
             preparedStatement.setString(1, name);
         });
+        addStudents(group);
+        return group;
+    }
+
+    @Override
+    public void addStudent(Group group, Student student) {
+        String query = "insert into IncludedStudent values (?, ?)";
+        executeUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, group.getID());
+            preparedStatement.setString(2, student.getID());
+        });
+        group.addStudent(student);
+    }
+
+    @Override
+    public void removeStudent(Group group, Student student) {
+        String query = "delete from IncludedStudent where ID_group=? and ID_student=?";
+        executeUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, group.getID());
+            preparedStatement.setString(2, student.getID());
+        });
+        group.removeStudent(student);
     }
 
     @Override
@@ -99,5 +126,9 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
         preparedStatement.setString(1, group.getName());
         preparedStatement.setInt(2, group.getOwner().getID());
         preparedStatement.setDate(3, new java.sql.Date(new Date().getTime()));
+    }
+
+    private void addStudents(Group group) {
+        group.setStudents(studentDAO.findByGroup(group));
     }
 }

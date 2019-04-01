@@ -33,9 +33,24 @@ public class MainServlet extends HttpServlet {
     public MainServlet() throws ParseException {
         super();
         System.out.println("MainServlet constr");
-        GroupService gs = new GroupServiceImpl();
-        UserService us = new UserServiceImpl();
-        StudentService ss = new StudentServiceImpl();
+
+        UserService us = UserServiceImpl.getInstance();
+        GroupService gs = GroupServiceImpl.getInstance();
+        StudentService ss = StudentServiceImpl.getInstance();
+
+        Student student = ss.getAllStudents().get(1);
+        Group g = gs.getGroupByID(8);
+        g.addStudent(ss.getAllStudents().get(1));
+//        User user = us.getAllUsers().get(0);
+//        System.out.println(student);
+//        System.out.println(user);
+//        Group group = new Group("group_test", user);
+//        gs.newGroup(group);
+//        gs.addStudentToGroup(group, student);
+        //g = gs.getGroupByID(8);
+
+        System.out.println(g);
+        System.out.println(g.getStudents());
 
         /* Decomment these lines to initialize database with web service */
 //        Student[] students = StudentWS.getAllStudents();

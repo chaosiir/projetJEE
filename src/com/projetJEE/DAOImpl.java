@@ -57,9 +57,7 @@ public abstract class DAOImpl<T> {
         return list;
     }
 
-    public T entryFromResultSet(ResultSet resultSet) throws SQLException {
-        return null;
-    }
+    public abstract T entryFromResultSet(ResultSet resultSet) throws SQLException;
 
     public interface StatementBuilder {
         void build (PreparedStatement preparedStatement) throws SQLException;

@@ -1,22 +1,29 @@
 package com.projetJEE.Group;
 
+import com.projetJEE.Student.Student;
 import com.projetJEE.User.User;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Group {
 
     private int ID;
     private String name;
     private User owner;
-
     private Date creationDate;
+    private List<Student> students;
+    private List<Group> childs;
 
     public Group(String name, User owner) {
         this.ID = -1;
         this.name = name;
         this.owner = owner;
+        this.students = null;
         this.creationDate = null;
+        this.students = new ArrayList<>();
+        this.childs = new ArrayList<>();
     }
 
     public int getID() {
@@ -45,6 +52,10 @@ public class Group {
         this.creationDate = creationDate;
     }
 
+    public void setStudents(List<Student> students) { this.students = students; }
+
+    public List<Group> getChilds() { return childs; }
+
     @Override
     public String toString() {
         return "Group{" +
@@ -53,5 +64,30 @@ public class Group {
                 ", owner=" + owner +
                 ", creationDate=" + creationDate +
                 '}';
+    }
+
+    public List<Student> getStudents() {
+        List<Student> students = new ArrayList<>();
+        students.addAll(this.students);
+        for (Group g : childs)
+            students.addAll(g.getStudents());
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
+    }
+
+    public void addGroup(Group group) {
+        // TODO : protection contre les cycles d'inclusion
+        childs.add(group);
+    }
+
+    public void removeGroup(Group group) {
+        childs.remove(group);
     }
 }

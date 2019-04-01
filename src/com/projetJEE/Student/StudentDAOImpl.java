@@ -1,6 +1,7 @@
 package com.projetJEE.Student;
 
 import com.projetJEE.DAOImpl;
+import com.projetJEE.Group.Group;
 
 import java.sql.*;
 import java.util.Date;
@@ -12,6 +13,14 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
     public List<Student> findAll() {
         String query = "select * from Student";
         return getEntriesFromQuery(query, preparedStatement -> {});
+    }
+
+    @Override
+    public List<Student> findByGroup(Group group) {
+        String query = "select * from IncludedStudent natural join Student where ID_group=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, group.getID());
+        });
     }
 
     @Override

@@ -4,6 +4,17 @@ import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
 
+    private static StudentServiceImpl instance;
+
+    public static StudentServiceImpl getInstance() {
+        if (instance == null) {
+            synchronized (StudentServiceImpl.class) {
+                instance = new StudentServiceImpl();
+            }
+        }
+        return instance;
+    }
+
     private StudentDAO studentDAO = new StudentDAOImpl();
 
     @Override

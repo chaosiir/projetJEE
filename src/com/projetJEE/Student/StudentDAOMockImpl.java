@@ -1,5 +1,7 @@
 package com.projetJEE.Student;
 
+import com.projetJEE.Group.Group;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +22,9 @@ public class StudentDAOMockImpl implements StudentDAO {
         );
         return students;
     }
+
+    @Override
+    public List<Student> findByGroup(Group group) { return null; }
 
     @Override
     public Student findByID(String ID) {
