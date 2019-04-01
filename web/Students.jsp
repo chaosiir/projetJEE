@@ -34,7 +34,8 @@
         <th></th>
     </tr>
     <%
-        for (Student student : students) {
+        if(students!=null)
+            for (Student student : students) {
     %>
     <tr>
         <td><%=student.getID()%></td>
@@ -52,12 +53,14 @@
         <td><%=student.getEmailPro()%></td>
         <td><%=student.getEmailPer()%></td>
         <td class="btn-group-sm">
-            <a class="btn btn-sm btn-primary" href="./modify?id=<%=student.getID()%>">modify</a>
-            <a class="btn btn-sm btn-danger" href="./delete?id=<%=student.getID()%>">delete</a>
+            <form action="" method="post">
+                <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
+                <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
+            </form>
         </td>
     </tr>
     <%
-        }
+            }
     %>
 </table>
 </body>

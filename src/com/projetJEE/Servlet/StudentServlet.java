@@ -12,14 +12,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Home", urlPatterns = {"/Home"})
+@WebServlet(name = "Students", urlPatterns = {"/Students"})
 public class StudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getParameter("id");
+        String id = request.getParameter("modify");
+        if(id!=null){
+            //todo redirect /Students/modify avec l'id du student
+            System.err.println("need modify -> "+id);
+        }
+        id = request.getParameter("delete");
+        if(id!=null){
+            StudentServiceImpl service = StudentServiceImpl.getInstance();
+            service.deleteStudent(service.getStudentByID(id));
+        }
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pageName = "/Student.jsp";
+        System.out.println("get "+request.getContextPath());
+        System.out.println("get "+request.getServletPath());
+        System.out.println("get "+request.getPathInfo());
+        System.out.println("get "+request.getPathTranslated());
+        String pageName = "/Students.jsp";
         StudentService bs = new StudentServiceImpl();
         request.setAttribute("students", bs.getAllStudents());
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
