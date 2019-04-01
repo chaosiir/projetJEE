@@ -1,6 +1,7 @@
 package com.projetJEE.Servlet;
 
 import com.projetJEE.User.User;
+import com.projetJEE.User.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +15,10 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("post");
-        System.out.println( request.getParameter("id"));
-        User us=new User(request.getParameter("id"),request.getParameter("id"),request.getParameter("id"),request.getParameter("id"), User.Rights.USER);
+        System.out.println( request.getParameter("pwd"));
+        User us=new User(request.getParameter("id"),request.getParameter("pwd"),request.getParameter("Q"),request.getParameter("Answ"), User.Rights.USER);
+        UserServiceImpl usimp=new UserServiceImpl();
+        usimp.newUser(us);
         response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Login");
     }
 
