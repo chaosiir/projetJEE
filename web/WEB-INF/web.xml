@@ -8,4 +8,6 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
+    <session-config>
+    </session-config>
 </web-app>

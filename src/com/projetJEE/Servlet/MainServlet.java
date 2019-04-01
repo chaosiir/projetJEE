@@ -67,17 +67,16 @@ public class MainServlet extends HttpServlet {
         doProcess(request, response);
     }
 
-    private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-        String pageName = "/Login.jsp";
+    private void doProcess(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        /*String pageName = "/Login.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
-            StudentService bs = new StudentServiceImpl();
-            request.setAttribute("students", bs.getAllStudents());
             rd.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        response.sendRedirect("./login");
     }
 }

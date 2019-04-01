@@ -23,6 +23,12 @@ public class HomeServlet extends HttpServlet {
         StudentService bs = new StudentServiceImpl();
         request.setAttribute("students", bs.getAllStudents());
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-        rd.forward(request, response);
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
