@@ -20,8 +20,6 @@ public class HomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageName = "/Home.jsp";
-        StudentService bs = new StudentServiceImpl();
-        request.setAttribute("students", bs.getAllStudents());
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
