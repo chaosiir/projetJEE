@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        System.out.println(session);
+        System.out.println("Session : "+session);
         if (session==null) {
             String pageName = "/Login.jsp";
             RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
@@ -45,8 +45,10 @@ public class LoginServlet extends HttpServlet {
      * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    System.out.println("post");
-       response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Home");
+        System.out.println("post");
+        System.out.println(request.getParameter("inputID"));
+        System.out.println(request.getParameter("inputPassword"));
+        response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Home");
     }
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
