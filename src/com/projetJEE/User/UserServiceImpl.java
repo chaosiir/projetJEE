@@ -11,7 +11,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void newUser(User user) {
-        // TODO : hash user password and answer
+        //hash password and answer
+        user.setPwdHash(hash(user.getPwdHash()));
+        user.setAnswerHash(hash(user.getAnswerHash()));
         userDAO.create(user);
     }
 
@@ -38,7 +40,9 @@ public class UserServiceImpl implements UserService {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest("password".getBytes(StandardCharsets.UTF_8));
-            return new String(hash, StandardCharsets.UTF_8);
+            String hashStr = new String(hash, StandardCharsets.UTF_8);
+            System.out.println("hash -> " + hashStr);
+            return hashStr;
         } catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
         return null;
     }
