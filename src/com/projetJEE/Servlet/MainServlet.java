@@ -38,17 +38,6 @@ public class MainServlet extends HttpServlet {
         GroupService gs = GroupServiceImpl.getInstance();
         StudentService ss = StudentServiceImpl.getInstance();
 
-        User nico = us.getUserByLogin("nico");
-        Group g_nico = new Group("g_nico", nico);
-        gs.newGroup(g_nico);
-
-        Group g1 = gs.getGroupByName("g1");
-        gs.addGroupToGroup(g1, g_nico);
-
-        System.out.println(g_nico.getStudents());
-        g_nico = gs.getGroupByName("g_nico");
-        System.out.println(g_nico.getStudents());
-
 
         /* Decomment these lines to initialize database with web service */
 //        Student[] students = StudentWS.getAllStudents();
