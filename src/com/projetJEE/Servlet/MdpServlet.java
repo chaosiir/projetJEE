@@ -20,20 +20,23 @@ public class MdpServlet extends HttpServlet {
         UserServiceImpl usimp=new UserServiceImpl();
         User verif=usimp.getUserByLogin(request.getParameter("id"));
      // System.out.println(verif.getQuestion());
-        if(verif.getAnswerHash().compareTo(usimp.hash(request.getParameter("answer")))==0){
+        if(verif.getAnswerHash().equals(usimp.hash(request.getParameter("answer")))){
             System.out.println("verification ok");
             PrintWriter out = response.getWriter();
+
+            response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/update");
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Verification ok');");
             out.println("</script>");
-            response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/update");
         }
         else {
             System.out.println("non");
             PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('User or password incorrect');");
+            out.println("alert('answer incorrect');");
             out.println("</script>");
+            //response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/login");
+
 
         }
 
