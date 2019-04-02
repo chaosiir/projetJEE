@@ -53,18 +53,26 @@ public class UserDAOImpl extends DAOImpl<User> implements UserDAO {
                 "answerHash=?," +
                 "rights=? " +
                 "where ID_user=?";
-        return executeUniqueUpdateQuery(query, preparedStatement -> {
+        boolean updated = executeUniqueUpdateQuery(query, preparedStatement -> {
             buildUserStatement(user, preparedStatement);
             preparedStatement.setInt(6, user.getID());
         });
+        if (updated)  {
+            System.out.println("Successfully updated " + user);
+        }
+        return updated;
     }
 
     @Override
     public boolean delete(User user) {
         String query = "delete from User where ID_user=?";
-        return executeUniqueUpdateQuery(query, preparedStatement -> {
-           preparedStatement.setInt(1, user.getID());
+        boolean deleted = executeUniqueUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, user.getID());
         });
+        if (deleted) {
+            System.out.println("Successfully deleted " + user);
+        }
+        return deleted;
     }
 
     @Override

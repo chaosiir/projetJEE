@@ -76,8 +76,10 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
             preparedStatement.setInt(1, group.getID());
             preparedStatement.setString(2, student.getID());
         });
-        if (added)
+        if (added) {
+            System.out.println("Successfully added student " + student.getID() + " to group " + group.getName());
             group.addStudent(student);
+        }
         return added;
     }
 
@@ -88,8 +90,10 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
             preparedStatement.setInt(1, group.getID());
             preparedStatement.setString(2, student.getID());
         });
-        if (removed)
+        if (removed) {
+            System.out.println("Successfully removed student " + student.getID() + " from group " + group.getName());
             group.removeStudent(student);
+        }
         return removed;
     }
 
@@ -100,18 +104,26 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
                 "ID_owner=?, " +
                 "creationDate=? " +
                 "where ID_group=?";
-        return executeUniqueUpdateQuery(query, preparedStatement -> {
+        boolean updated = executeUniqueUpdateQuery(query, preparedStatement -> {
             buildGroupStatement(group, preparedStatement);
             preparedStatement.setInt(4, group.getID());
         });
+        if (updated) {
+            System.out.println("Successfully updated " + group);
+        }
+        return updated;
     }
 
     @Override
     public boolean delete(Group group) {
         String query = "delete from `Group` where ID_group=?";
-        return executeUniqueUpdateQuery(query, preparedStatement -> {
+        boolean deleted = executeUniqueUpdateQuery(query, preparedStatement -> {
             preparedStatement.setInt(0, group.getID());
         });
+        if (deleted) {
+            System.out.println("Successfully deleted " + group);
+        }
+        return deleted;
     }
 
     @Override

@@ -10,6 +10,19 @@ import java.util.List;
 public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
 
     @Override
+    public boolean insert(Student student) {
+        String query = " insert into Student values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return executeUniqueUpdateQuery(query,
+                preparedStatement -> {
+                    preparedStatement.setString(1, student.getID());
+                    buildStudentStatement(student, preparedStatement, 1);
+                },
+                generatedKeys -> {
+                    System.out.println("Successfully inserted " + student);
+                });
+    }
+
+    @Override
     public List<Student> findAll() {
         String query = "select * from Student";
         return getEntriesFromQuery(query, preparedStatement -> {});
@@ -32,19 +45,6 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
     }
 
     @Override
-    public boolean insert(Student student) {
-        String query = " insert into Student values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        return executeUniqueUpdateQuery(query,
-                preparedStatement -> {
-                    preparedStatement.setString(1, student.getID());
-                    buildStudentStatement(student, preparedStatement, 1);
-                },
-                generatedKeys -> {
-                    System.out.println("Successfully inserted " + student);
-                });
-    }
-
-    @Override
     public boolean update(Student student) {
         String query = "update Student set " +
                 "gender=?," +
@@ -61,18 +61,26 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
                 "emailPro=?," +
                 "emailPer=? " +
                 "where ID_student=?";
-        return executeUniqueUpdateQuery(query, preparedStatement -> {
+        boolean updated = executeUniqueUpdateQuery(query, preparedStatement -> {
             buildStudentStatement(student, preparedStatement, 0);
             preparedStatement.setString(14, student.getID());
         });
+        if (updated) {
+            System.out.println("Successfully updated " + student);
+        }
+        return updated;
     }
 
     @Override
     public boolean delete(Student student)  {
         String query = "delete from Student where ID_student=?";
-        return executeUniqueUpdateQuery(query, preparedStatement -> {
+        boolean deleted = executeUniqueUpdateQuery(query, preparedStatement -> {
             preparedStatement.setString(1, student.getID());
         });
+        if (deleted) {
+            System.out.println("Successfully deleted " + student);
+        }
+        return deleted;
     }
 
     @Override
