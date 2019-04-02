@@ -38,6 +38,8 @@ public class GroupServiceImpl implements GroupService {
     /**
      * Returns all groups
      * @return A list of groups
+     * The list of students for each group won't be retrieved,
+     * use getGroupsByOwner, getGroupByID, getGroupByName instead
      */
     @Override
     public List<Group> getAllGroups() {
