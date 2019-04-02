@@ -12,10 +12,11 @@
     <title>Insert title here</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
 </head>
-<body  onload="JavaScript:timedRefresh(120000);">
+<body  onload="JavaScript:timedRefresh(120000);"> <!-- the page is refreshed automatically every 5 minutes-->
 <h1>Students</h1>
 <a class="btn btn-sm btn-primary" href="./new">insert student</a>
-<!--<button onclick="rafraichir-a()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>-->
+<button onclick="rafraichir_Ewok()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
+<!-- button if we want to refresh page before automatic refresh-->
 
 <table border="1">
     <tr>
@@ -70,6 +71,13 @@
     <!--
     function timedRefresh(timeoutPeriod) {
         setTimeout("location.reload(true);",timeoutPeriod);
+    }
+    //   -->
+</script>
+<script type="text/JavaScript">
+    <!--
+    function rafraichir_Ewok() {
+        location.reload();
     }
     //   -->
 </script>
