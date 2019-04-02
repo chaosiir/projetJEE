@@ -15,6 +15,8 @@
 <body>
 <h1>Students</h1>
 <a class="btn btn-sm btn-primary" href="./new">insert student</a>
+<button onclick="rafraichir()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
+
 <table border="1">
     <tr>
         <th>ID</th>
@@ -64,4 +66,9 @@
     %>
 </table>
 </body>
+<script>
+    function rafraichir(){
+        location.reload();
+    }
+</script>
 </html>
