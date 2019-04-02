@@ -18,7 +18,8 @@ public class MdpServlet extends HttpServlet {
 
        // User us=new User(request.getParameter("id"),request.getParameter("id"),request.getParameter("id"),request.getParameter("id"), User.Rights.USER);
         UserServiceImpl usimp=new UserServiceImpl();
-        User verif=usimp.getUserByLogin(request.getParameter("inputID"));
+        User verif=usimp.getUserByLogin(request.getParameter("id"));
+     // System.out.println(verif.getQuestion());
         if(verif.getAnswerHash().compareTo(usimp.hash(request.getParameter("answer")))==0){
             System.out.println("verification ok");
             PrintWriter out = response.getWriter();
@@ -33,32 +34,9 @@ public class MdpServlet extends HttpServlet {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('User or password incorrect');");
             out.println("</script>");
-            /*String pageName = "/Login.jsp";
-            RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-            rd.forward(request, response);*/
-        }
-      /*  String x=request.getParameter("answer");
-        System.out.println(x);
-     //   String y=us.getAnswerHash();
-        String y="Bonjour"; //exemple
-        System.out.println(y);
-        String x1= UserServiceImpl.getInstance().hash(x);
-        String x2= UserServiceImpl.getInstance().hash(y); // TEST
-
-        if (x1.equals(x2)){
-            System.out.println("verification ok");
-            response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/update");
 
         }
-        else{
-            System.out.println("non");
-            PrintWriter out = response.getWriter();
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('User or password incorrect');");
-            out.println("</script>");
-        }
 
-*/
 
     }
 
