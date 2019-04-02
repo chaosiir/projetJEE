@@ -9,7 +9,7 @@ import java.util.List;
 public class GroupDAOMockImpl implements GroupDAO {
 
     @Override
-    public void create(Group group) { }
+    public boolean create(Group group) { return false; }
 
     @Override
     public List<Group> findAll() {
@@ -38,15 +38,15 @@ public class GroupDAOMockImpl implements GroupDAO {
     }
 
     @Override
-    public void addStudent(Group group, Student student) {}
+    public boolean addStudent(Group group, Student student) { return false; }
 
     @Override
-    public void removeStudent(Group group, Student student) { }
+    public boolean removeStudent(Group group, Student student) { return false; }
 
     @Override
-    public void update(Group group) { }
+    public boolean update(Group group) { return false; }
 
     @Override
-    public void delete(Group group) { }
+    public boolean delete(Group group) { return false; }
 
 }
