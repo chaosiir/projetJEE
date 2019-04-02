@@ -9,7 +9,7 @@ import java.util.List;
 public class StudentDAOMockImpl implements StudentDAO {
 
     @Override
-    public void insert(Student student) { }
+    public boolean insert(Student student) { return false; }
 
     @Override
     public List<Student> findAll() {
@@ -35,8 +35,8 @@ public class StudentDAOMockImpl implements StudentDAO {
     }
 
     @Override
-    public void update(Student student) { }
+    public boolean update(Student student) { return false; }
 
     @Override
-    public void delete(Student student) { }
+    public boolean delete(Student student) { return false; }
 }

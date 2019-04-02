@@ -32,9 +32,9 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
     }
 
     @Override
-    public void insert(Student student) {
+    public boolean insert(Student student) {
         String query = " insert into Student values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        executeUpdateQuery(query,
+        return executeUniqueUpdateQuery(query,
                 preparedStatement -> {
                     preparedStatement.setString(1, student.getID());
                     buildStudentStatement(student, preparedStatement, 1);
@@ -45,7 +45,7 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
     }
 
     @Override
-    public void update(Student student) {
+    public boolean update(Student student) {
         String query = "update Student set " +
                 "gender=?," +
                 "firstname=?," +
@@ -61,16 +61,16 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
                 "emailPro=?," +
                 "emailPer=? " +
                 "where ID_student=?";
-        executeUpdateQuery(query, preparedStatement -> {
+        return executeUniqueUpdateQuery(query, preparedStatement -> {
             buildStudentStatement(student, preparedStatement, 0);
             preparedStatement.setString(14, student.getID());
         });
     }
 
     @Override
-    public void delete(Student student)  {
+    public boolean delete(Student student)  {
         String query = "delete from Student where ID_student=?";
-        executeUpdateQuery(query, preparedStatement -> {
+        return executeUniqueUpdateQuery(query, preparedStatement -> {
             preparedStatement.setString(1, student.getID());
         });
     }

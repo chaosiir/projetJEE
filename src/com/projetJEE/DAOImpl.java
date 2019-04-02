@@ -92,6 +92,29 @@ public abstract class DAOImpl<T> {
     }
 
     /**
+     * Executes a query on the database
+     * @param query The query to execute
+     * @pre The query must be a non-select statement
+     * @param statementBuilder See StatementBuilder
+     * @param generatedKeysChecker See GeneratedKeysChecker
+     * @return The query was a success
+     */
+    protected boolean executeUniqueUpdateQuery(String query, StatementBuilder statementBuilder, GeneratedKeysChecker generatedKeysChecker) {
+        return executeUpdateQuery(query, statementBuilder, generatedKeysChecker) == 1;
+    }
+
+    /**
+     * Executes a query on the database
+     * @param query The query to execute
+     * @pre The query must be a non-select statement
+     * @param statementBuilder See StatementBuilder
+     * @return The query was a success
+     */
+    protected boolean executeUniqueUpdateQuery(String query, StatementBuilder statementBuilder) {
+        return executeUpdateQuery(query, statementBuilder) == 1;
+    }
+
+    /**
      * Constructs a list of objects from a ResultSet
      * @param resultSet A ResultSet from a query
      * @return The list of objects constructed from that resultSet

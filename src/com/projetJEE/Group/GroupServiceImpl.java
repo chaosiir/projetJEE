@@ -31,13 +31,16 @@ public class GroupServiceImpl implements GroupService {
      * @param group Group to create
      * @pre group.getID() == -1
      * @post group.getID() != -1
+     * @return The group has been successfully created
      */
     @Override
-    public void newGroup(Group group) { groupDAO.create(group); }
+    public boolean newGroup(Group group) { return groupDAO.create(group); }
 
     /**
      * Returns all groups
      * @return A list of groups
+     * The list of students for each group won't be retrieved,
+     * use getGroupsByOwner, getGroupByID, getGroupByName instead
      */
     @Override
     public List<Group> getAllGroups() {
@@ -76,30 +79,34 @@ public class GroupServiceImpl implements GroupService {
      * Adds a student to a group
      * @param group Group where the student is added
      * @param student Student to add
+     * @return The student has been successfully added to the group
      */
     @Override
-    public void addStudentToGroup(Group group, Student student) { groupDAO.addStudent(group, student); }
+    public boolean addStudentToGroup(Group group, Student student) { return groupDAO.addStudent(group, student); }
 
     /**
      * Removes a student from a group
      * @param group Group where the student is removed
      * @param student Student to remove
+     * @return The student has been successfully removed from the group
      */
     @Override
-    public void removeStudentFromGroup(Group group, Student student) { groupDAO.removeStudent(group, student); }
+    public boolean removeStudentFromGroup(Group group, Student student) { return groupDAO.removeStudent(group, student); }
 
     /**
      * Updates a group
      * @param group Group to update
+     * @return The group has been successfully updated
      * Only owner, name and creation date can be updated
      */
     @Override
-    public void updateGroup(Group group) { groupDAO.update(group); }
+    public boolean updateGroup(Group group) { return groupDAO.update(group); }
 
     /**
      * Deletes a group
      * @param group Group to delete
+     * @return The group has been successfully deleted
      */
     @Override
-    public void deleteGroup(Group group) { groupDAO.update(group); }
+    public boolean deleteGroup(Group group) { return groupDAO.update(group); }
 }
