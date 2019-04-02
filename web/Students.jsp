@@ -12,10 +12,10 @@
     <title>Insert title here</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
 </head>
-<body>
+<body  onload="JavaScript:timedRefresh(120000);">
 <h1>Students</h1>
 <a class="btn btn-sm btn-primary" href="./new">insert student</a>
-<button onclick="rafraichir()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
+<!--<button onclick="rafraichir-a()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>-->
 
 <table border="1">
     <tr>
@@ -66,9 +66,12 @@
     %>
 </table>
 </body>
-<script>
-    function rafraichir(){
-        location.reload();
+<script type="text/JavaScript">
+    <!--
+    function timedRefresh(timeoutPeriod) {
+        setTimeout("location.reload(true);",timeoutPeriod);
     }
+    //   -->
 </script>
+
 </html>
