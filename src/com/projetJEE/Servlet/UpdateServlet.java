@@ -17,8 +17,9 @@ public class UpdateServlet extends HttpServlet {
         System.out.println("post");
         UserServiceImpl usimp=new UserServiceImpl();
         User verif=usimp.getUserByLogin(request.getParameter("inputID"));
+
         System.out.println(verif.getQuestion()); // Test to see what is the question before update
-        System.out.println(verif.getPwdHash()); //Test to see what is the hashed pass before update
+        System.out.println(verif.getPwdHash()); //  Test to see what is the hashed pass before update
 
         usimp.deleteUser(verif);//we delete the first account
         User us=new User(request.getParameter("inputID"),request.getParameter("inputPassword"),request.getParameter("inputQ"),request.getParameter("answer"), User.Rights.USER);
@@ -26,7 +27,7 @@ public class UpdateServlet extends HttpServlet {
         usimp1.newUser(us);
 
         System.out.println(us.getQuestion());// Test to see what is the question after update
-        System.out.println(us.getPwdHash());// Test to see what is the hashed pass after update
+        System.out.println(us.getPwdHash());//  Test to see what is the hashed pass after update
 
         response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Login");
     }
