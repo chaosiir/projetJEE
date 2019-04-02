@@ -39,8 +39,8 @@ public class GroupServiceImpl implements GroupService {
     /**
      * Returns all groups
      * @return A list of groups
-     * The list of students for each group won't be retrieved,
-     * use getGroupsByOwner, getGroupByID, getGroupByName instead
+     * The list of students and child groups for each group won't be retrieved,
+     * use getGroupByID, getGroupByName instead
      */
     @Override
     public List<Group> getAllGroups() {
@@ -59,6 +59,8 @@ public class GroupServiceImpl implements GroupService {
      * Returns a group by ID
      * @param ID Group's ID
      * @return The group with that ID or null if nonexistent
+     * The list of students and child groups for each group won't be retrieved,
+     * use getGroupByID, getGroupByName instead
      */
     @Override
     public Group getGroupByID(int ID) {
@@ -83,6 +85,24 @@ public class GroupServiceImpl implements GroupService {
      */
     @Override
     public boolean addStudentToGroup(Group group, Student student) { return groupDAO.addStudent(group, student); }
+
+    /**
+     * Adds a group to another group
+     * @param group group to add
+     * @param parent source group
+     * @return The group has been successfully added to parent
+     */
+    @Override
+    public boolean addGroupToGroup(Group group, Group parent) { return groupDAO.addGroup(group, parent); }
+
+    /**
+     * Removes a group from another group
+     * @param group group to remove
+     * @param parent source group
+     * @return The group has been successfully removed from parent
+     */
+    @Override
+    public boolean removeGroupFromGroup(Group group, Group parent) { return groupDAO.removeGroup(group, parent); }
 
     /**
      * Removes a student from a group

@@ -28,6 +28,9 @@ public class GroupDAOMockImpl implements GroupDAO {
     }
 
     @Override
+    public List<Group> findByParent(Group parent) { return new ArrayList<>(); }
+
+    @Override
     public Group findByID(int ID) {
         return new Group("group" + ID, null);
     }
@@ -42,6 +45,12 @@ public class GroupDAOMockImpl implements GroupDAO {
 
     @Override
     public boolean removeStudent(Group group, Student student) { return false; }
+
+    @Override
+    public boolean addGroup(Group group, Group parent) { return false; }
+
+    @Override
+    public boolean removeGroup(Group group, Group parent) { return false; }
 
     @Override
     public boolean update(Group group) { return false; }

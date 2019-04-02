@@ -56,6 +56,7 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
             preparedStatement.setInt(1, ID);
         });
         addStudents(group);
+        addChildren(group);
         return group;
     }
 
@@ -66,7 +67,23 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
             preparedStatement.setString(1, name);
         });
         addStudents(group);
+        addChildren(group);
         return group;
+    }
+
+    @Override
+    public List<Group> findByParent(Group parent) {
+        String query = "select * from `Group`, User where ID_user=? and ID_group in " +
+                "(select ID_group_child from IncludedGroup where ID_group=?)";
+        List<Group> groups = getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, parent.getOwner().getID());
+            preparedStatement.setInt(2, parent.getID());
+        });
+        for (Group g : groups) {
+            addStudents(g);
+            addChildren(g);
+        }
+        return groups;
     }
 
     @Override
@@ -93,6 +110,34 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
         if (removed) {
             System.out.println("Successfully removed student " + student.getID() + " from group " + group.getName());
             group.removeStudent(student);
+        }
+        return removed;
+    }
+
+    @Override
+    public boolean addGroup(Group group, Group parent) {
+        String query = "insert into IncludedGroup values (?, ?)";
+        boolean added = executeUniqueUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, parent.getID());
+            preparedStatement.setInt(2, group.getID());
+        });
+        if (added) {
+            System.out.println("Successfully added group " + group.getName() + " to group " + parent.getName());
+            parent.addGroup(group);
+        }
+        return added;
+    }
+
+    @Override
+    public boolean removeGroup(Group group, Group parent) {
+        String query = "delete from IncludedGroup where ID_group=? and ID_group_child=?";
+        boolean removed = executeUniqueUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, parent.getID());
+            preparedStatement.setInt(2, group.getID());
+        });
+        if (removed) {
+            System.out.println("Successfully removed group " + group.getName() + " from group " + parent.getName());
+            parent.removeGroup(group);
         }
         return removed;
     }
@@ -146,5 +191,9 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
 
     private void addStudents(Group group) {
         group.setStudents(studentDAO.findByGroup(group));
+    }
+
+    private void addChildren(Group group) {
+        group.setChildren(findByParent(group));
     }
 }

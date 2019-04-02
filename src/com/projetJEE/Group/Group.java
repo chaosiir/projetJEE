@@ -14,7 +14,7 @@ public class Group {
     private User owner;
     private Date creationDate;
     private List<Student> students;
-    private List<Group> childs;
+    private List<Group> children;
 
     public Group(String name, User owner) {
         this.ID = -1;
@@ -23,7 +23,7 @@ public class Group {
         this.students = null;
         this.creationDate = null;
         this.students = new ArrayList<>();
-        this.childs = new ArrayList<>();
+        this.children = new ArrayList<>();
     }
 
     public int getID() {
@@ -54,7 +54,9 @@ public class Group {
 
     public void setStudents(List<Student> students) { this.students = students; }
 
-    public List<Group> getChilds() { return childs; }
+    public List<Group> getChildren() { return children; }
+
+    public void setChildren(List<Group> children) { this.children = children; }
 
     @Override
     public String toString() {
@@ -69,7 +71,7 @@ public class Group {
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
         students.addAll(this.students);
-        for (Group g : childs)
+        for (Group g : children)
             students.addAll(g.getStudents());
         return students;
     }
@@ -84,10 +86,10 @@ public class Group {
 
     public void addGroup(Group group) {
         // TODO : protection contre les cycles d'inclusion
-        childs.add(group);
+        children.add(group);
     }
 
     public void removeGroup(Group group) {
-        childs.remove(group);
+        children.remove(group);
     }
 }

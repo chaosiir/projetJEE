@@ -34,7 +34,7 @@
         <td><%=group.getOwner()%></td>
         <td><%=group.getCreationDate()%></td>
         <td><%=group.getStudents()%></td>
-        <td><%=group.getChilds()%></td>
+        <td><%=group.getChildren()%></td>
         <td class="btn-group-sm">
             <form action="" method="post">
                 <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=group.getID()%>">modify</button>

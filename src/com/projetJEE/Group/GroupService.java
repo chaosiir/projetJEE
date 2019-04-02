@@ -12,6 +12,8 @@ public interface GroupService {
     Group getGroupByName(String name);
     boolean addStudentToGroup(Group group, Student student);
     boolean removeStudentFromGroup(Group group, Student student);
+    boolean addGroupToGroup(Group group, Group parent);
+    boolean removeGroupFromGroup(Group group, Group parent);
     boolean updateGroup(Group group);
     boolean deleteGroup(Group group);
 }
