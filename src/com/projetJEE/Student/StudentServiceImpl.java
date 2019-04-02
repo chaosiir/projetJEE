@@ -25,10 +25,11 @@ public class StudentServiceImpl implements StudentService {
      * Inserts a student
      * @param student Student to insert
      * @pre The student should have a valid ID
+     * @return The student has been successfully inserted
      */
     @Override
-    public void insertStudent(Student student) {
-        studentDAO.insert(student);
+    public boolean insertStudent(Student student) {
+        return studentDAO.insert(student);
     }
 
     /**
@@ -51,14 +52,16 @@ public class StudentServiceImpl implements StudentService {
     /**
      * Updates a student
      * @param student The student to update
+     * @return The student has been successfully updated
      */
     @Override
-    public void updateStudent(Student student) { studentDAO.update(student); }
+    public boolean updateStudent(Student student) { return studentDAO.update(student); }
 
     /**
      * Deletes a student
      * @param student The student to delete
+     * @return The student has been successfully deleted
      */
     @Override
-    public void deleteStudent(Student student) { studentDAO.delete(student); }
+    public boolean deleteStudent(Student student) { return studentDAO.delete(student); }
 }

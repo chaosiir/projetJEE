@@ -33,13 +33,14 @@ public class UserServiceImpl implements UserService {
      * @param user User to create
      * @pre user.getID() == -1
      * @post user.getID() != -1
+     * @return The user has been successfully created
      */
     @Override
-    public void newUser(User user) {
+    public boolean newUser(User user) {
         //hash password and answer
         user.setPwdHash(hash(user.getPwdHash()));
         user.setAnswerHash(hash(user.getAnswerHash()));
-        userDAO.create(user);
+        return userDAO.create(user);
     }
 
     /**
@@ -72,16 +73,18 @@ public class UserServiceImpl implements UserService {
     /**
      * Updates a user
      * @param user User to update
+     * @return The user has been successfully updated
      */
     @Override
-    public void updateUser(User user) { userDAO.update(user); }
+    public boolean updateUser(User user) { return userDAO.update(user); }
 
     /**
      * Deletes a user
      * @param user User to delete
+     * @return The user has been successfully deleted
      */
     @Override
-    public void deleteUser(User user) { userDAO.delete(user); }
+    public boolean deleteUser(User user) { return userDAO.delete(user); }
 
     /**
      * Hashes a string with SHA-256 in base 64

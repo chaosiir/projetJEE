@@ -8,9 +8,9 @@ import java.util.List;
 public class UserDAOImpl extends DAOImpl<User> implements UserDAO {
 
     @Override
-    public void create(User user) {
+    public boolean create(User user) {
         String query = "insert into User (login, pwdHash, question, answerHash, rights) values (?, ?, ?, ?, ?)";
-        executeUpdateQuery(query,
+        return executeUniqueUpdateQuery(query,
                 preparedStatement -> { buildUserStatement(user, preparedStatement); },
                 generatedKeys -> {
                     if (generatedKeys.next()) {
@@ -45,7 +45,7 @@ public class UserDAOImpl extends DAOImpl<User> implements UserDAO {
     }
 
     @Override
-    public void update(User user) {
+    public boolean update(User user) {
         String query = "update User set " +
                 "login=?," +
                 "pwdHash=?," +
@@ -53,16 +53,16 @@ public class UserDAOImpl extends DAOImpl<User> implements UserDAO {
                 "answerHash=?," +
                 "rights=? " +
                 "where ID_user=?";
-        executeUpdateQuery(query, preparedStatement -> {
+        return executeUniqueUpdateQuery(query, preparedStatement -> {
             buildUserStatement(user, preparedStatement);
             preparedStatement.setInt(6, user.getID());
         });
     }
 
     @Override
-    public void delete(User user) {
+    public boolean delete(User user) {
         String query = "delete from User where ID_user=?";
-        executeUpdateQuery(query, preparedStatement -> {
+        return executeUniqueUpdateQuery(query, preparedStatement -> {
            preparedStatement.setInt(1, user.getID());
         });
     }

@@ -21,9 +21,9 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
     }
 
     @Override
-    public void create(Group group) {
+    public boolean create(Group group) {
         String query = "insert into `Group` (name, ID_owner, creationDate) values (?, ?, ?)";
-        executeUpdateQuery(query,
+        return executeUniqueUpdateQuery(query,
                 preparedStatement -> { buildGroupStatement(group, preparedStatement); },
                 generatedKeys -> {
                     if (generatedKeys.next()) {
@@ -70,42 +70,46 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
     }
 
     @Override
-    public void addStudent(Group group, Student student) {
+    public boolean addStudent(Group group, Student student) {
         String query = "insert into IncludedStudent values (?, ?)";
-        executeUpdateQuery(query, preparedStatement -> {
+        boolean added = executeUniqueUpdateQuery(query, preparedStatement -> {
             preparedStatement.setInt(1, group.getID());
             preparedStatement.setString(2, student.getID());
         });
-        group.addStudent(student);
+        if (added)
+            group.addStudent(student);
+        return added;
     }
 
     @Override
-    public void removeStudent(Group group, Student student) {
+    public boolean removeStudent(Group group, Student student) {
         String query = "delete from IncludedStudent where ID_group=? and ID_student=?";
-        executeUpdateQuery(query, preparedStatement -> {
+        boolean removed = executeUniqueUpdateQuery(query, preparedStatement -> {
             preparedStatement.setInt(1, group.getID());
             preparedStatement.setString(2, student.getID());
         });
-        group.removeStudent(student);
+        if (removed)
+            group.removeStudent(student);
+        return removed;
     }
 
     @Override
-    public void update(Group group) {
+    public boolean update(Group group) {
         String query = "update `Group` set " +
                 "name=?, " +
                 "ID_owner=?, " +
                 "creationDate=? " +
                 "where ID_group=?";
-        executeUpdateQuery(query, preparedStatement -> {
+        return executeUniqueUpdateQuery(query, preparedStatement -> {
             buildGroupStatement(group, preparedStatement);
             preparedStatement.setInt(4, group.getID());
         });
     }
 
     @Override
-    public void delete(Group group) {
+    public boolean delete(Group group) {
         String query = "delete from `Group` where ID_group=?";
-        executeUpdateQuery(query, preparedStatement -> {
+        return executeUniqueUpdateQuery(query, preparedStatement -> {
             preparedStatement.setInt(0, group.getID());
         });
     }
