@@ -32,9 +32,9 @@ public class LoginServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         System.out.println("Session : "+session);
-        if (session==null) {
+        if (session.getAttribute("Name")==null) {
             String pageName = "/Login.jsp";
             RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
             rd.forward(request, response);
@@ -48,21 +48,26 @@ public class LoginServlet extends HttpServlet {
      * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    System.out.println("post");
-        UserServiceImpl usimp=new UserServiceImpl();
-        User verif=usimp.getUserByLogin(request.getParameter("inputID"));
-        if(verif.getPwdHash().compareTo(usimp.hash(request.getParameter("inputPassword")))==0){
-			HttpSession session = request.getSession();
-			session.setAttribute("Id",verif.getID());
-			session.setAttribute("Name",verif.getLogin());
-			response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Home");
+		System.out.println("post");
+		UserServiceImpl usimp = new UserServiceImpl();
+		User user = usimp.getUserByLogin(request.getParameter("inputID"));
+		if (user != null) {
+			if (user.getPwdHash().compareTo(usimp.hash(request.getParameter("inputPassword"))) == 0) {
+				HttpSession session = request.getSession();
+				session.setAttribute("Id", user.getID());
+				session.setAttribute("Name", user.getLogin());
+				session.setAttribute("Rights", user.getRights().toString());
+				response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Home");
+				return;
+			}
+
 		}
-   		else {
-			String pageName = "/Login.jsp";
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-			rd.forward(request, response);
-		}
-    }
+
+		String pageName = "/Login.jsp";
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
+		rd.forward(request, response);
+
+	}
 
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageName = "/Login.jsp";
