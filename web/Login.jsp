@@ -15,7 +15,7 @@
     <h1 align="center">Login</h1>
     <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
     <label  for="inputID" class="sr-only">ID</label>
-    <input type="text" id="inputID" name="inputID" class="form-control" placeholder="ID" required="" autofocus="">
+    <input type="text" id="inputID" name="inputID" class="form-control" placeholder="login" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required="">
 
@@ -30,9 +30,8 @@
     <a href="http://localhost:8080/projetJEE_war_exploded/mdp" target="_blank">Forgot your password?</a>
     <br>
 
-    <a href="http://localhost:8080/projetJEE_war_exploded/update" >Update Your account </a>
 
-    <br>
+
     <a href="http://localhost:8080/projetJEE_war_exploded/register" >Register </a><br>
 
 

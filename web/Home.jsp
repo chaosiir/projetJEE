@@ -12,6 +12,8 @@
         <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Students" style="alignment: left">Liste des etudiants</a>
         <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Users" style="alignment: left">Liste des utilisateurs</a>
         <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Groups" style="alignment: center">Liste des Groups</a>
+        <a href="http://localhost:8080/projetJEE_war_exploded/update" >Update Your account </a>
+
     </div>
 </body>
 </html>
