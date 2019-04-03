@@ -24,7 +24,6 @@ public class MdpServlet extends HttpServlet {
         UserServiceImpl usimp=new UserServiceImpl();
         User verif=usimp.getUserByLogin(request.getParameter("id"));
         String question=verif.getQuestion();
-
         request.setAttribute("question",verif.getQuestion());
         getServletContext().getRequestDispatcher("/Answer.jsp").forward(request, response);
 
