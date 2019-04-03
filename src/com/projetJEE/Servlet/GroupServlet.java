@@ -20,9 +20,8 @@ public class GroupServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pageName = "/Groups.jsp";
 		GroupServiceImpl bs = new GroupServiceImpl();
-		request.setAttribute("groups", bs.getAllGroups());
+		request.setAttribute("groupservice", bs);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-		// TODO : dans la page recuperer le login de L'Owner et la liste des groups a tester
 		try {
 			rd.forward(request, response);
 		} catch (ServletException e) {
