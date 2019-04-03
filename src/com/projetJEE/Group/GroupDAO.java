@@ -16,6 +16,7 @@ public interface GroupDAO {
     boolean removeStudent(Group group, Student student);
     boolean addGroup(Group group, Group parent);
     boolean removeGroup(Group group, Group parent);
+    boolean excludeStudent(Group group, Student student);
     boolean update(Group group);
     boolean delete(Group group);
 }

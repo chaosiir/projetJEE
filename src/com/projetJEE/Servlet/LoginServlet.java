@@ -60,7 +60,6 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Home");
 				return;
 			}
-
 		}
 
 		String pageName = "/Login.jsp";

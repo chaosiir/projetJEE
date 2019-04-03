@@ -15,6 +15,7 @@ public class Group {
     private Date creationDate;
     private List<Student> students;
     private List<Group> children;
+    private List<Student> exclusions;
 
     public Group(String name, User owner) {
         this.ID = -1;
@@ -24,6 +25,7 @@ public class Group {
         this.creationDate = null;
         this.students = new ArrayList<>();
         this.children = new ArrayList<>();
+        this.exclusions = new ArrayList<>();
     }
 
     public int getID() {
@@ -58,6 +60,10 @@ public class Group {
 
     public void setChildren(List<Group> children) { this.children = children; }
 
+    public List<Student> getExclusions() { return exclusions; }
+
+    public void setExclusions(List<Student> exclusions) { this.exclusions = exclusions; }
+
     @Override
     public String toString() {
         return "Group{" +
@@ -72,7 +78,17 @@ public class Group {
         List<Student> students = new ArrayList<>();
         students.addAll(this.students);
         for (Group g : children)
-            students.addAll(g.getStudents());
+            for (Student s : g.getStudents()) {
+                boolean is_excluded = false;
+                for (Student excluded : exclusions) {
+                    if (s.getID().equals(excluded.getID())) {
+                        is_excluded = true;
+                        break;
+                    }
+                }
+                if (!is_excluded)
+                    students.add(s);
+            }
         return students;
     }
 
@@ -92,4 +108,6 @@ public class Group {
     public void removeGroup(Group group) {
         children.remove(group);
     }
+
+    public void excludeStudent(Student student) { exclusions.add(student); }
 }

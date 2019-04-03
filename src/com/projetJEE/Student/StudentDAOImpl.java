@@ -36,6 +36,13 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
         });
     }
 
+    public List<Student> findByExclusion(Group group) {
+        String query = "select * from ExcludedStudent natural join Student where ID_group=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, group.getID());
+        });
+    }
+
     @Override
     public Student findByID(String ID) {
         String query = "select * from Student where ID_student=?";
