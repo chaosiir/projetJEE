@@ -15,11 +15,20 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("post");
-        System.out.println( request.getParameter("pwd"));
-        User us=new User(request.getParameter("id"),request.getParameter("pwd"),request.getParameter("Q"),request.getParameter("Answ"), User.Rights.USER);
-        UserServiceImpl usimp=new UserServiceImpl();
-        usimp.newUser(us);
-        response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Login");
+        System.out.println( request.getParameter("id"));
+        UserServiceImpl userService = new UserServiceImpl();
+        User user = userService.getUserByLogin(request.getParameter("id"));
+        if(user!=null) {
+            String pageName = "/register.jsp";
+            System.out.println("get");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
+            rd.forward(request, response);
+        } else {
+			System.out.println( request.getParameter("pwd"));
+			User us=new User(request.getParameter("id"),request.getParameter("pwd"),request.getParameter("Q"),request.getParameter("Answ"), User.Rights.USER);
+			userService.newUser(us);
+			response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Login");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
