@@ -26,8 +26,6 @@ public class AuthFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         System.out.println("filter "+new Gson().toJson(req.getSession()));
 
-        //todo rights?
-
         HttpSession session = req.getSession();
         if(session==null){
             goToLoginIfNeeded(chain, req, res);
@@ -40,7 +38,17 @@ public class AuthFilter implements Filter {
             goToLoginIfNeeded(chain, req, res);
             return;
         }
-        chain.doFilter(req,res); //nothing to do
+
+        if(req.getRequestURI().equals(req.getContextPath()+"/Users")){
+            if(user.getRights() == User.Rights.ADMIN){
+                chain.doFilter(req,res); //nothing to do
+                return;
+            }
+        }else{
+            chain.doFilter(req,res); //nothing to do
+        }
+
+        res.sendRedirect(req.getContextPath()+"/Home");
     }
 
     private String goToLoginIfNeeded(FilterChain chain, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
