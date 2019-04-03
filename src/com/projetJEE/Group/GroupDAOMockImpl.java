@@ -53,6 +53,9 @@ public class GroupDAOMockImpl implements GroupDAO {
     public boolean removeGroup(Group group, Group parent) { return false; }
 
     @Override
+    public boolean excludeStudent(Group group, Student student) { return false; };
+
+    @Override
     public boolean update(Group group) { return false; }
 
     @Override
