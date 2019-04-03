@@ -2,7 +2,6 @@ package com.projetJEE;
 
 import com.google.gson.Gson;
 import com.projetJEE.User.User;
-import com.projetJEE.User.UserServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebFilter(filterName="AuthFilter", urlPatterns={"*"})
 public class AuthFilter implements Filter {
@@ -30,22 +30,26 @@ public class AuthFilter implements Filter {
 
         HttpSession session = req.getSession();
         if(session==null){
-            goToLogin(chain, req, res);
+            goToLoginIfNeeded(chain, req, res);
             return;
         }
 
         User user = (User) session.getAttribute("user");
         Boolean auth = (Boolean) session.getAttribute("auth");
         if (auth == null || !auth || user==null) {
-            goToLogin(chain, req, res);
+            goToLoginIfNeeded(chain, req, res);
             return;
         }
         chain.doFilter(req,res); //nothing to do
     }
 
-    private String goToLogin(FilterChain chain, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    private String goToLoginIfNeeded(FilterChain chain, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        ArrayList<String> publicPages = new ArrayList<>();
         String loginURL = req.getContextPath() + "/login";
-        if (req.getRequestURI().equals(loginURL)) {
+        publicPages.add(loginURL);
+        publicPages.add(req.getContextPath() + "/register");
+        publicPages.add(req.getContextPath() + "/mdp");
+        if (publicPages.contains(req.getRequestURI())) {
             chain.doFilter(req,res); //nothing to do
         }else{
             res.sendRedirect(loginURL);
