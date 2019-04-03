@@ -26,6 +26,8 @@ public class AuthFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         System.out.println("filter "+new Gson().toJson(req.getSession()));
 
+        //todo rights?
+
         HttpSession session = req.getSession();
         if(session==null){
             goToLogin(chain, req, res);
@@ -39,30 +41,6 @@ public class AuthFilter implements Filter {
             return;
         }
         chain.doFilter(req,res); //nothing to do
-
-        // Check if the user is accessing login page
-        /*
-        if (req.getRequestURI().equals(
-                req.getContextPath() + "/pages/login.jsp")) {
-            if (true){//isLoggedIn) {
-                // Redirect to landing or home page
-                res.sendRedirect(req.getContextPath()
-                        + "/pages/home.jsp");
-            } else {
-                // Otherwise, nothing to do if he has not logged in
-                // pass the request along the filter chain
-                chain.doFilter(request, response);
-            }
-        } else {
-            // For all other pages,
-            if (true){//isLoggedIn) {
-                // Nothing to do
-                chain.doFilter(request, response);
-            } else {
-                // Redirect to login page if he has not logged in
-                res.sendRedirect(req.getContextPath() + "/pages/login.jsp");
-            }
-        }*/
     }
 
     private String goToLogin(FilterChain chain, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
