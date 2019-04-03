@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
 			System.out.println( request.getParameter("pwd"));
 			User us=new User(request.getParameter("id"),request.getParameter("pwd"),request.getParameter("Q"),request.getParameter("Answ"), User.Rights.USER);
 			userService.newUser(us);
-			response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Login");
+			response.sendRedirect(request.getContextPath()+"/Login");
         }
     }
 

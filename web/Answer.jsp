@@ -10,7 +10,7 @@
 
 </head>
 <body class="text-center">
-<form class="form-signin" method="post" action="http://localhost:8080/projetJEE_war_exploded/answer" >
+<form class="form-signin" method="post" action="./answer" >
     <h1 align="center">Verification</h1>
     <%String question= (String) (request.getAttribute("question"));%>
 

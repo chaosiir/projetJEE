@@ -9,10 +9,10 @@
 <body>
     <div style="width: 40%; margin: auto">
         <h1>Accueil</h1>
-        <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Students" style="alignment: left">Liste des etudiants</a>
-        <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Users" style="alignment: left">Liste des utilisateurs</a>
-        <a class="button" href="http://localhost:8080/projetJEE_war_exploded/Groups" style="alignment: center">Liste des Groups</a>
-        <a href="http://localhost:8080/projetJEE_war_exploded/update" >Update Your account </a>
+        <a class="button" href="./Students" style="alignment: left">Liste des etudiants</a>
+        <a class="button" href="./Users" style="alignment: left">Liste des utilisateurs</a>
+        <a class="button" href="./Groups" style="alignment: center">Liste des Groups</a>
+        <a href="./update" >Update Your account </a>
 
     </div>
 </body>

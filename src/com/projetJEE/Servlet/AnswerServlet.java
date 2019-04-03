@@ -27,7 +27,7 @@ public class AnswerServlet extends HttpServlet {
        if(verif.getAnswerHash().equals(usimp.hash(request.getParameter("answer")))){
             System.out.println("verification ok");
 
-            response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/update");
+            response.sendRedirect(request.getContextPath()+"/update");
 
         }
         else {
@@ -36,7 +36,7 @@ public class AnswerServlet extends HttpServlet {
             out.println("<script type=\"text/javascript\">");
             out.println("alert('answer incorrect');");
             out.println("</script>");
-            response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/mdp");
+            response.sendRedirect(request.getContextPath()+"/mdp");
 
 
         }

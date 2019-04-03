@@ -27,12 +27,12 @@
     <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-    <a href="http://localhost:8080/projetJEE_war_exploded/mdp" target="_blank">Forgot your password?</a>
+    <a href="./mdp" target="_blank">Forgot your password?</a>
     <br>
 
 
 
-    <a href="http://localhost:8080/projetJEE_war_exploded/register" >Register </a><br>
+    <a href="./register" >Register </a><br>
 
 
 </form>

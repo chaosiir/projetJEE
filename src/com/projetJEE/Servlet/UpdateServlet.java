@@ -29,7 +29,7 @@ public class UpdateServlet extends HttpServlet {
         System.out.println(us.getQuestion());// Test to see what is the question after update
         System.out.println(us.getPwdHash());//  Test to see what is the hashed pass after update
 
-        response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Login");
+        response.sendRedirect(request.getContextPath()+"/Login");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

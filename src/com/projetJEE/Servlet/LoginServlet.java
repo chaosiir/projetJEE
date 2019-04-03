@@ -54,10 +54,9 @@ public class LoginServlet extends HttpServlet {
 		if (user != null) {
 			if (user.getPwdHash().compareTo(usimp.hash(request.getParameter("inputPassword"))) == 0) {
 				HttpSession session = request.getSession();
-				session.setAttribute("Id", user.getID());
-				session.setAttribute("Name", user.getLogin());
-				session.setAttribute("Rights", user.getRights().toString());
-				response.sendRedirect("http://localhost:8080/projetJEE_war_exploded/Home");
+                session.setAttribute("user", user);
+                session.setAttribute("auth", Boolean.TRUE);
+				response.sendRedirect(request.getContextPath()+"/Home");
 				return;
 			}
 		}
