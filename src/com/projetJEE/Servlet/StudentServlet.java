@@ -14,22 +14,29 @@ import java.io.IOException;
 @WebServlet(name = "Students", urlPatterns = {"/Students"})
 public class StudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.print(this.getClass().getName()+" post");
         String id = request.getParameter("modify");
         if(id!=null){
-            System.err.println("need modify -> "+id);
-            String pageName = "/StudentsModify";
+            System.out.println(" modify");
+            String pageName = "/Students/modify";
             ServletUtils.forwardTo(this, request, response, pageName);
             return;
         }
         id = request.getParameter("delete");
         if(id!=null){
+            System.out.println(" delete");
             StudentServiceImpl service = StudentServiceImpl.getInstance();
             service.deleteStudent(service.getStudentByID(id));
+            doGet(request,response);
+            return;
         }
+        System.out.println();
+
         doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(this.getClass().getName()+" get");
         String pageName = "/Students.jsp";
         request.setAttribute("students", StudentServiceImpl.getInstance().getAllStudents());
         ServletUtils.forwardTo(this, request, response, pageName);
