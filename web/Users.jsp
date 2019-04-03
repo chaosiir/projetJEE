@@ -14,6 +14,7 @@
 </head>
 <body>
 <h1>Users</h1>
+<a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 <table border="1">
     <tr>
         <th>ID</th>
