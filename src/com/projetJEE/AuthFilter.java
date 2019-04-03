@@ -14,7 +14,11 @@ import java.util.ArrayList;
 @WebFilter(filterName="AuthFilter", urlPatterns={"*"})
 public class AuthFilter implements Filter {
 
+    private ArrayList<Object> publicPages;
+    private String loginURL;
+
     public AuthFilter() {
+
     }
 
     public void destroy() {
@@ -28,44 +32,57 @@ public class AuthFilter implements Filter {
 
         HttpSession session = req.getSession();
         if(session==null){
-            goToLoginIfNeeded(chain, req, res);
+            goToLoginIfNeeded(req, res, chain);
             return;
         }
 
         User user = (User) session.getAttribute("user");
         Boolean auth = (Boolean) session.getAttribute("auth");
         if (auth == null || !auth || user==null) {
-            goToLoginIfNeeded(chain, req, res);
+            goToLoginIfNeeded(req, res, chain);
             return;
         }
 
+        // if authenticated and on login page, redirect to /Home
+        if(publicPages.contains(req.getRequestURI())){
+            res.sendRedirect(req.getContextPath()+"/Home");
+            return;
+        }
+
+        //filter unauthorized pages
         if(req.getRequestURI().equals(req.getContextPath()+"/Users")){
             if(user.getRights() == User.Rights.ADMIN){
-                chain.doFilter(req,res); //nothing to do
+                chain.doFilter(req, res); //nothing to do
                 return;
             }
         }else{
-            chain.doFilter(req,res); //nothing to do
+            //check request method, to cancel unauthorized modification/deletion
+            if (req.getMethod().equals("POST") && user.getRights() == User.Rights.USER) {
+                System.out.println("user '"+user.getLogin()+"' tried to modify/delete on "+req.getServletPath());
+                res.sendRedirect(req.getContextPath() + "/");
+            }else
+                chain.doFilter(req, res); //nothing to do
+            return;
         }
 
         res.sendRedirect(req.getContextPath()+"/Home");
     }
 
-    private String goToLoginIfNeeded(FilterChain chain, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        ArrayList<String> publicPages = new ArrayList<>();
-        String loginURL = req.getContextPath() + "/login";
-        publicPages.add(loginURL);
-        publicPages.add(req.getContextPath() + "/register");
-        publicPages.add(req.getContextPath() + "/mdp");
+    private void goToLoginIfNeeded(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         if (publicPages.contains(req.getRequestURI())) {
-            chain.doFilter(req,res); //nothing to do
+            chain.doFilter(req, res); //nothing to do
         }else{
             res.sendRedirect(loginURL);
         }
-        return loginURL;
     }
 
     public void init(FilterConfig fConfig) throws ServletException {
-
+        String contextPath = fConfig.getServletContext().getContextPath();
+        System.out.println("test filter init ==============================================================");
+        publicPages = new ArrayList<>();
+        loginURL = contextPath+ "/login";
+        publicPages.add(loginURL);
+        publicPages.add(contextPath+ "/register");
+        publicPages.add(contextPath+ "/mdp");
     }
 }
