@@ -13,7 +13,7 @@
 <form class="form-signin" method="post">
     <h1 align="center">Update Data</h1>
     <label  for="inputID" class="sr-only">ID</label>
-    <input type="text" id="inputID" name="inputID" class="form-control" placeholder="ID" required="" autofocus="">
+    <input type="text" id="inputID" name="inputID" class="form-control" placeholder="Choose new ID" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Choose new password</label>
     <input type="password" id="inputPassword"  name="inputPassword" class="form-control" placeholder="Choose new Password" required="">
     <label for="inputPassword2" class="sr-only">Confirm </label>

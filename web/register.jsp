@@ -24,7 +24,7 @@
 <form class="form-signin" method="post">
     <h1 align="center">Register</h1>
     <label  for="inputID" class="sr-only">ID</label>
-    <input type="text" id="inputID" name="id" class="form-control" placeholder="ID" required autofocus="">
+    <input type="text" id="inputID" name="id" class="form-control" placeholder="login" required autofocus="">
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password"  name="pwd" id="inputPassword" class="form-control" placeholder="Password" required oninput="check()">
     <label for="inputPassword2" class="sr-only">Password</label>
