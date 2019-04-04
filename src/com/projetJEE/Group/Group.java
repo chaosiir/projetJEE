@@ -74,20 +74,15 @@ public class Group {
                 '}';
     }
 
+    public List<Student> getNativeStudents() {
+        return students;
+    }
+
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
         students.addAll(this.students);
         for (Group g : children)
             for (Student s : g.getStudents()) {
-//                boolean is_excluded = false;
-//                for (Student excluded : exclusions) {
-//                    if (s.getID().equals(excluded.getID())) {
-//                        is_excluded = true;
-//                        break;
-//                    }
-//                }
-//                if (!is_excluded) // !excluded.contains(s)
-//                    students.add(s);
                 if (!exclusions.contains(s))
                     students.add(s);
             }

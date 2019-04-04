@@ -18,8 +18,6 @@ public interface StudentDAO {
     List<Student> findByDegreeYear(int degreeYear);
     List<Student> findByDegreeCity(String degreeCity);
     List<Student> findByRegistrationYear(int registrationYear);
-    List<Student> findByEmailPro(String emailPro);
-    List<Student> findByEmailPer(String emailPer);
     Student findByID(String ID);
     boolean update(Student student);
     boolean delete(Student student);

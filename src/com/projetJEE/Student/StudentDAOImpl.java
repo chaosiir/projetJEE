@@ -116,22 +116,6 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
         });
     }
 
-    @Override
-    public List<Student> findByEmailPro(String emailPro) {
-        String query = "select * from Student where emailPro=?";
-        return getEntriesFromQuery(query, preparedStatement -> {
-            preparedStatement.setString(1, emailPro);
-        });
-    }
-
-    @Override
-    public List<Student> findByEmailPer(String emailPer) {
-        String query = "select * from Student where emailPro=?";
-        return getEntriesFromQuery(query, preparedStatement -> {
-            preparedStatement.setString(1, emailPer);
-        });
-    }
-
     public List<Student> findByExclusion(Group group) {
         String query = "select * from ExcludedStudent natural join Student where ID_group=?";
         return getEntriesFromQuery(query, preparedStatement -> {

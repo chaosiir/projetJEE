@@ -14,8 +14,8 @@
 </head>
 <body  onload="JavaScript:timedRefresh(120000);"> <!-- the page is refreshed automatically every 5 minutes-->
 <jsp:include page="navbar.jsp"></jsp:include>
-<h1>Students</h1>
-<a class="btn btn-sm btn-primary" href="./Students/new">insert student</a>
+<h1 style="margin-top: 1%; margin-bottom: 1%">Students</h1>
+<a style="margin-left: 10px"  class="btn btn-sm btn-primary" href="./Students/new">insert student</a>
 <button onclick="rafraichir_Ewok()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 <!-- button if we want to refresh page before automatic refresh-->
@@ -28,8 +28,8 @@
 <%
     }
 %>
-<form action="" method="post">
-    <table class="table-bordered">
+<form style="margin-top: 1%" action="" method="post">
+    <table class="table-striped table-bordered">
         <tr>
             <th>ID</th>
             <th>Gender</th>
@@ -53,20 +53,20 @@
         %>
         <tr>
             <td><%=student.getID()%></td>
-            <td><a href="?filter=gender&value=<%=student.getGender()%>"><%=student.getGender()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=gender&value=<%=student.getGender()%>"><%=student.getGender()%></a></td>
             <td><%=student.getFirstname()%></td>
             <td><%=student.getLastname()%></td>
             <td><%=student.getBirthday()%></td>
-            <td><a href="?filter=bac&value=<%=student.getBac()%>"><%=student.getBac()%></a></td>
-            <td><a href="?filter=bacGrade&value=<%=student.getBacGrade()%>"><%=student.getBacGrade()%></a></td>
-            <td><a href="?filter=bacYear&value=<%=student.getBacYear()%>"><%=student.getBacYear()%></a></td>
-            <td><a href="?filter=degree&value=<%=student.getDegree()%>"><%=student.getDegree()%></a></td>
-            <td><a href="?filter=degreeYear&value=<%=student.getDegreeYear()%>"><%=student.getDegreeYear()%></a></td>
-            <td><a href="?filter=degreeCity&value=<%=student.getDegreeCity()%>"><%=student.getDegreeCity()%></a></td>
-            <td><a href="?filter=registrationYear&value=<%=student.getRegistrationYear()%>"><%=student.getRegistrationYear()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=bac&value=<%=student.getBac()%>"><%=student.getBac()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=bacGrade&value=<%=student.getBacGrade()%>"><%=student.getBacGrade()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=bacYear&value=<%=student.getBacYear()%>"><%=student.getBacYear()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=degree&value=<%=student.getDegree()%>"><%=student.getDegree()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=degreeYear&value=<%=student.getDegreeYear()%>"><%=student.getDegreeYear()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=degreeCity&value=<%=student.getDegreeCity()%>"><%=student.getDegreeCity()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=registrationYear&value=<%=student.getRegistrationYear()%>"><%=student.getRegistrationYear()%></a></td>
             <td><%=student.getEmailPro()%></td>
             <td><%=student.getEmailPer()%></td>
-            <td class="btn-group-sm">
+            <td class="btn-group btn-group-sm">
                     <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
                     <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
             </td>
