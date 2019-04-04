@@ -8,7 +8,7 @@
 <body>
     <jsp:include page="navbar.jsp"></jsp:include>
     <div style="width: 60%; margin: auto">
-        <h1 style="margin-top: 10%">Accueil</h1>
+        <h1 style="margin-top: 10%">Welcome</h1>
     </div>
 </body>
 </html>
