@@ -179,7 +179,7 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
     public boolean delete(Group group) {
         String query = "delete from `Group` where ID_group=?";
         boolean deleted = executeUniqueUpdateQuery(query, preparedStatement -> {
-            preparedStatement.setInt(0, group.getID());
+            preparedStatement.setInt(1, group.getID());
         });
         if (deleted) {
             System.out.println("Successfully deleted " + group);

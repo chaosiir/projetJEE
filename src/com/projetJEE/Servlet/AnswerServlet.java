@@ -19,7 +19,7 @@ public class AnswerServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         UserServiceImpl usimp=new UserServiceImpl();
-        User user=usimp.getUserByLogin(request.getParameter("id"));
+        User user=(User) request.getSession().getAttribute("user");
 
 
         System.out.println(user.getQuestion());

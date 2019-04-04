@@ -1,3 +1,4 @@
+<%@ page import="com.projetJEE.User.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,6 +15,7 @@
     <h1 align="center">Verification</h1>
     <%
         String question= (String) (request.getAttribute("question"));
+        User user= (User) (request.getSession().getAttribute("user"));
     %>
 
 
@@ -21,8 +23,8 @@
 
     <h1 align="center">Your question is : <%=question%></h1>
 
-    <label for="answer" class="sr-only">Confirm ID</label>
-    <input type="password" id="id" name="id" class="form-control" placeholder="Confirm Login" required="">
+    <label for="answer" class="sr-only">Login</label>
+    <input type="password" id="id" name="id" class="form-control"  disabled="disabled" placeholder="<%=user.getLogin()%>" required="">
 
     <label for="answer" class="sr-only">Answer</label>
     <input type="password" id="answer" name="answer" class="form-control" placeholder="What is the answer to your question ?" required="">
@@ -32,6 +34,8 @@
    </script>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Verification</button>
+    <a class="btn btn-sm btn-primary" href="./mdp">Retour</a>
+
 </form>
 </body>
 
