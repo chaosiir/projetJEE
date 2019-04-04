@@ -51,10 +51,10 @@ public class AuthFilter implements Filter {
         }
 
 
-        // if authenticated and on public page, redirect to /Home
+        // if authenticated and on public page, logout
         if(publicPages.contains(req.getRequestURI())){
-            System.out.println("authFilter : redirect to home -> auth:"+auth+" user:"+user);
-            res.sendRedirect(req.getContextPath()+"/Home");
+            session.setAttribute("auth", false);
+            chain.doFilter(request,response);
             return;
         }
 
