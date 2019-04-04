@@ -19,7 +19,15 @@
 <button onclick="rafraichir_Ewok()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 <!-- button if we want to refresh page before automatic refresh-->
-
+<%
+    Boolean resetButton = (Boolean) request.getAttribute("resetButton");
+    if(resetButton!=null){
+        resetButton=true;//not used
+%>
+    <a class="btn btn-sm btn-primary" href="./Students">reset Filter</a>
+<%
+    }
+%>
 <form style="margin-top: 1%" action="" method="post">
     <table style="width: 100%" class="table-striped table-bordered">
         <tr>
@@ -45,17 +53,17 @@
         %>
         <tr>
             <td><%=student.getID()%></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="gender" value="<%=student.getGender()%>"></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=gender&value=<%=student.getGender()%>"><%=student.getGender()%></a></td>
             <td><%=student.getFirstname()%></td>
             <td><%=student.getLastname()%></td>
             <td><%=student.getBirthday()%></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="bac" value="<%=student.getBac()%>"></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="bacGrade" value="<%=student.getBacGrade()%>"></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="bacYear" value="<%=student.getBacYear()%>"></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="degree" value="<%=student.getDegree()%>"></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="degreeYear" value="<%=student.getDegreeYear()%>"></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="degreeCity" value="<%=student.getDegreeCity()%>"></td>
-            <td><input class="btn btn-outline-secondary btn-sm btn-block" type="submit" name="registrationYear" value="<%=student.getRegistrationYear()%>"></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=bac&value=<%=student.getBac()%>"><%=student.getBac()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=bacGrade&value=<%=student.getBacGrade()%>"><%=student.getBacGrade()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=bacYear&value=<%=student.getBacYear()%>"><%=student.getBacYear()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=degree&value=<%=student.getDegree()%>"><%=student.getDegree()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=degreeYear&value=<%=student.getDegreeYear()%>"><%=student.getDegreeYear()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=degreeCity&value=<%=student.getDegreeCity()%>"><%=student.getDegreeCity()%></a></td>
+            <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=registrationYear&value=<%=student.getRegistrationYear()%>"><%=student.getRegistrationYear()%></a></td>
             <td><%=student.getEmailPro()%></td>
             <td><%=student.getEmailPer()%></td>
             <td class="btn-group btn-group-sm">
