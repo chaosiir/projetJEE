@@ -15,5 +15,8 @@ public class HomeServlet extends HttpServlet {
 		String pageName = "/Home.jsp";
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		rd.forward(request, response);
-	}
-}
+
+    }
+
+
+    }

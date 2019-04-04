@@ -27,8 +27,10 @@
     <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+
     <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 </form>
+
 </body>
 
 
