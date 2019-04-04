@@ -44,6 +44,7 @@ public class StudentServlet extends HttpServlet {
 
         String filter = request.getParameter("filter");
         String value = request.getParameter("value");
+        request.setAttribute("pageName","/Students.jsp");
         if(filter!=null && value!=null) {
             System.out.println("search for " + filter + "=" + value);
             StudentServiceImpl service = StudentServiceImpl.getInstance();

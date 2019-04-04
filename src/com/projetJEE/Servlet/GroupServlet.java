@@ -46,6 +46,7 @@ public class GroupServlet extends HttpServlet {
 		String pageName = "/Groups.jsp";
 		GroupServiceImpl bs = GroupServiceImpl.getInstance();
 		request.setAttribute("groups", bs.getAllGroups());
+		request.setAttribute("pageName",pageName);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		try {
 			rd.forward(request, response);

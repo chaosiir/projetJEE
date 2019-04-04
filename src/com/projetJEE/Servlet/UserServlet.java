@@ -32,6 +32,7 @@ public class UserServlet extends HttpServlet {
 		String pageName = "/Users.jsp";
 		UserServiceImpl bs = UserServiceImpl.getInstance();
 		request.setAttribute("users", bs.getAllUsers());
+		request.setAttribute("pageName",pageName);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		try {
 			rd.forward(request, response);
