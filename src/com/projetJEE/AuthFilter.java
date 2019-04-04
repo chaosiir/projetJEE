@@ -39,7 +39,7 @@ public class AuthFilter implements Filter {
 
         //filter unauthenticated clients
         if (!auth && !publicPages.contains(req.getRequestURI())) {
-            System.out.println("authFilter : redirect to login -> auth:"+auth+" login:"+user.getLogin());
+            System.out.println("authFilter : redirect to login -> auth:"+auth+" "+req.getRequestURI());
             goToLoginIfNeeded(req, res, chain);
             return;
         }
@@ -66,7 +66,9 @@ public class AuthFilter implements Filter {
             }
         }else{
             //check request method, to cancel unauthorized modification/deletion
-            if (req.getMethod().equals("POST") && user.getRights() == User.Rights.USER) {
+            if (req.getMethod().equals("POST")
+                    && user.getRights() == User.Rights.USER
+                    && !req.getServletPath().equals("/update")) {
                 System.out.println("authFilter : user '"+user.getLogin()+"' tried to modify/delete on "+req.getServletPath());
                 res.sendRedirect(req.getContextPath() + "/");
             }else
