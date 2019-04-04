@@ -35,7 +35,7 @@
         <th></th>
     </tr>
     <%
-        for(Student student:group.getInheritedStudents()){
+        for(Student student:group.getStudents()){
     %>
     <tr>
         <th>
@@ -43,12 +43,35 @@
         </th>
         <th> <input  class="form-control-plaintext"  disabled="disabled" value="<%=student.getLastname()%>" ></th>
         <th><input  class="form-control-plaintext"  disabled="disabled" value="<%=student.getFirstname()%>" ></th>
-        <th>  <button class="btn btn-sm btn-danger" type="submit" name="removes" value="<%=student.getID()%>">Exclude</button></th>
+        <th>  <button class="btn btn-sm btn-danger" type="submit" name="removes" value="<%=student.getID()%>">Remove</button></th>
     </tr>
     <%
         }
     %>
 </table>
+    <h2>Inherited Students</h2>
+    <table class="table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>LastName</th>
+            <th>Firstname</th>
+            <th></th>
+        </tr>
+        <%
+            for(Student student:group.getInheritedStudents()){
+        %>
+        <tr>
+            <th>
+                <input  class="form-control-plaintext"  disabled="disabled" value="<%=student.getID()%>" >
+            </th>
+            <th> <input  class="form-control-plaintext"  disabled="disabled" value="<%=student.getLastname()%>" ></th>
+            <th><input  class="form-control-plaintext"  disabled="disabled" value="<%=student.getFirstname()%>" ></th>
+            <th>  <button class="btn btn-sm btn-danger" type="submit" name="removes" value="<%=student.getID()%>">Exclude</button></th>
+        </tr>
+        <%
+            }
+        %>
+    </table>
 <h2>Excluded Students</h2>
 <table class="table-bordered">
     <tr>
@@ -67,6 +90,7 @@
         </th>
         <th> <input  class="form-control-plaintext"  disabled="disabled" value="<%=student.getLastname()%>" ></th>
         <th><input  class="form-control-plaintext"  disabled="disabled" value="<%=student.getFirstname()%>" ></th>
+        <th>  <button class="btn btn-sm btn-success" type="submit" name="include" value="<%=student.getID()%>">Include</button></th>
     </tr>
     <%
         }

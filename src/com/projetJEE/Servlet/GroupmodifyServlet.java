@@ -3,6 +3,7 @@ package com.projetJEE.Servlet;
 
 import com.projetJEE.Group.Group;
 import com.projetJEE.Group.GroupServiceImpl;
+import com.projetJEE.Student.Student;
 import com.projetJEE.Student.StudentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -22,6 +23,7 @@ public class GroupmodifyServlet extends HttpServlet {
 		StudentServiceImpl ss = StudentServiceImpl.getInstance();
 		String removes = request.getParameter("removes");
 		String removeg = request.getParameter("removeg");
+		String include = request.getParameter("include");
 		Group group = (Group) request.getSession().getAttribute("group");
 
 		if (request.getParameter("validate") != null) {
@@ -36,13 +38,22 @@ public class GroupmodifyServlet extends HttpServlet {
 
 		} else if (request.getParameter("addstudent") != null) {
 			String sid = request.getParameter("studentid");
-			if (!sid.isEmpty())
-				bs.addStudentToGroup(group, ss.getStudentByID(sid));
+			Student st=ss.getStudentByID(sid);
+			if (!sid.isEmpty() && st!=null)
+				bs.addStudentToGroup(group,st);
 		}
 		else if (request.getParameter("addgroup")!=null && request.getParameter("groupid")!=null){
 			int id=Integer.parseInt(request.getParameter("groupid"));
-			bs.addGroupToGroup(bs.getGroupByID(id),group);
+			System.out.println(id);
+			Group ch=bs.getGroupByID(id);
+			if(ch!=null && ch.getID()!=group.getID()){
+				bs.addGroupToGroup(ch,group);
+			}
 
+
+		}
+		else if(include!=null){
+			bs.addStudentToGroup(group,ss.getStudentByID(include));
 		}
 		else if(removeg!=null){
 			bs.removeGroupFromGroup(bs.getGroupByID(Integer.parseInt(removeg)),group);
