@@ -82,9 +82,11 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
         Group group = getUniqueEntryFromQuery(query, preparedStatement -> {
             preparedStatement.setInt(1, ID);
         });
-        addStudents(group);
-        addChildren(group);
-        addExclusions(group);
+        if (group != null) {
+            addStudents(group);
+            addChildren(group);
+            addExclusions(group);
+        }
         return group;
     }
 
@@ -94,9 +96,11 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
         Group group = getUniqueEntryFromQuery(query, preparedStatement -> {
             preparedStatement.setString(1, name);
         });
-        addStudents(group);
-        addChildren(group);
-        addExclusions(group);
+        if (group != null) {
+            addStudents(group);
+            addChildren(group);
+            addExclusions(group);
+        }
         return group;
     }
 
@@ -193,6 +197,20 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
             group.excludeStudent(student);
         }
         return excluded;
+    }
+
+    @Override
+    public boolean removeExclusion(Group group, Student student) {
+        String query = "delete from ExcludedStudent where ID_student=? and ID_group=?";
+        boolean removed_exclusion = executeUniqueUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, student.getID());
+            preparedStatement.setInt(2, group.getID());
+        });
+        if (removed_exclusion) {
+            System.out.println("Successfully removed exclusion of student " + student.getID() + " from group " + group.getName());
+            group.excludeStudent(student);
+        }
+        return removed_exclusion;
     }
 
     @Override
