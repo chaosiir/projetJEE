@@ -128,7 +128,7 @@ public class GroupServiceImpl implements GroupService {
      * @return The group has been successfully deleted
      */
     @Override
-    public boolean deleteGroup(Group group) { return groupDAO.update(group); }
+    public boolean deleteGroup(Group group) { return groupDAO.delete(group); }
 
     @Override
     public boolean excludeStudentFromGroup(Group group, Student student) { return groupDAO.excludeStudent(group, student); }

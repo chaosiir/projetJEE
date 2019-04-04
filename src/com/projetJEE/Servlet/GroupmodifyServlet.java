@@ -13,28 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "Groups", urlPatterns = {"/Groups"})
-public class GroupServlet extends HttpServlet {
+@WebServlet(name = "Groupmodif", urlPatterns = {"/Group/modify"})
+public class GroupmodifyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-		System.out.println("modify: "+ request.getParameter("modify"));
-		String delete = request.getParameter("delete");
-		System.out.println("delete: "+ delete);
-		if(delete !=null) {
-			GroupServiceImpl bs = new GroupServiceImpl();
-			bs.deleteGroup(bs.getGroupByID(Integer.parseInt(delete)));
-			doGet(request, response);
-		}
-		else {
-			session.setAttribute("grouptomodify",Integer.parseInt(request.getParameter("modify")));
-			response.sendRedirect(request.getContextPath()+"/Group/modify");
-		}
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pageName = "/Groups.jsp";
+		String pageName = "/Groupmodif.jsp";
+		HttpSession session=request.getSession();
 		GroupServiceImpl bs = new GroupServiceImpl();
-		request.setAttribute("groups", bs.getAllGroups());
+		request.setAttribute("groupid", bs.getGroupByID((int)session.getAttribute("grouptomodify")));
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		try {
 			rd.forward(request, response);
