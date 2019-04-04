@@ -35,7 +35,7 @@
         <th></th>
     </tr>
     <%
-        for(Student student:group.getStudents()){
+        for(Student student:group.getInheritedStudents()){
     %>
     <tr>
         <th>
