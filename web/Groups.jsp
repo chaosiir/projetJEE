@@ -23,6 +23,7 @@
     %>
 </head>
 <body>
+<jsp:include page="navbar.jsp"></jsp:include>
 <h1>Groups</h1>
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 
