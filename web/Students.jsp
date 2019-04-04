@@ -14,12 +14,12 @@
 </head>
 <body  onload="JavaScript:timedRefresh(120000);"> <!-- the page is refreshed automatically every 5 minutes-->
 <h1>Students</h1>
-<a class="btn btn-sm btn-primary" href="./new">insert student</a>
+<a class="btn btn-sm btn-primary" href="./Students/new">insert student</a>
 <button onclick="rafraichir_Ewok()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 <!-- button if we want to refresh page before automatic refresh-->
 
-<table border="1">
+<table>
     <tr>
         <th>ID</th>
         <th>Gender</th>

@@ -17,7 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "Students_modify", urlPatterns = {"/Students/modify"})
+@WebServlet(name = "Students_modify", urlPatterns = {"/Students/modify","/Students/new"})
 public class StudentModifyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.print(this.getClass().getName()+" post");
@@ -26,7 +26,7 @@ public class StudentModifyServlet extends HttpServlet {
             System.out.println(" modify");
             StudentService bs = StudentServiceImpl.getInstance();
             request.setAttribute("student", bs.getStudentByID(id));
-            String pageName = "/StudentsModify.jsp";
+            String pageName = "/StudentsEditor.jsp";
             ServletUtils.forwardTo(this, request, response, pageName);
             return;
         }
@@ -52,13 +52,20 @@ public class StudentModifyServlet extends HttpServlet {
             int registrationYear = Integer.valueOf(request.getParameter("registrationYear"));
             String emailPro = request.getParameter("emailPro");
             String emailPer = request.getParameter("emailPer");
-            Student student = new Student(ID, gender, firstname, lastname, birthday, bac, bacYear, bacGrade, degree, degreeYear, degreeCity, registrationYear, emailPro, emailPer);
+
             StudentService bs = StudentServiceImpl.getInstance();
-            boolean done = bs.updateStudent(student);
-            if(done)
-                System.out.println("update of : "+student);
-            else
-                System.out.println("didn't update : "+student);
+            Student student = new Student(ID, gender, firstname, lastname, birthday, bac, bacYear, bacGrade, degree, degreeYear, degreeCity, registrationYear, emailPro, emailPer);
+            if(ID!=null && !ID.equals("")) {//update
+                boolean done = bs.updateStudent(student);
+                if (done)
+                    System.out.println("update of : " + student);
+                else
+                    System.out.println("didn't update : " + student);
+            }else {
+                do{
+                    student.setID(Student.randomID());
+                }while(!bs.insertStudent(student));//
+            }
             String pageName = "/Students";
             ServletUtils.forwardTo(this, request, response, pageName);
             return;
@@ -67,9 +74,10 @@ public class StudentModifyServlet extends HttpServlet {
         doGet(request,response);
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println(this.getClass().getName()+" get");
-        String pageName = "/StudentsModify.jsp";
+        String pageName = "/StudentsEditor.jsp";
         ServletUtils.forwardTo(this, request, response, pageName);
     }
 }

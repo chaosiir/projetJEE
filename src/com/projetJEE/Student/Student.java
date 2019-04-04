@@ -49,6 +49,15 @@ public class Student {
         this.group = null;
     }
 
+    public static String randomID() {
+        String alphabet = "ABCDEFHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz0123456789";
+        StringBuilder ID = new StringBuilder();
+        for (int i = 0; i < 9; i++) {
+            ID.append(alphabet.charAt((int) (Math.random() * alphabet.length())));
+        }
+        return ID.toString();
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -128,4 +137,8 @@ public class Student {
     public void setGroup(Group group) { this.group = group; }
 
     public Group getGroup() { return group; }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 }

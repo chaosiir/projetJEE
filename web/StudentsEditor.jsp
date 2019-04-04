@@ -3,6 +3,7 @@
 <%@ page import="com.projetJEE.Student.Student" %>
 <%@ page import="java.sql.Date" %>
 <%
+
     Student student = (Student) request.getAttribute("student");
     if(student==null){
         student = new Student("", "", "", "", new Date(0), "", 2000,
@@ -34,20 +35,20 @@
     <title>Insert title here</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
 </head>
-<body>
+<body class="text-center">
 <h1>Students</h1>
-<form action="./Students/modify" method="post" class="form">
+<form action="" method="post" class="form col-md-4 offset-4 text-right">
     <%
-        for(String field[] : attributes){
+        for(String[] field : attributes){
             String id = field[0];
             String display = field[1];
             String attr = field[2];
             String value = field[3];
     %>
     <div class="form-group row">
-        <label for="<%=id%>" class="col-sm-2 col-form-label"><%=display%></label>
-        <div class="col-sm-10">
-            <input <%=attr%> class="form-control-plaintext" id="<%=id%>" name="<%=id%>" value="<%=value%>" >
+        <label for="<%=id%>" class="col-form-label col-6"><%=display%></label>
+        <div class="col-6">
+            <input <%=attr%> class="form-control" id="<%=id%>" name="<%=id%>" value="<%=value%>" >
         </div>
     </div>
     <%
