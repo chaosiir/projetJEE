@@ -19,7 +19,7 @@
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 <!-- button if we want to refresh page before automatic refresh-->
 
-<table>
+<table class="table-bordered">
     <tr>
         <th>ID</th>
         <th>Gender</th>
