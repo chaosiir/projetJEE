@@ -56,6 +56,9 @@
             }
     %>
 </table>
+<%
+    if(request.getAttribute("forStudent")==null){
+%>
 <form action="" method="post" style="margin: 15px" >
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -70,5 +73,8 @@
     <%--</div>--%>
     <%--</div>--%>
 </form>
+<%
+    }
+%>
 </body>
 </html>

@@ -31,6 +31,7 @@
 <form style="margin-top: 1%" action="" method="post">
     <table style="width: 100%" class="table-striped table-bordered">
         <tr>
+            <th></th>
             <th>ID</th>
             <th>Gender</th>
             <th>Firstname</th>
@@ -45,13 +46,17 @@
             <th>RegistrationYear</th>
             <th>EmailPro</th>
             <th>EmailPer</th>
-            <th></th>
         </tr>
         <%
             if(students!=null)
                 for (Student student : students){
         %>
         <tr>
+            <td class="btn-group btn-group-sm">
+                <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
+                <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
+                <a class="btn btn-sm btn-secondary" href="./Groups?ID_student=<%=student.getID()%>">groups</a>
+            </td>
             <td><%=student.getID()%></td>
             <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=gender&value=<%=student.getGender()%>"><%=student.getGender()%></a></td>
             <td><%=student.getFirstname()%></td>
@@ -66,10 +71,6 @@
             <td><a class="btn btn-outline-secondary btn-sm btn-block" href="?filter=registrationYear&value=<%=student.getRegistrationYear()%>"><%=student.getRegistrationYear()%></a></td>
             <td><%=student.getEmailPro()%></td>
             <td><%=student.getEmailPer()%></td>
-            <td class="btn-group btn-group-sm">
-                    <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
-                    <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
-            </td>
         </tr>
         <%
             }
