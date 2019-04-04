@@ -57,12 +57,6 @@ public class StudentDAOMockImpl implements StudentDAO {
     public List<Student> findByRegistrationYear(int registrationYear) { return null; }
 
     @Override
-    public List<Student> findByEmailPro(String emailPro) { return null; }
-
-    @Override
-    public List<Student> findByEmailPer(String emailPer) { return null; }
-
-    @Override
     public Student findByID(String ID) {
         return new Student(ID, "gender", "firstname", "lastname", new Date(),
                 "bac", 2000, "grade",
