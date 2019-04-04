@@ -9,25 +9,77 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style type="text/css">
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield; /* Firefox */
+        }
+        h2 {
+            margin:1%;
+            margin-top:2%;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
 </head>
-<body>
-<h1>Group</h1>
+<body style="padding: 1%">
+<h1 style="margin:1%">Modify group</h1>
 <form action="" method="post">
-<button class="btn btn-sm btn-primary" type="submit" name="addstudent"  >Add a Student</button>
-    <input  class="form-control-plaintext" name="studentid"  placeholder="Student ID" >
-<button class="btn btn-sm btn-primary" type="submit" name="addgroup" >Add a Group</button>
-    <input  class="form-control-plaintext" type="number" name="groupid"  placeholder="Group ID" >
-
-<input  class="form-control-plaintext"  disabled="disabled" value="ID                <%=group.getID()%>" >
-    <label for="Name" >Name         </label>
-    <input  class="form-control-plaintext"  id="Name" name="Name"  value="<%=group.getName()%>" >
-<input  class="form-control-plaintext"   disabled="disabled" value="Owner                <%=group.getOwner().getLogin()%>" >
-<input  class="form-control-plaintext" disabled="disabled" value="Date                <%=group.getCreationDate()%>" >
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-sm btn-primary" type="submit" name="addstudent"  >Add a Student</button>
+        </div>
+        <input  class="form-control" name="studentid"  placeholder="Student ID" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-sm btn-primary" type="submit" name="addgroup" >Add a Group</button>
+        </div>
+        <input  class="form-control" type="number" name="groupid"  placeholder="Group ID" >
+    </div>
+    <h2>Metadata</h2>
+    <div >
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    ID
+                </span>
+            </div>
+            <input  class="form-control"  disabled="disabled" value="<%=group.getID()%>" >
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    Name
+                </span>
+            </div>
+            <input  class="form-control"  id="Name" name="Name"  value="<%=group.getName()%>" >
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    Owner
+                </span>
+            </div>
+            <input  class="form-control"   disabled="disabled" value="<%=group.getOwner().getLogin()%>" >
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    Date
+                </span>
+            </div>
+            <input  class="form-control" disabled="disabled" value="<%=group.getCreationDate()%>" >
+        </div>
+    </div>
 <h2>Students</h2>
-<table class="table-bordered">
+<table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>
         <th>ID</th>
         <th>LastName</th>
@@ -48,9 +100,9 @@
     <%
         }
     %>
-</table>
+</table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <h2>Inherited Students</h2>
-    <table class="table-bordered">
+    <table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
         <tr>
             <th>ID</th>
             <th>LastName</th>
@@ -73,7 +125,7 @@
         %>
     </table>
 <h2>Excluded Students</h2>
-<table class="table-bordered">
+<table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>
         <th>ID</th>
         <th>LastName</th>
@@ -97,7 +149,7 @@
     %>
 </table>
 <h2>Children</h2>
-<table class="table-bordered">
+<table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -122,7 +174,7 @@
         }
     %>
 </table>
-    <button class="btn btn-sm btn-danger" type="submit" name="validate" value="validate">validate</button>
+    <button style="margin:1%; margin-left: 2%" class="btn btn-danger" type="submit" name="validate" value="validate">validate</button>
 </form>
 </table>
 </body>
