@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface GroupService {
     boolean newGroup(Group group);
+    Group cloneGroup(Group group, String new_name, User new_owner);
     List<Group> getAllGroups();
     List<Group> getGroupsByOwner(User owner);
     List<Group> getGroupsWithStudent(Student student);

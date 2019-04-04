@@ -38,6 +38,31 @@ public class GroupServiceImpl implements GroupService {
     public boolean newGroup(Group group) { return groupDAO.create(group); }
 
     /**
+     * Clones a group
+     * @param group Group to clone
+     * @param new_name Cloned group name
+     * @param new_owner Cloned group owner
+     * @return The group cloned, null if cloning failed
+     * Slow method, must be used wisely
+     */
+    @Override
+    public Group cloneGroup(Group group, String new_name, User new_owner) {
+        Group cloned_group = new Group(new_name, new_owner);
+        newGroup(cloned_group);
+        if (cloned_group.getID() != -1) {
+            for (Student s : group.getNativeStudents())
+                addStudentToGroup(cloned_group, s);
+            for (Group g : group.getChildren())
+                addGroupToGroup(g, cloned_group);
+            for (Student s : group.getExclusions())
+                groupDAO.excludeStudent(cloned_group, s);
+            return cloned_group;
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Returns all groups
      * @return A list of groups
      * The list of students and child groups for each group won't be retrieved,
