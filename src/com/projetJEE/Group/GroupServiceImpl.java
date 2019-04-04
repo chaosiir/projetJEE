@@ -11,6 +11,9 @@ public class GroupServiceImpl implements GroupService {
 
     private static GroupServiceImpl instance;
 
+    private StudentDAOImpl studentDAO = new StudentDAOImpl();
+    private GroupDAO groupDAO = new GroupDAOImpl(new UserDAOImpl(), studentDAO);
+
     /**
      * Returns the GroupServiceImpl singleton
      * @return GroupServiceImpl instance
@@ -24,8 +27,10 @@ public class GroupServiceImpl implements GroupService {
         return instance;
     }
 
-    private StudentDAOImpl studentDAO = new StudentDAOImpl();
-    private GroupDAO groupDAO = new GroupDAOImpl(new UserDAOImpl(), studentDAO);
+    /**
+     * Private constructor since it's a singleton
+     */
+    private GroupServiceImpl() {}
 
     /**
      * Creates a group
