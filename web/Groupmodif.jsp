@@ -21,7 +21,7 @@
 <form action="./Group" method="post" class="form">
     <label for="id" class="col-sm-2 col-form-label">ID</label>
     <div class="col-sm-10">
-        <input  class="form-control-plaintext" id="id" name="id" disabled value="<%=group.getID()%>" >
+        <input  class="form-control-plaintext" id="id" name="id" disabled="disabled" value="<%=group.getID()%>" >
     </div>
     <label for="name" class="col-sm-2 col-form-label">ID</label>
     <div class="col-sm-10">
@@ -29,11 +29,11 @@
     </div>
     <label for="owner" class="col-sm-2 col-form-label">ID</label>
     <div class="col-sm-10">
-        <input  class="form-control-plaintext" id="owner" name="owner" disabled value="<%=group.getOwner().getLogin()%>" >
+        <input  class="form-control-plaintext" id="owner" name="owner" disabled="disabled" value="<%=group.getOwner().getLogin()%>" >
     </div>
     <label for="Date" class="col-sm-2 col-form-label">ID</label>
     <div class="col-sm-10">
-        <input  class="form-control-plaintext" id="Date" name="Date" disabled value="<%=group.getCreationDate()%>" >
+        <input  class="form-control-plaintext" id="Date" name="Date" disabled="disabled" value="<%=group.getCreationDate()%>" >
     </div>
 
     <%
@@ -44,11 +44,10 @@
 
     <label for="<%=k%>" class="col-sm-2 col-form-label">Student</label>
     <div class="col-sm-10">
-        <input  class="form-control-plaintext" id="<%=k%>" name="<%=k%>" disabled value="<%=student.getFirstname()%> <%=student.getLastname()%>" >
+        <input  class="form-control-plaintext" id="<%=k%>" name="<%=k%>" disabled="disabled" value="<%=student.getFirstname()%> <%=student.getLastname()%>" >
     </div>
     <div style="border: 1px">
         <form action="" method="post" style="border: 1px">
-            <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
             <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
         </form>
     </div>
@@ -63,12 +62,11 @@
 
     <label for="<%=k%>" class="col-sm-2 col-form-label">child</label>
     <div class="col-sm-10">
-        <input  class="form-control-plaintext" id="<%=k%>" name="<%=k%>" disabled value="<%=child.getName()%>" >
+        <input  class="form-control-plaintext" id="<%=k%>" name="<%=k%>" disabled="disabled" value="<%=child.getName()%>" >
     </div>
     <div style="border: 1px">
         <form action="" method="post" style="border: 1px">
-            <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=group.getID()%>">modify</button>
-            <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=group.getID()%>">delete</button>
+            <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=child.getID()%>">delete</button>
         </form>
     </div>
     <%

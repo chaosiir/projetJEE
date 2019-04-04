@@ -1,3 +1,4 @@
+<%@ page import="com.projetJEE.User.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,11 +11,14 @@
 
 </head>
 <body class="text-center">
+<%
+    User user=(User) request.getSession().getAttribute("user");
+%>
 <form class="form-signin" method="post">
 
     <h1 align="center">Update Data</h1>
     <label  for="inputID" class="sr-only">ID</label>
-    <input type="text" id="inputID" name="inputID" class="form-control" placeholder="Put Your login" required="" autofocus="">
+    <input type="text" id="inputID" name="inputID" class="form-control" placeholder="Put Your login" value="<%=user.getLogin()%>" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Choose new password</label>
     <input type="password" id="inputPassword"  name="inputPassword" class="form-control" placeholder="Choose new Password" required="">
     <label for="inputPassword2" class="sr-only">Confirm </label>
