@@ -1,10 +1,13 @@
 package com.projetJEE.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
 
     private static StudentServiceImpl instance;
+
+    private StudentDAO studentDAO = new StudentDAOImpl();
 
     /**
      * Returns the StudentServiceImpl singleton
@@ -19,7 +22,10 @@ public class StudentServiceImpl implements StudentService {
         return instance;
     }
 
-    private StudentDAO studentDAO = new StudentDAOImpl();
+    /**
+     * Private constructor since it's a singleton
+     */
+    private StudentServiceImpl() {}
 
     /**
      * Inserts a student
@@ -39,6 +45,39 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getAllStudents() { return studentDAO.findAll(); }
 
+    /**
+     * Returns students by attribute
+     * @param attribute Attribute
+     * @param value Attribute's value
+     * @return A list of Students filtered by attribute's value
+     */
+    @Override
+    public List<Student> getStudentsByAttribute(String attribute, String value) {
+        if (attribute.equals("gender")) {
+            return studentDAO.findByGender(value);
+        } else if (attribute.equals("firstname")) {
+            return studentDAO.findByFirstname(value);
+        } else if (attribute.equals("lastname")) {
+            return studentDAO.findByLastname(value);
+        } else if (attribute.equals("bac")) {
+            return studentDAO.findByBac(value);
+        } else if (attribute.equals("bacYear")) {
+            return studentDAO.findByBacYear(Integer.parseInt(value));
+        } else if (attribute.equals("bacGrade")) {
+            return studentDAO.findByBacGrade(value);
+        } else if (attribute.equals("degree")) {
+            return studentDAO.findByDegree(value);
+        } else if (attribute.equals("degreeYear")) {
+            return studentDAO.findByDegreeYear(Integer.parseInt(value));
+        } else if (attribute.equals("degreeCity")) {
+            return studentDAO.findByDegreeCity(value);
+        } else if (attribute.equals("registrationCity")) {
+            return studentDAO.findByDegreeCity(value);
+        } else if (attribute.equals("registrationYear")) {
+            return studentDAO.findByRegistrationYear(Integer.parseInt(value));
+        }
+        return new ArrayList<>();
+    }
     /**
      * Returns a student by ID
      * @param ID Student's ID

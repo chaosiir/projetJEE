@@ -18,28 +18,26 @@ public class AnswerServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        UserServiceImpl usimp=new UserServiceImpl();
-        User user=(User) request.getSession().getAttribute("user");
+        UserServiceImpl usimp = UserServiceImpl.getInstance();
+        User user=(User) request.getSession().getAttribute("user");  //identify the user
 
 
         System.out.println(user.getQuestion());
-        String answer = request.getParameter("answer");
+        String answer = request.getParameter("answer");   // get his answer
         System.out.println(answer);
 
-       if(user.getAnswerHash().equals(usimp.hash(answer))){
+        //compare hashed answer related to user  with the hash of  answer given
+       if(user.getAnswerHash().equals(usimp.hash(answer))){                         // if yes, allow the user to update his account
             System.out.println("verification ok");
-            session.setAttribute("user", user);
+            session.setAttribute("user", user);   //
             session.setAttribute("auth", true);
 
             response.sendRedirect(request.getContextPath()+"/update");
 
         }
-        else {
+        else {                                                                     // if no, redirect him to pevious page
             System.out.println("non");
-            PrintWriter out = response.getWriter();
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('answer incorrect');");
-            out.println("</script>");
+
             response.sendRedirect(request.getContextPath()+"/mdp");
 
 

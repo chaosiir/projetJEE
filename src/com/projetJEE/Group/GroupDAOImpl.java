@@ -7,6 +7,7 @@ import com.projetJEE.User.User;
 import com.projetJEE.User.UserDAOImpl;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,14 +51,42 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
     }
 
     @Override
+    public List<Group> findByStudent(Student student) {
+        String query = "select * from `Group`, User where ID_owner=ID_user and ID_group in " +
+                "(select ID_group from IncludedStudent where ID_student=?)";
+        List<Group> higher_parents = getEntriesFromQuery(query, preparedStatement -> {
+           preparedStatement.setString(1, student.getID());
+        });
+        List<Group> all_parents = new ArrayList<>();
+        all_parents.addAll(higher_parents);
+
+        List<Group> parents;
+        do {
+            parents = higher_parents;
+            higher_parents = new ArrayList<>();
+            for (Group p : parents) {
+                for (Group higher_p : findByChild(p)) {
+                    if (!higher_parents.contains(higher_p))
+                        higher_parents.add(higher_p);
+                    if (!all_parents.contains(higher_p))
+                        all_parents.add(higher_p);
+                }
+            }
+        } while(!higher_parents.isEmpty());
+        return all_parents;
+    }
+
+    @Override
     public Group findByID(int ID) {
         String query = "select * from `Group`, User where ID_group=? and ID_owner=ID_user";
         Group group = getUniqueEntryFromQuery(query, preparedStatement -> {
             preparedStatement.setInt(1, ID);
         });
-        addStudents(group);
-        addChildren(group);
-        addExclusions(group);
+        if (group != null) {
+            addStudents(group);
+            addChildren(group);
+            addExclusions(group);
+        }
         return group;
     }
 
@@ -67,9 +96,11 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
         Group group = getUniqueEntryFromQuery(query, preparedStatement -> {
             preparedStatement.setString(1, name);
         });
-        addStudents(group);
-        addChildren(group);
-        addExclusions(group);
+        if (group != null) {
+            addStudents(group);
+            addChildren(group);
+            addExclusions(group);
+        }
         return group;
     }
 
@@ -85,6 +116,16 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
             addStudents(g);
             addChildren(g);
         }
+        return groups;
+    }
+
+    private List<Group> findByChild(Group child) {
+        String query = "select * from `Group`, User where ID_user=? and ID_group in " +
+                "(select ID_group from IncludedGroup where ID_group_child=?)";
+        List<Group> groups = getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, child.getOwner().getID());
+            preparedStatement.setInt(2, child.getID());
+        });
         return groups;
     }
 
@@ -156,6 +197,20 @@ public class GroupDAOImpl extends DAOImpl<Group> implements GroupDAO {
             group.excludeStudent(student);
         }
         return excluded;
+    }
+
+    @Override
+    public boolean removeExclusion(Group group, Student student) {
+        String query = "delete from ExcludedStudent where ID_student=? and ID_group=?";
+        boolean removed_exclusion = executeUniqueUpdateQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, student.getID());
+            preparedStatement.setInt(2, group.getID());
+        });
+        if (removed_exclusion) {
+            System.out.println("Successfully removed exclusion of student " + student.getID() + " from group " + group.getName());
+            group.excludeStudent(student);
+        }
+        return removed_exclusion;
     }
 
     @Override

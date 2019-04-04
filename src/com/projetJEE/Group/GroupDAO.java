@@ -10,6 +10,7 @@ public interface GroupDAO {
     List<Group> findAll();
     List<Group> findByParent(Group parent);
     List<Group> findByOwner(User owner);
+    List<Group> findByStudent(Student student);
     Group findByID(int ID);
     Group findByName(String name);
     boolean addStudent(Group group, Student student);
@@ -17,6 +18,7 @@ public interface GroupDAO {
     boolean addGroup(Group group, Group parent);
     boolean removeGroup(Group group, Group parent);
     boolean excludeStudent(Group group, Student student);
+    boolean removeExclusion(Group group, Student student);
     boolean update(Group group);
     boolean delete(Group group);
 }

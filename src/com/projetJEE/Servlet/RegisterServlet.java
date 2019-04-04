@@ -16,7 +16,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("post");
         System.out.println( request.getParameter("id"));
-        UserServiceImpl userService = new UserServiceImpl();
+        UserServiceImpl userService = UserServiceImpl.getInstance();
         User user = userService.getUserByLogin(request.getParameter("id"));
         if(user!=null) {
             String pageName = "/register.jsp";

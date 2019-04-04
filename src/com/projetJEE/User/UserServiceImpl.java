@@ -13,6 +13,8 @@ public class UserServiceImpl implements UserService {
 
     private static UserServiceImpl instance;
 
+    private UserDAO userDAO = new UserDAOImpl();
+
     /**
      * Returns the UserServiceImpl singleton
      * @return UserServiceImpl instance
@@ -26,7 +28,10 @@ public class UserServiceImpl implements UserService {
         return instance;
     }
 
-    private UserDAO userDAO = new UserDAOImpl();
+    /**
+     * Private constructor since it's a singleton
+     */
+    private UserServiceImpl() {}
 
     /**
      * Creates a new user

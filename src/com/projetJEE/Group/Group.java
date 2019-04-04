@@ -56,6 +56,10 @@ public class Group {
 
     public void setStudents(List<Student> students) { this.students = students; }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
     public List<Group> getChildren() { return children; }
 
     public void setChildren(List<Group> children) { this.children = children; }
@@ -74,19 +78,18 @@ public class Group {
                 '}';
     }
 
-    public List<Student> getStudents() {
+    public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
         students.addAll(this.students);
+        students.addAll(getInheritedStudents());
+        return students;
+    }
+
+    public List<Student> getInheritedStudents() {
+        List<Student> students = new ArrayList<>();
         for (Group g : children)
-            for (Student s : g.getStudents()) {
-                boolean is_excluded = false;
-                for (Student excluded : exclusions) {
-                    if (s.getID().equals(excluded.getID())) {
-                        is_excluded = true;
-                        break;
-                    }
-                }
-                if (!is_excluded)
+            for (Student s : g.getAllStudents()) {
+                if (!exclusions.contains(s))
                     students.add(s);
             }
         return students;
@@ -110,4 +113,9 @@ public class Group {
     }
 
     public void excludeStudent(Student student) { exclusions.add(student); }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((Group)obj).getID() == this.getID();
+    }
 }

@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <title > Login</title>
     <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 <body class="text-center">
@@ -24,7 +23,8 @@
             <input type="checkbox" name="remembermer" value="remember-me"> Remember me
         </label>
     </div>
-    <div class="g-recaptcha" data-sitekey="6LfG8pYUAAAAAHATcp2pnnJ69F-_C2D5bSYVmMob" aria-required="true" ></div><br>
+
+
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
     <a href="./mdp" target="_blank">Forgot your password?</a>
@@ -37,13 +37,6 @@
 
 </form>
 </body>
-
-<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
-
-<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 
 
 

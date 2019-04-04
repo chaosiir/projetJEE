@@ -15,19 +15,26 @@ import java.io.IOException;
 public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("post");
-        UserServiceImpl usimp=new UserServiceImpl();
+
+        UserServiceImpl usimp = UserServiceImpl.getInstance();
         User verif=usimp.getUserByLogin(request.getParameter("inputID"));
 
         System.out.println(verif.getQuestion()); // Test to see what is the question before update
         System.out.println(verif.getPwdHash()); //  Test to see what is the hashed pass before update
 
-        usimp.deleteUser(verif);//we delete the first account
-        User us=new User(request.getParameter("inputID"),request.getParameter("inputPassword"),request.getParameter("inputQ"),request.getParameter("answer"), User.Rights.USER);
-        UserServiceImpl usimp1=new UserServiceImpl();
-        usimp1.newUser(us);
 
-        System.out.println(us.getQuestion());// Test to see what is the question after update
-        System.out.println(us.getPwdHash());//  Test to see what is the hashed pass after update
+        verif.setLogin(request.getParameter("inputID"));                       //set new login
+        verif.setPwdHash(usimp.hash(request.getParameter("inputPassword")));   //set new password
+        verif.setQuestion(request.getParameter("inputQ"));                     //set new question
+        verif.setAnswerHash(usimp.hash(request.getParameter("answer")));       //set new answer
+
+
+        usimp.updateUser(verif);  // update the user
+
+
+
+        System.out.println(verif.getQuestion());// Test to see what is the question after update
+        System.out.println(verif.getPwdHash());//  Test to see what is the hashed pass after update
 
         response.sendRedirect(request.getContextPath()+"/Login");
     }
@@ -35,6 +42,7 @@ public class UpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageName = "/Update.jsp";
         System.out.println("get");
+
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         rd.forward(request, response);
     }

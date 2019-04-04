@@ -12,12 +12,21 @@
     <meta charset="UTF-8">
     <title>Groups</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
+    <% String alert=request.getParameter("alert");
+        if (alert!=null){
+        	%>
+        <script>
+            alert(<%=alert%>)
+        </script>
+    <%
+        }
+    %>
 </head>
 <body>
-<h1>Groups</h1>
-<a class="btn btn-sm btn-primary" href="./Home">Retour</a>
-<a class="btn btn-sm btn-primary" href="./Group" methods="Post" >Add a Group</a>
-<table border="1">
+<jsp:include page="navbar.jsp"></jsp:include>
+<h1 style="margin-top: 1%; margin-bottom: 1%">Groups</h1>
+
+<table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -35,16 +44,31 @@
         <td><%=group.getName()%></td>
         <td><%=group.getOwner().getLogin()%></td>
         <td><%=group.getCreationDate()%></td>
-        <td class="btn-group-sm">
-            <form action="" method="post">
+        <form action="" method="post">
+            <td class="btn-group btn-group-sm">
                 <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=group.getID()%>">modify</button>
+                <button class="btn btn-sm btn-primary" type="submit" name="clone" value="<%=group.getID()%>">clone</button>
                 <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=group.getID()%>">delete</button>
-            </form>
-        </td>
+            </td>
+        </form>
     </tr>
     <%
             }
     %>
 </table>
+<%
+    if(request.getAttribute("forStudent")==null){
+%>
+<form action="" method="post" style="margin: 15px" >
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-primary" type="submit" name="add"  PLACEHOLDER="Name" >Add a Group</button>
+        </div>
+        <input type="text" class="form-control" id="Name" name="Name"  placeholder="Name" aria-label="" aria-describedby="basic-addon1" required>
+    </div>
+</form>
+<%
+    }
+%>
 </body>
 </html>

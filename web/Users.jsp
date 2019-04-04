@@ -13,16 +13,16 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
-<h1>Users</h1>
-<a class="btn btn-sm btn-primary" href="./Home">Retour</a>
-<table border="1">
+<jsp:include page="navbar.jsp"></jsp:include>
+<h1 style="margin-top: 1%; margin-bottom: 1%">Users</h1>
+
+<table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>
         <th>ID</th>
         <th>Login</th>
-        <th>Hashed password</th>
         <th>question</th>
-        <th>Hashed Answer</th>
-        <th>Rights</th>
+        <th>Modify Rights</th>
+
         <th></th>
     </tr>
     <%
@@ -32,20 +32,31 @@
     <tr>
         <td><%=user.getID()%></td>
         <td><%=user.getLogin()%></td>
-        <td><%=user.getPwdHash()%></td>
         <td><%=user.getQuestion()%></td>
-        <td><%=user.getAnswerHash()%></td>
-        <td><%=user.getRights()%></td>
-        <td class="btn-group-sm">
-            <form action="" method="post">
-                <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=user.getID()%>">modify</button>
-                <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=user.getID()%>">delete</button>
-            </form>
+        <td>
+            <form method="post" action="?userID=<%=user.getID()%>">
+            <select class="form-control form-control-sm" name="rights" onchange="this.form.submit()">
+                <%
+                    for(User.Rights right : User.Rights.values()){
+                        if(user.getRights()==right){
+                            out.println("<option selected=selected value=\""+right+"\">"+right+"</option>\n");
+                        }else{
+                            out.println("<option value=\""+right+"\">"+right+"</option>\n");
+
+
+                        }
+                    }
+                %>
+
+            </select> </form>
         </td>
-    </tr>
+
     <%
             }
     %>
 </table>
+
+
 </body>
+
 </html>

@@ -36,6 +36,86 @@ public class StudentDAOImpl extends DAOImpl<Student> implements StudentDAO {
         });
     }
 
+    @Override
+    public List<Student> findByGender(String gender) {
+        String query = "select * from Student where gender=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, gender);
+        });
+    }
+
+    @Override
+    public List<Student> findByFirstname(String firstname) {
+        String query = "select * from Student where firstname=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, firstname);
+        });
+    }
+
+    @Override
+    public List<Student> findByLastname(String lastname) {
+        String query = "select * from Student where lastname=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, lastname);
+        });
+    }
+
+    @Override
+    public List<Student> findByBac(String bac) {
+        String query = "select * from Student where bac=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, bac);
+        });
+    }
+
+    @Override
+    public List<Student> findByBacYear(int bacYear) {
+        String query = "select * from Student where bacYear=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, bacYear);
+        });
+    }
+
+    @Override
+    public List<Student> findByBacGrade(String bacGrade) {
+        String query = "select * from Student where bacGrade=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, bacGrade);
+        });
+    }
+
+    @Override
+    public List<Student> findByDegree(String degree) {
+        String query = "select * from Student where degree=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, degree);
+        });
+    }
+
+    @Override
+    public List<Student> findByDegreeYear(int degreeYear) {
+        String query = "select * from Student where degreeYear=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, degreeYear);
+        });
+    }
+
+    @Override
+    public List<Student> findByDegreeCity(String degreeCity) {
+        String query = "select * from Student where degreeCity=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setString(1, degreeCity);
+        });
+    }
+
+    @Override
+    public List<Student> findByRegistrationYear(int registrationYear) {
+        String query = "select * from Student where registrationYear=?";
+        return getEntriesFromQuery(query, preparedStatement -> {
+            preparedStatement.setInt(1, registrationYear);
+        });
+    }
+
     public List<Student> findByExclusion(Group group) {
         String query = "select * from ExcludedStudent natural join Student where ID_group=?";
         return getEntriesFromQuery(query, preparedStatement -> {

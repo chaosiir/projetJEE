@@ -2,6 +2,7 @@ package com.projetJEE.User;
 
 public class User {
 
+
     public enum Rights {
         USER,
         EDITOR,
@@ -68,6 +69,10 @@ public class User {
     public Rights getRights() {
         return rights;
     }
+    public void   setRights(Rights rights) {
+         this.rights=rights;
+    }
+
 
     @Override
     public String toString() {

@@ -2,21 +2,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
+
     <title>Home</title>
 </head>
 <body>
-    <div style="width: 40%; margin: auto">
-        <h1>Accueil</h1>
-        <a class="button" href="./Students" style="alignment: left">Liste des etudiants</a><br>
-        <a class="button" href="./Users" style="alignment: left">Liste des utilisateurs</a><br>
-        <a class="button" href="./Groups" style="alignment: center">Liste des Groupes</a><br>
-        <a href="./update" >Update Your account </a><br>
-        <a href="./login" >Se deconnecter </a><br>
-
-
-
+    <jsp:include page="navbar.jsp"></jsp:include>
+    <div style="width: 60%; margin: auto">
+        <h1 style="margin-top: 10%">Welcome</h1>
     </div>
 </body>
 </html>
+
