@@ -11,20 +11,22 @@ Autheurs :
 
 
 ## Prérequis :
-​
+- un serveur tomcat 9.0
+- un serveur mysql
+
 ## Installation :
 
 ### Setup de mysql :
 
-- creer une nouvelle database "projetJEE"
-- creer un utilisateur login:login et mdp:password
-- ou editer le fichier dans l'archive war : /WEB-INF/classes/config.properties
-- executer le script createDB.sql depuis mysql
+- créer une nouvelle database "projetJEE"
+- soit : créer un utilisateur login:login et mdp:password
+- soit : éditer le fichier dans l'archive war : /WEB-INF/classes/config.properties
+- éxécuter le script createDB.sql depuis mysql
 
 ### setup war :
 
 - importer l'archive projetJEE_war dans un server tomcat 9.0
-- lors du premier demarrage du server, les students vont etre telecharge du web service
+- lors du premier demarrage du server, les students vont etre télechargé du web service
 
 ## Sources du projet :
 
