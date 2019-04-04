@@ -1,6 +1,7 @@
 package com.projetJEE.Servlet;
 
 
+import com.google.gson.Gson;
 import com.projetJEE.Student.StudentServiceImpl;
 import com.projetJEE.User.User;
 import com.projetJEE.User.UserServiceImpl;
@@ -19,10 +20,12 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request,response);
 		UserServiceImpl usimp = UserServiceImpl.getInstance();
-		User user=usimp.getUserByID(Integer.parseInt(request.getParameter("delete")));
-		usimp.deleteUser(user);
-
-
+		User user=usimp.getUserByID(Integer.parseInt(request.getParameter("userID")));
+		user.setRights(User.Rights.valueOf(request.getParameter("rights")));
+		usimp.updateUser(user);
+		System.out.println(user);
+		System.out.println(new Gson().toJson(request.getParameterMap()));
+		doGet(request,response);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

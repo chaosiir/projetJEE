@@ -42,10 +42,7 @@ public class UpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageName = "/Update.jsp";
         System.out.println("get");
-        User usermod=(User) request.getAttribute("userAmodifier");
-        if(usermod!=null){
-            request.getSession().setAttribute("userAmodifier",usermod);
-        }
+
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         rd.forward(request, response);
     }
