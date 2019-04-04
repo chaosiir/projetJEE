@@ -19,9 +19,9 @@ import java.io.PrintWriter;
 public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserServiceImpl usimp = UserServiceImpl.getInstance();
-		User user=usimp.getUserByID(Integer.parseInt(request.getParameter("userID")));
-		user.setRights(User.Rights.valueOf(request.getParameter("rights")));
-		usimp.updateUser(user);
+		User user=usimp.getUserByID(Integer.parseInt(request.getParameter("userID"))); // identify the user by his login
+		user.setRights(User.Rights.valueOf(request.getParameter("rights")));           // set right chosen to user's right
+		usimp.updateUser(user);															  // update user with his new right
 		System.out.println(user);
 		System.out.println(new Gson().toJson(request.getParameterMap()));
 		doGet(request,response);

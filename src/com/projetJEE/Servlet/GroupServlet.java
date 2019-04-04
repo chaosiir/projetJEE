@@ -7,7 +7,6 @@ import com.projetJEE.ServletUtils;
 import com.projetJEE.Student.StudentServiceImpl;
 import com.projetJEE.User.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,17 +22,25 @@ public class GroupServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		String modify = request.getParameter("modify");
 		System.out.println("modify: "+ modify);
-		String delete = request.getParameter("delete");
-		System.out.println("delete: "+ delete);
+        String delete = request.getParameter("delete");
+        System.out.println("delete: "+ delete);
+        String clone = request.getParameter("clone");
+        System.out.println("clone: "+ delete);
 		if(delete !=null) {//delete a group
 			GroupServiceImpl bs = GroupServiceImpl.getInstance();
 			bs.deleteGroup(bs.getGroupByID(Integer.parseInt(delete)));
 			doGet(request, response);
 		}
-		else if(modify!=null) {//modify a group
-			session.setAttribute("grouptomodify",Integer.parseInt(modify));
-			response.sendRedirect(request.getContextPath()+"/Group/modify");
-		}
+        else if(clone!=null) {//clone a group
+            GroupServiceImpl bs = GroupServiceImpl.getInstance();
+            Group group = bs.getGroupByID(Integer.parseInt(clone));
+            bs.cloneGroup(group, group.getName()+"(clone)", (User) session.getAttribute("user"));
+            doGet(request, response);
+        }
+        else if(modify!=null) {//modify a group
+            session.setAttribute("grouptomodify",Integer.parseInt(modify));
+            response.sendRedirect(request.getContextPath()+"/Group/modify");
+        }
 		else {//create a group
 			Group newgroup=new Group(request.getParameter("Name"),(User) request.getSession().getAttribute("user"));
 			GroupServiceImpl bs = GroupServiceImpl.getInstance();

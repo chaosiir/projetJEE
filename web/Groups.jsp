@@ -47,6 +47,7 @@
         <form action="" method="post">
             <td class="btn-group btn-group-sm">
                 <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=group.getID()%>">modify</button>
+                <button class="btn btn-sm btn-primary" type="submit" name="clone" value="<%=group.getID()%>">clone</button>
                 <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=group.getID()%>">delete</button>
             </td>
         </form>
