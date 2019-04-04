@@ -30,15 +30,12 @@ public class AuthFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         System.out.println("filter "+new Gson().toJson(req.getSession()));
 
-        HttpSession session = req.getSession();
-        if(session==null){
-            goToLoginIfNeeded(req, res, chain);
-            return;
-        }
+        HttpSession session = req.getSession(true);//get session or create one
 
         User user = (User) session.getAttribute("user");
         Boolean auth = (Boolean) session.getAttribute("auth");
         if (auth == null || !auth || user==null) {
+            System.out.println("authFilter : redirect to login -> auth:"+auth+" user:"+user);
             goToLoginIfNeeded(req, res, chain);
             return;
         }
@@ -58,7 +55,7 @@ public class AuthFilter implements Filter {
         }else{
             //check request method, to cancel unauthorized modification/deletion
             if (req.getMethod().equals("POST") && user.getRights() == User.Rights.USER) {
-                System.out.println("user '"+user.getLogin()+"' tried to modify/delete on "+req.getServletPath());
+                System.out.println("authFilter : user '"+user.getLogin()+"' tried to modify/delete on "+req.getServletPath());
                 res.sendRedirect(req.getContextPath() + "/");
             }else
                 chain.doFilter(req, res); //nothing to do

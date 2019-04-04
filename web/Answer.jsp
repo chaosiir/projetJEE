@@ -12,7 +12,9 @@
 <body class="text-center">
 <form class="form-signin" method="post" action="./answer" >
     <h1 align="center">Verification</h1>
-    <%String question= (String) (request.getAttribute("question"));%>
+    <%
+        String question= (String) (request.getAttribute("question"));
+    %>
 
 
 

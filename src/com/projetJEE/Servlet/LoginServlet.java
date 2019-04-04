@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);// get session or create one
         System.out.println("Session : "+session);
         if (session.getAttribute("Name")==null) {
             String pageName = "/Login.jsp";
@@ -48,13 +48,13 @@ public class LoginServlet extends HttpServlet {
      * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("post");
-		UserServiceImpl usimp = new UserServiceImpl();
-		User user = usimp.getUserByLogin(request.getParameter("inputID"));
-		if (user != null) {
-			if (user.getPwdHash().compareTo(usimp.hash(request.getParameter("inputPassword"))) == 0) {
-				HttpSession session = request.getSession();
-                session.setAttribute("user", user);
+		System.out.println("login post");
+        HttpSession session = request.getSession(true);//get session or create one
+        UserServiceImpl usimp = new UserServiceImpl();
+        User user = usimp.getUserByLogin(request.getParameter("inputID"));
+        if (user != null) {
+            session.setAttribute("user", user);
+            if (user.getPwdHash().compareTo(usimp.hash(request.getParameter("inputPassword"))) == 0) {
                 session.setAttribute("auth", Boolean.TRUE);
 				response.sendRedirect(request.getContextPath()+"/Home");
 				return;

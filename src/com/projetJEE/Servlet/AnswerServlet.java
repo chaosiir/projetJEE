@@ -16,16 +16,20 @@ public class AnswerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("post");
 
+        HttpSession session = request.getSession(false);
+
         UserServiceImpl usimp=new UserServiceImpl();
-        User verif=usimp.getUserByLogin(request.getParameter("id"));
+        User user=usimp.getUserByLogin(request.getParameter("id"));
 
 
-        System.out.println(verif.getQuestion());
-        String x=request.getParameter("answer");
-        System.out.println(x);
+        System.out.println(user.getQuestion());
+        String answer = request.getParameter("answer");
+        System.out.println(answer);
 
-       if(verif.getAnswerHash().equals(usimp.hash(request.getParameter("answer")))){
+       if(user.getAnswerHash().equals(usimp.hash(answer))){
             System.out.println("verification ok");
+            session.setAttribute("user", user);
+            session.setAttribute("auth", true);
 
             response.sendRedirect(request.getContextPath()+"/update");
 
@@ -47,6 +51,8 @@ public class AnswerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageName = "/Answer.jsp";
         System.out.println("get");
+        User user = (User) request.getSession(false).getAttribute("user");
+        request.setAttribute("question", user.getQuestion());
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         rd.forward(request, response);
     }
