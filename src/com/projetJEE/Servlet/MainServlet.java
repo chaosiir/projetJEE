@@ -38,11 +38,13 @@ public class MainServlet extends HttpServlet {
         GroupService gs = GroupServiceImpl.getInstance();
         StudentService ss = StudentServiceImpl.getInstance();
 
-        /* Decomment these lines to initialize database with web service */
-//        Student[] students = StudentWS.getAllStudents();
-//        for (Student s: students) {
-//            ss.insertStudent(s);
-//        }
+        /* fill the DB with students from the web service */
+        if(ss.getAllStudents().size()==0) {
+            Student[] students = StudentWS.getAllStudents();
+            for (Student s : students) {
+                ss.insertStudent(s);
+            }
+        }
     }
 
     /**

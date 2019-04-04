@@ -11,19 +11,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema sql7283170
+-- Schema projetJEE
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema sql7283170
+-- Schema projetJEE
 -- -----------------------------------------------------
-USE `sql7283170` ;
+USE `projetJEE` ;
 
 -- -----------------------------------------------------
--- Table `sql7283170`.`Group`
+-- Table `projetJEE`.`Group`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `sql7283170`.`Group` (
+CREATE TABLE IF NOT EXISTS `projetJEE`.`Group` (
   `ID_group` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL UNIQUE,
   `ID_owner` INT NOT NULL,
@@ -31,17 +31,17 @@ CREATE TABLE IF NOT EXISTS `sql7283170`.`Group` (
   PRIMARY KEY (`ID_group`),
   CONSTRAINT `Group_User_ID_owner_fk`
     FOREIGN KEY (`ID_owner`)
-    REFERENCES `sql7283170`.`User` (`ID_user`)
+    REFERENCES `projetJEE`.`User` (`ID_user`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 -- -----------------------------------------------------
--- Table `sql7283170`.`User`
+-- Table `projetJEE`.`User`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `sql7283170`.`User` (
+CREATE TABLE IF NOT EXISTS `projetJEE`.`User` (
   `ID_user` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(64) NOT NULL UNIQUE,
   `pwdHash` VARCHAR(256) NOT NULL,
@@ -54,10 +54,10 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `sql7283170`.`Student`
+-- Table `projetJEE`.`Student`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `sql7283170`.`Student` (
+CREATE TABLE IF NOT EXISTS `projetJEE`.`Student` (
   `ID_student` VARCHAR(9) NOT NULL,
   `gender` VARCHAR(1) NOT NULL,
   `firstname` VARCHAR(64) NOT NULL,
@@ -78,21 +78,21 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `sql7283170`.`IncludedStudent`
+-- Table `projetJEE`.`IncludedStudent`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `sql7283170`.`IncludedStudent` (
+CREATE TABLE IF NOT EXISTS `projetJEE`.`IncludedStudent` (
   `ID_group` INT NOT NULL,
   `ID_student` VARCHAR(9) NOT NULL,
   PRIMARY KEY (`ID_group`, `ID_student`),
   CONSTRAINT `IncludedStudent_Group_ID_group_fk`
     FOREIGN KEY (`ID_group`)
-    REFERENCES `sql7283170`.`Group` (`ID_group`)
+    REFERENCES `projetJEE`.`Group` (`ID_group`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `IncludedStudent_Student_ID_student_fk`
     FOREIGN KEY (`ID_student`)
-    REFERENCES `sql7283170`.`Student` (`ID_student`)
+    REFERENCES `projetJEE`.`Student` (`ID_student`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -100,42 +100,42 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `sql7283170`.`IncludedStudent`
+-- Table `projetJEE`.`IncludedStudent`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `sql7283170`.`ExcludedStudent` (
+CREATE TABLE IF NOT EXISTS `projetJEE`.`ExcludedStudent` (
   `ID_student` VARCHAR(9) NOT NULL,
   `ID_group` INT NOT NULL,
   PRIMARY KEY (`ID_student`, `ID_group`),
   CONSTRAINT `ExcludedStudent_Student_ID_student_fk`
     FOREIGN KEY (`ID_student`)
-    REFERENCES `sql7283170`.`Student` (`ID_student`)
+    REFERENCES `projetJEE`.`Student` (`ID_student`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `ExcludedStudent_Group_ID_group_fk`
     FOREIGN KEY (`ID_group`)
-    REFERENCES `sql7283170`.`Group` (`ID_group`)
+    REFERENCES `projetJEE`.`Group` (`ID_group`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 -- -----------------------------------------------------
--- Table `sql7283170`.`IncludedGroup`
+-- Table `projetJEE`.`IncludedGroup`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `sql7283170`.`IncludedGroup` (
+CREATE TABLE IF NOT EXISTS `projetJEE`.`IncludedGroup` (
   `ID_group` INT NOT NULL,
   `ID_group_child` INT NOT NULL,
   PRIMARY KEY (`ID_group`, `ID_group_child`),
   CONSTRAINT `IncludedGroup_Group_ID_group_fk`
     FOREIGN KEY (`ID_group`)
-    REFERENCES `sql7283170`.`Group` (`ID_group`)
+    REFERENCES `projetJEE`.`Group` (`ID_group`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `IncludedGroup_Group_ID_group_child_fk`
     FOREIGN KEY (`ID_group_child`)
-    REFERENCES `sql7283170`.`Group` (`ID_group`)
+    REFERENCES `projetJEE`.`Group` (`ID_group`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB

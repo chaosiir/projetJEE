@@ -44,7 +44,7 @@ public class DBManager {
             connection = DriverManager.getConnection(properties.getString("JDBC_URL"), properties.getString("DB_LOGIN"),
                     properties.getString("DB_PASSWORD"));
             //connection to the right database
-            String query = "USE sql7283170;";
+            String query = "USE projetJEE;";
             Statement sta = connection.createStatement();
             sta.executeQuery(query);
 		} catch (SQLException sqle) { sqle.printStackTrace(); }
