@@ -13,6 +13,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body  onload="JavaScript:timedRefresh(120000);"> <!-- the page is refreshed automatically every 5 minutes-->
+<jsp:include page="navbar.jsp"></jsp:include>
 <h1>Students</h1>
 <a class="btn btn-sm btn-primary" href="./Students/new">insert student</a>
 <button onclick="rafraichir_Ewok()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
