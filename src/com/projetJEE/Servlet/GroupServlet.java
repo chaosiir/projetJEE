@@ -3,6 +3,8 @@ package com.projetJEE.Servlet;
 
 import com.projetJEE.Group.Group;
 import com.projetJEE.Group.GroupServiceImpl;
+import com.projetJEE.User.User;
+import javafx.scene.control.Alert;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,22 +14,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @WebServlet(name = "Groups", urlPatterns = {"/Groups"})
 public class GroupServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		System.out.println("modify: "+ request.getParameter("modify"));
+		String modify = request.getParameter("modify");
+		System.out.println("modify: "+ modify);
 		String delete = request.getParameter("delete");
 		System.out.println("delete: "+ delete);
-		if(delete !=null) {
+		if(delete !=null) {//delete a group
 			GroupServiceImpl bs = new GroupServiceImpl();
 			bs.deleteGroup(bs.getGroupByID(Integer.parseInt(delete)));
 			doGet(request, response);
 		}
-		else {
-			session.setAttribute("grouptomodify",Integer.parseInt(request.getParameter("modify")));
+		else if(modify!=null) {//modify a group
+			session.setAttribute("grouptomodify",Integer.parseInt(modify));
 			response.sendRedirect(request.getContextPath()+"/Group/modify");
+		}
+		else {//create a group
+			Group newgroup=new Group(request.getParameter("Name"),(User) request.getSession().getAttribute("user"));
+			GroupServiceImpl bs=new GroupServiceImpl();
+			if(!bs.newGroup(newgroup)){
+				request.setAttribute("alert","Nom deja pris");
+			}
+			doGet(request,response);
 		}
 	}
 
