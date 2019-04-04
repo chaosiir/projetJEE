@@ -40,6 +40,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getAllStudents() { return studentDAO.findAll(); }
 
+    /**
+     * Returns students by attribute
+     * @param attribute Attribute to get
+     * @param value Attribute's value
+     * @return A list of Students where each student has value on that attribute
+     */
     @Override
     public List<Student> getStudentsByAttribute(String attribute, String value) {
         if (attribute.equals("gender")) {

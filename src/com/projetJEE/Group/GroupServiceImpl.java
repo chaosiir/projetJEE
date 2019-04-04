@@ -24,7 +24,8 @@ public class GroupServiceImpl implements GroupService {
         return instance;
     }
 
-    private GroupDAO groupDAO = new GroupDAOImpl(new UserDAOImpl(), new StudentDAOImpl());
+    private StudentDAOImpl studentDAO = new StudentDAOImpl();
+    private GroupDAO groupDAO = new GroupDAOImpl(new UserDAOImpl(), studentDAO);
 
     /**
      * Creates a group
@@ -117,9 +118,16 @@ public class GroupServiceImpl implements GroupService {
      * @param group Group where the student is removed
      * @param student Student to remove
      * @return The student has been successfully removed from the group
+     * Removes the student from the group if it contains directly the student (i.e. not inherited from child group),
+     * excludes it otherwise.
      */
     @Override
-    public boolean removeStudentFromGroup(Group group, Student student) { return groupDAO.removeStudent(group, student); }
+    public boolean removeStudentFromGroup(Group group, Student student) {
+        if (group.getNativeStudents().contains(student))
+            return groupDAO.removeStudent(group, student);
+        else
+            return groupDAO.excludeStudent(group, student);
+    }
 
     /**
      * Updates a group
@@ -137,14 +145,4 @@ public class GroupServiceImpl implements GroupService {
      */
     @Override
     public boolean deleteGroup(Group group) { return groupDAO.delete(group); }
-
-    /**
-     * Excludes a student from a group
-     * @param group Group from which to exclude the student
-     * @param student Student to exclude
-     * @return The student has been successfully excluded
-     */
-    @Override
-    public boolean excludeStudentFromGroup(Group group, Student student) { return groupDAO.excludeStudent(group, student); }
-
 }

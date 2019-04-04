@@ -17,5 +17,4 @@ public interface GroupService {
     boolean removeGroupFromGroup(Group group, Group parent);
     boolean updateGroup(Group group);
     boolean deleteGroup(Group group);
-    boolean excludeStudentFromGroup(Group group, Student student);
 }
