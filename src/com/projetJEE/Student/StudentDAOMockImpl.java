@@ -27,6 +27,42 @@ public class StudentDAOMockImpl implements StudentDAO {
     public List<Student> findByGroup(Group group) { return null; }
 
     @Override
+    public List<Student> findByGender(String gender) { return null; }
+
+    @Override
+    public List<Student> findByFirstname(String firstname) { return null; }
+
+    @Override
+    public List<Student> findByLastname(String lastname) { return null; }
+
+    @Override
+    public List<Student> findByBac(String bac) { return null; }
+
+    @Override
+    public List<Student> findByBacYear(int bacYear) { return null; }
+
+    @Override
+    public List<Student> findByBacGrade(String bacGrade) { return null; }
+
+    @Override
+    public List<Student> findByDegree(String degree) { return null; }
+
+    @Override
+    public List<Student> findByDegreeYear(int degreeYear) { return null; }
+
+    @Override
+    public List<Student> findByDegreeCity(String degreeCity) { return null; }
+
+    @Override
+    public List<Student> findByRegistrationYear(int registrationYear) { return null; }
+
+    @Override
+    public List<Student> findByEmailPro(String emailPro) { return null; }
+
+    @Override
+    public List<Student> findByEmailPer(String emailPer) { return null; }
+
+    @Override
     public Student findByID(String ID) {
         return new Student(ID, "gender", "firstname", "lastname", new Date(),
                 "bac", 2000, "grade",
