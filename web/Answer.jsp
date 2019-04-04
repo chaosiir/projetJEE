@@ -32,6 +32,8 @@
    </script>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Verification</button>
+    <a class="btn btn-sm btn-primary" href="./mdp">Retour</a>
+
 </form>
 </body>
 
