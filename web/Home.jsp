@@ -9,10 +9,13 @@
 <body>
     <div style="width: 40%; margin: auto">
         <h1>Accueil</h1>
-        <a class="button" href="./Students" style="alignment: left">Liste des etudiants</a>
-        <a class="button" href="./Users" style="alignment: left">Liste des utilisateurs</a>
-        <a class="button" href="./Groups" style="alignment: center">Liste des Groups</a>
-        <a href="./update" >Update Your account </a>
+        <a class="button" href="./Students" style="alignment: left">Liste des etudiants</a><br>
+        <a class="button" href="./Users" style="alignment: left">Liste des utilisateurs</a><br>
+        <a class="button" href="./Groups" style="alignment: center">Liste des Groupes</a><br>
+        <a href="./update" >Update Your account </a><br>
+        <a href="./login" >Se deconnecter </a><br>
+
+
 
     </div>
 </body>
