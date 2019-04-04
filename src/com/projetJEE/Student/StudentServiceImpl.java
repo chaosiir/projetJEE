@@ -7,6 +7,8 @@ public class StudentServiceImpl implements StudentService {
 
     private static StudentServiceImpl instance;
 
+    private StudentDAO studentDAO = new StudentDAOImpl();
+
     /**
      * Returns the StudentServiceImpl singleton
      * @return StudentServiceImpl instance
@@ -20,7 +22,10 @@ public class StudentServiceImpl implements StudentService {
         return instance;
     }
 
-    private StudentDAO studentDAO = new StudentDAOImpl();
+    /**
+     * Private constructor since it's a singleton
+     */
+    private StudentServiceImpl() {}
 
     /**
      * Inserts a student
