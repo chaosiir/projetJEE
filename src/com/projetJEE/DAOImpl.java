@@ -31,7 +31,7 @@ public abstract class DAOImpl<T> {
              */
             ResultSet resultSet = preparedStatement.executeQuery();
             List<T> entries = entriesFromResultSet(resultSet);
-            connection.close();
+            //connection.close();
             return entries;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +62,7 @@ public abstract class DAOImpl<T> {
             if (generatedKeysChecker != null) {
                 generatedKeysChecker.check(preparedStatement.getGeneratedKeys());
             }
-            connection.close();
+            //connection.close();
             return records_affected;
         } catch (SQLException e) {
             e.printStackTrace();

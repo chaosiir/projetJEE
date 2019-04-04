@@ -19,54 +19,54 @@
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 <!-- button if we want to refresh page before automatic refresh-->
 
-<table class="table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Gender</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Brithday</th>
-        <th>Bac</th>
-        <th>BacYear</th>
-        <th>BacGrade</th>
-        <th>Degree</th>
-        <th>DegreeYear</th>
-        <th>DegreeCity</th>
-        <th>RegistrationYear</th>
-        <th>EmailPro</th>
-        <th>EmailPer</th>
-        <th></th>
-    </tr>
-    <%
-        if(students!=null)
-            for (Student student : students) {
-    %>
-    <tr>
-        <td><%=student.getID()%></td>
-        <td><%=student.getGender()%></td>
-        <td><%=student.getFirstname()%></td>
-        <td><%=student.getLastname()%></td>
-        <td><%=student.getBirthday()%></td>
-        <td><%=student.getBac()%></td>
-        <td><%=student.getBacGrade()%></td>
-        <td><%=student.getBacYear()%></td>
-        <td><%=student.getDegree()%></td>
-        <td><%=student.getDegreeYear()%></td>
-        <td><%=student.getDegreeCity()%></td>
-        <td><%=student.getRegistrationYear()%></td>
-        <td><%=student.getEmailPro()%></td>
-        <td><%=student.getEmailPer()%></td>
-        <td class="btn-group-sm">
-            <form action="" method="post">
-                <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
-                <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
-            </form>
-        </td>
-    </tr>
-    <%
+<form action="" method="post">
+    <table class="table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Gender</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Brithday</th>
+            <th>Bac</th>
+            <th>BacYear</th>
+            <th>BacGrade</th>
+            <th>Degree</th>
+            <th>DegreeYear</th>
+            <th>DegreeCity</th>
+            <th>RegistrationYear</th>
+            <th>EmailPro</th>
+            <th>EmailPer</th>
+            <th></th>
+        </tr>
+        <%
+            if(students!=null)
+                for (Student student : students){
+        %>
+        <tr>
+            <td><%=student.getID()%></td>
+            <td><%=student.getGender()%></td>
+            <td><%=student.getFirstname()%></td>
+            <td><%=student.getLastname()%></td>
+            <td><%=student.getBirthday()%></td>
+            <td><%=student.getBac()%></td>
+            <td><%=student.getBacGrade()%></td>
+            <td><%=student.getBacYear()%></td>
+            <td><%=student.getDegree()%></td>
+            <td><%=student.getDegreeYear()%></td>
+            <td><%=student.getDegreeCity()%></td>
+            <td><%=student.getRegistrationYear()%></td>
+            <td><%=student.getEmailPro()%></td>
+            <td onclick="postMessage()"><%=student.getEmailPer()%></td>
+            <td class="btn-group-sm">
+                    <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
+                    <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
+            </td>
+        </tr>
+        <%
             }
-    %>
-</table>
+        %>
+    </table>
+</form>
 
 </body>
 <script type="text/JavaScript">

@@ -41,7 +41,10 @@ public class DBManager {
 	public Connection getConnection() {
 
 		try {
-			if(connection==null){
+			if(connection.isClosed()){
+				System.err.println("Connection Closed ===================== IMPORTANT");
+			}
+			if(connection==null && !connection.isClosed()){
 				connection = DriverManager.getConnection(properties.getString("JDBC_URL"), properties.getString("DB_LOGIN"),
 						properties.getString("DB_PASSWORD"));
 				//connection to the right database
