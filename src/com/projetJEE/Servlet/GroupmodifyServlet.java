@@ -17,6 +17,12 @@ import java.io.IOException;
 public class GroupmodifyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("add student: "+ request.getParameter("addstudent")+" ID "+request.getParameter("studentid"));
+		System.out.println("add group: "+ request.getParameter("addgroup")+" ID "+request.getParameter("groupid"));
+		System.out.println("remove student: "+ request.getParameter("removes"));
+		System.out.println("remove group: "+ request.getParameter("removeg"));
+		System.out.println("validate: "+ request.getParameter("validate") +" Name "+ request.getParameter("Name"));
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
