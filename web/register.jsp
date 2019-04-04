@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <title > Register</title>
     <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript">
         function check() {
             var pwd1 = document.getElementById("inputPassword");
@@ -40,10 +39,6 @@
 </form>
 </body>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
-
-<script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
 
 
 

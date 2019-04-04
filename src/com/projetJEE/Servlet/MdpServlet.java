@@ -19,8 +19,9 @@ public class MdpServlet extends HttpServlet {
         System.out.println("mdp post");
 
         UserServiceImpl usimp=UserServiceImpl.getInstance();
-        User user=usimp.getUserByLogin(request.getParameter("id"));
-        if (user==null){
+        User user=usimp.getUserByLogin(request.getParameter("id")); //identify the user by his login
+
+        if (user==null){                                     // if the login given does not exist, send an alert
             PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");
             out.println("alert('This login does not exist ');");
@@ -28,7 +29,7 @@ public class MdpServlet extends HttpServlet {
             out.println("</script>");
 
         }
-        else {
+        else {                                              // else  redirect him to next page
 
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
