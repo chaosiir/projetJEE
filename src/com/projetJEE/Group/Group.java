@@ -79,14 +79,16 @@ public class Group {
         students.addAll(this.students);
         for (Group g : children)
             for (Student s : g.getStudents()) {
-                boolean is_excluded = false;
-                for (Student excluded : exclusions) {
-                    if (s.getID().equals(excluded.getID())) {
-                        is_excluded = true;
-                        break;
-                    }
-                }
-                if (!is_excluded)
+//                boolean is_excluded = false;
+//                for (Student excluded : exclusions) {
+//                    if (s.getID().equals(excluded.getID())) {
+//                        is_excluded = true;
+//                        break;
+//                    }
+//                }
+//                if (!is_excluded) // !excluded.contains(s)
+//                    students.add(s);
+                if (!exclusions.contains(s))
                     students.add(s);
             }
         return students;
@@ -110,4 +112,9 @@ public class Group {
     }
 
     public void excludeStudent(Student student) { exclusions.add(student); }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((Group)obj).getID() == this.getID();
+    }
 }

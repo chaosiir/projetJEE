@@ -31,6 +31,9 @@ public class GroupDAOMockImpl implements GroupDAO {
     public List<Group> findByParent(Group parent) { return new ArrayList<>(); }
 
     @Override
+    public List<Group> findByStudent(Student student) { return new ArrayList<>(); }
+
+    @Override
     public Group findByID(int ID) {
         return new Group("group" + ID, null);
     }

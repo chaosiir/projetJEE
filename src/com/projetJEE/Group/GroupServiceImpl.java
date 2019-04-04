@@ -68,6 +68,14 @@ public class GroupServiceImpl implements GroupService {
     }
 
     /**
+     * Returns groups with a student
+     * @param student The student to look for
+     * @return A list of groups containing the student
+     */
+    @Override
+    public List<Group> getGroupsWithStudent(Student student) { return groupDAO.findByStudent(student); }
+
+    /**
      * Returns a group by name
      * @param name Group's name
      * @return The group with that name or null if nonexistent
@@ -130,6 +138,12 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public boolean deleteGroup(Group group) { return groupDAO.delete(group); }
 
+    /**
+     * Excludes a student from a group
+     * @param group Group from which to exclude the student
+     * @param student Student to exclude
+     * @return The student has been successfully excluded
+     */
     @Override
     public boolean excludeStudentFromGroup(Group group, Student student) { return groupDAO.excludeStudent(group, student); }
 

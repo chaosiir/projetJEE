@@ -4,7 +4,6 @@ package com.projetJEE.Servlet;
 import com.projetJEE.Group.Group;
 import com.projetJEE.Group.GroupServiceImpl;
 import com.projetJEE.User.User;
-import javafx.scene.control.Alert;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,10 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @WebServlet(name = "Groups", urlPatterns = {"/Groups"})
 public class GroupServlet extends HttpServlet {

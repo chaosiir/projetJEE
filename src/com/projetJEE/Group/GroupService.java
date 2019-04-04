@@ -8,6 +8,7 @@ public interface GroupService {
     boolean newGroup(Group group);
     List<Group> getAllGroups();
     List<Group> getGroupsByOwner(User owner);
+    List<Group> getGroupsWithStudent(Student student);
     Group getGroupByID(int ID);
     Group getGroupByName(String name);
     boolean addStudentToGroup(Group group, Student student);
