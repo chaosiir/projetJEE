@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.Style;
 import java.io.IOException;
 
 @WebServlet(name = "Groupmodif", urlPatterns = {"/Group/modify"})
@@ -21,16 +22,16 @@ public class GroupmodifyServlet extends HttpServlet {
 		StudentServiceImpl ss = StudentServiceImpl.getInstance();
 		String removes = request.getParameter("removes");
 		String removeg = request.getParameter("removeg");
-		Group group = (Group) request.getSession().getAttribute("Groups");
+		Group group = (Group) request.getSession().getAttribute("group");
 
 		if (request.getParameter("validate") != null) {
 			String newName = request.getParameter("Name");
 			if (newName != null) {
-
+				System.out.println(group +" "+newName);
 				group.setName(newName);
 				bs.updateGroup(group);
 			}
-			response.sendRedirect(request.getContextPath()+"/Group");
+			response.sendRedirect(request.getContextPath()+"/Groups");
 			return;
 
 		} else if (request.getParameter("addstudent") != null) {
