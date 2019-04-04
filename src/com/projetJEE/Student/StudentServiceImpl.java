@@ -42,9 +42,9 @@ public class StudentServiceImpl implements StudentService {
 
     /**
      * Returns students by attribute
-     * @param attribute Attribute to get
+     * @param attribute Attribute
      * @param value Attribute's value
-     * @return A list of Students where each student has value on that attribute
+     * @return A list of Students filtered by attribute's value
      */
     @Override
     public List<Student> getStudentsByAttribute(String attribute, String value) {
@@ -70,10 +70,6 @@ public class StudentServiceImpl implements StudentService {
             return studentDAO.findByDegreeCity(value);
         } else if (attribute.equals("registrationYear")) {
             return studentDAO.findByRegistrationYear(Integer.parseInt(value));
-        } else if (attribute.equals("emailPro")) {
-            return studentDAO.findByEmailPro(value);
-        } else if (attribute.equals("emailPer")) {
-            return studentDAO.findByEmailPer(value);
         }
         return new ArrayList<>();
     }
