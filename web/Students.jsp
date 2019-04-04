@@ -44,19 +44,19 @@
         %>
         <tr>
             <td><%=student.getID()%></td>
-            <td><%=student.getGender()%></td>
+            <td><input type="submit" name="gender" value="<%=student.getGender()%>"></td>
             <td><%=student.getFirstname()%></td>
             <td><%=student.getLastname()%></td>
             <td><%=student.getBirthday()%></td>
-            <td><%=student.getBac()%></td>
-            <td><%=student.getBacGrade()%></td>
-            <td><%=student.getBacYear()%></td>
-            <td><%=student.getDegree()%></td>
-            <td><%=student.getDegreeYear()%></td>
-            <td><%=student.getDegreeCity()%></td>
-            <td><%=student.getRegistrationYear()%></td>
+            <td><input type="submit" name="bac" value="<%=student.getBac()%>"></td>
+            <td><input type="submit" name="bacGrade" value="<%=student.getBacGrade()%>"></td>
+            <td><input type="submit" name="bacYear" value="<%=student.getBacYear()%>"></td>
+            <td><input type="submit" name="degree" value="<%=student.getDegree()%>"></td>
+            <td><input type="submit" name="degreeYear" value="<%=student.getDegreeYear()%>"></td>
+            <td><input type="submit" name="degreeCity" value="<%=student.getDegreeCity()%>"></td>
+            <td><input type="submit" name="registrationYear" value="<%=student.getRegistrationYear()%>"></td>
             <td><%=student.getEmailPro()%></td>
-            <td onclick="postMessage()"><%=student.getEmailPer()%></td>
+            <td><%=student.getEmailPer()%></td>
             <td class="btn-group-sm">
                     <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=student.getID()%>">modify</button>
                     <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=student.getID()%>">delete</button>
