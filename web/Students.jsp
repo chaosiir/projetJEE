@@ -21,7 +21,7 @@
 <!-- button if we want to refresh page before automatic refresh-->
 
 <form style="margin-top: 1%" action="" method="post">
-    <table class="table-striped table-bordered">
+    <table style="width: 100%" class="table-striped table-bordered">
         <tr>
             <th>ID</th>
             <th>Gender</th>
