@@ -123,7 +123,12 @@ public class GroupServiceImpl implements GroupService {
      * @return The student has been successfully added to the group
      */
     @Override
-    public boolean addStudentToGroup(Group group, Student student) { return groupDAO.addStudent(group, student); }
+    public boolean addStudentToGroup(Group group, Student student) {
+        if (!group.getExclusions().contains(student))
+            return groupDAO.addStudent(group, student);
+        else
+            return groupDAO.removeExclusion(group, student);
+    }
 
     /**
      * Adds a group to another group
