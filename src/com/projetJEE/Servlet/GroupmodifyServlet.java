@@ -3,6 +3,7 @@ package com.projetJEE.Servlet;
 
 import com.projetJEE.Group.Group;
 import com.projetJEE.Group.GroupServiceImpl;
+import com.projetJEE.Student.StudentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,14 +17,42 @@ import java.io.IOException;
 @WebServlet(name = "Groupmodif", urlPatterns = {"/Group/modify"})
 public class GroupmodifyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		GroupServiceImpl bs = GroupServiceImpl.getInstance();
+		StudentServiceImpl ss = StudentServiceImpl.getInstance();
+		String removes = request.getParameter("removes");
+		String removeg = request.getParameter("removeg");
+		Group group = (Group) request.getSession().getAttribute("Groups");
 
-		System.out.println("add student: "+ request.getParameter("addstudent")+" ID "+request.getParameter("studentid"));
-		System.out.println("add group: "+ request.getParameter("addgroup")+" ID "+request.getParameter("groupid"));
-		System.out.println("remove student: "+ request.getParameter("removes"));
-		System.out.println("remove group: "+ request.getParameter("removeg"));
-		System.out.println("validate: "+ request.getParameter("validate") +" Name "+ request.getParameter("Name"));
+		if (request.getParameter("validate") != null) {
+			String newName = request.getParameter("Name");
+			if (newName != null) {
 
+				group.setName(newName);
+				bs.updateGroup(group);
+			}
+			response.sendRedirect(request.getContextPath()+"/Group");
+			return;
+
+		} else if (request.getParameter("addstudent") != null) {
+			String sid = request.getParameter("studentid");
+			if (!sid.isEmpty())
+				bs.addStudentToGroup(group, ss.getStudentByID(sid));
+		}
+		else if (request.getParameter("addgroup")!=null && request.getParameter("groupid")!=null){
+			int id=Integer.parseInt(request.getParameter("groupid"));
+			bs.addGroupToGroup(bs.getGroupByID(id),group);
+
+		}
+		else if(removeg!=null){
+			bs.removeGroupFromGroup(bs.getGroupByID(Integer.parseInt(removeg)),group);
+		}
+		else if(removes!=null){
+			bs.removeStudentFromGroup(group,ss.getStudentByID(removes));
+		}
+		doGet(request,response);
 	}
+
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pageName = "/Groupmodif.jsp";
