@@ -11,8 +11,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="#">Logo</a>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+    <a class="navbar-brand" href="./Home">Logo</a>
 
     <div style="display:flex; flex-grow: 1">
         <ul class="navbar-nav mr-auto">
@@ -34,7 +34,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="./update" >Update Your account </a>
-                    <a class="dropdown-item" href="#"></i>Log out</a>
+                    <a class="dropdown-item" href="./login"></i>Log out</a>
                 </div>
             </li>
         </ul>

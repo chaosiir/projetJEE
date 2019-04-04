@@ -35,6 +35,7 @@ public class GroupServlet extends HttpServlet {
 			Group newgroup=new Group(request.getParameter("Name"),(User) request.getSession().getAttribute("user"));
 			GroupServiceImpl bs=new GroupServiceImpl();
 			if(!bs.newGroup(newgroup)){
+				System.out.println("alert");
 				request.setAttribute("alert","Nom deja pris");
 			}
 			doGet(request,response);
