@@ -61,7 +61,7 @@
         <div class="input-group-prepend">
             <button class="btn btn-outline-primary" type="submit" name="add"  PLACEHOLDER="Name" >Add a Group</button>
         </div>
-        <input type="text" class="form-control" id="Name" name="Name"  placeholder="Name" aria-label="" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" id="Name" name="Name"  placeholder="Name" aria-label="" aria-describedby="basic-addon1" required>
     </div>
     <%--<div class="row">--%>
     <%--<button class="btn btn-sm btn-primary" type="submit" name="add"  PLACEHOLDER="Name" >Add a Group</button>--%>
