@@ -28,7 +28,7 @@ public class GroupmodifyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pageName = "/Groupmodif.jsp";
 		HttpSession session=request.getSession();
-		GroupServiceImpl bs = new GroupServiceImpl();
+		GroupServiceImpl bs = GroupServiceImpl.getInstance();
 		session.setAttribute("group", bs.getGroupByID((int)session.getAttribute("grouptomodify")));
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		try {

@@ -23,7 +23,7 @@ public class GroupServlet extends HttpServlet {
 		String delete = request.getParameter("delete");
 		System.out.println("delete: "+ delete);
 		if(delete !=null) {//delete a group
-			GroupServiceImpl bs = new GroupServiceImpl();
+			GroupServiceImpl bs = GroupServiceImpl.getInstance();
 			bs.deleteGroup(bs.getGroupByID(Integer.parseInt(delete)));
 			doGet(request, response);
 		}
@@ -33,7 +33,7 @@ public class GroupServlet extends HttpServlet {
 		}
 		else {//create a group
 			Group newgroup=new Group(request.getParameter("Name"),(User) request.getSession().getAttribute("user"));
-			GroupServiceImpl bs=new GroupServiceImpl();
+			GroupServiceImpl bs = GroupServiceImpl.getInstance();
 			if(!bs.newGroup(newgroup)){
 				System.out.println("alert");
 				request.setAttribute("alert","Nom deja pris");
@@ -44,7 +44,7 @@ public class GroupServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pageName = "/Groups.jsp";
-		GroupServiceImpl bs = new GroupServiceImpl();
+		GroupServiceImpl bs = GroupServiceImpl.getInstance();
 		request.setAttribute("groups", bs.getAllGroups());
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		try {

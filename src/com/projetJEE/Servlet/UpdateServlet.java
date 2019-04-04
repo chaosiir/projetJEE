@@ -16,7 +16,7 @@ public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("post");
 
-        UserServiceImpl usimp=new UserServiceImpl();
+        UserServiceImpl usimp = UserServiceImpl.getInstance();
         User verif=usimp.getUserByLogin(request.getParameter("inputID"));
 
         System.out.println(verif.getQuestion()); // Test to see what is the question before update

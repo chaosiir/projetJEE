@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("login post");
         HttpSession session = request.getSession(true);//get session or create one
-        UserServiceImpl usimp = new UserServiceImpl();
+        UserServiceImpl usimp =  UserServiceImpl.getInstance();
         User user = usimp.getUserByLogin(request.getParameter("inputID"));
         if (user != null) {
             session.setAttribute("user", user);

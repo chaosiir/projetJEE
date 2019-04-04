@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request,response);
-		UserServiceImpl usimp=new UserServiceImpl();
+		UserServiceImpl usimp = UserServiceImpl.getInstance();
 		User user=usimp.getUserByID(Integer.parseInt(request.getParameter("delete")));
 		usimp.deleteUser(user);
 
@@ -27,7 +27,7 @@ public class UserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pageName = "/Users.jsp";
-		UserServiceImpl bs = new UserServiceImpl();
+		UserServiceImpl bs = UserServiceImpl.getInstance();
 		request.setAttribute("users", bs.getAllUsers());
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		try {
