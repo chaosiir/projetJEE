@@ -16,10 +16,10 @@
 <body>
 <h1>Group</h1>
 <form action="" method="post">
-<button class="btn btn-sm btn-primary" type="submit" name="addstudent" >Add a Student</button>
+<button class="btn btn-sm btn-primary" type="submit" name="addstudent"  >Add a Student</button>
     <input  class="form-control-plaintext" name="studentid"  placeholder="Student ID" >
 <button class="btn btn-sm btn-primary" type="submit" name="addgroup" >Add a Group</button>
-    <input  class="form-control-plaintext" name="groupid"  placeholder="Group ID" >
+    <input  class="form-control-plaintext" type="number" name="groupid"  placeholder="Group ID" >
 
 <input  class="form-control-plaintext"  disabled="disabled" value="ID                <%=group.getID()%>" >
     <label for="Name" >Name         </label>
@@ -35,7 +35,7 @@
         <th></th>
     </tr>
     <%
-        for(Student student:group.getStudents()){
+        for(Student student:group.getInheritedStudents()){
     %>
     <tr>
         <th>

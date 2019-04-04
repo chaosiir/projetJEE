@@ -18,7 +18,6 @@ import java.io.PrintWriter;
 @WebServlet(name = "Users", urlPatterns = {"/Users"})
 public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request,response);
 		UserServiceImpl usimp = UserServiceImpl.getInstance();
 		User user=usimp.getUserByID(Integer.parseInt(request.getParameter("userID")));
 		user.setRights(User.Rights.valueOf(request.getParameter("rights")));
@@ -26,6 +25,7 @@ public class UserServlet extends HttpServlet {
 		System.out.println(user);
 		System.out.println(new Gson().toJson(request.getParameterMap()));
 		doGet(request,response);
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -3,6 +3,8 @@ package com.projetJEE.Servlet;
 
 import com.projetJEE.Group.Group;
 import com.projetJEE.Group.GroupServiceImpl;
+import com.projetJEE.ServletUtils;
+import com.projetJEE.Student.StudentServiceImpl;
 import com.projetJEE.User.User;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "Groups", urlPatterns = {"/Groups"})
 public class GroupServlet extends HttpServlet {
@@ -45,15 +48,18 @@ public class GroupServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pageName = "/Groups.jsp";
 		GroupServiceImpl bs = GroupServiceImpl.getInstance();
-		request.setAttribute("groups", bs.getAllGroups());
-		request.setAttribute("pageName",pageName);
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-		try {
-			rd.forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		StudentServiceImpl ss = StudentServiceImpl.getInstance();
+		List<Group> groups;
+		String id_student = request.getParameter("ID_student");
+		if(id_student !=null) {//id_student a group
+			groups = bs.getGroupsWithStudent(ss.getStudentByID(id_student));
+			request.setAttribute("forStudent", true);
+		}else{
+			groups = bs.getAllGroups();
 		}
+
+		request.setAttribute("pageName",pageName);
+		request.setAttribute("groups", groups);
+		ServletUtils.forwardTo(this, request,response,pageName);
 	}
 }

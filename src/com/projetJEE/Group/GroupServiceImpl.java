@@ -55,7 +55,7 @@ public class GroupServiceImpl implements GroupService {
         Group cloned_group = new Group(new_name, new_owner);
         newGroup(cloned_group);
         if (cloned_group.getID() != -1) {
-            for (Student s : group.getNativeStudents())
+            for (Student s : group.getStudents())
                 addStudentToGroup(cloned_group, s);
             for (Group g : group.getChildren())
                 addGroupToGroup(g, cloned_group);
@@ -153,7 +153,7 @@ public class GroupServiceImpl implements GroupService {
      */
     @Override
     public boolean removeStudentFromGroup(Group group, Student student) {
-        if (group.getNativeStudents().contains(student))
+        if (group.getStudents().contains(student))
             return groupDAO.removeStudent(group, student);
         else
             return groupDAO.excludeStudent(group, student);

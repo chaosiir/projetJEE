@@ -16,6 +16,7 @@
 <jsp:include page="navbar.jsp"></jsp:include>
 <h1>Users</h1>
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
+
 <table border="1">
     <tr>
         <th>ID</th>
@@ -43,22 +44,14 @@
                         }else{
                             out.println("<option value=\""+right+"\">"+right+"</option>\n");
 
+
                         }
                     }
                 %>
 
-
             </select> </form>
         </td>
-        <td class="btn-group-sm">
 
-            <form action="./Students" method="post">
-              <!--  <button type="submit" name="userAmodifier" value="<%=user%>">modify</button>-->
-
-            </form>
-
-        </td>
-    </tr>
     <%
             }
     %>
