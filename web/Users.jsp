@@ -38,14 +38,24 @@
         <td><%=user.getRights()%></td>
         <td class="btn-group-sm">
             <form action="" method="post">
-                <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=user.getID()%>">modify</button>
-                <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=user.getID()%>">delete</button>
+
+                <button class="btn btn-sm btn-danger"  type="submit" name="delete" value="<%=user.getID()%>">delete</button>
+
             </form>
+
+            <form action="./update" method="post">
+                <button type="submit" name="userAmodifier" value="<%=user%>">modify</button>
+
+            </form>
+
         </td>
     </tr>
     <%
             }
     %>
 </table>
+
+
 </body>
+
 </html>

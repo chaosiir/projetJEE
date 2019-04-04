@@ -12,7 +12,13 @@
 </head>
 <body class="text-center">
 <%
-    User user=(User) request.getSession().getAttribute("user");
+    User user=(User) request.getSession().getAttribute("userAmodifier");
+    System.out.println(user);
+    if (user==null){
+        user=(User) request.getSession().getAttribute("user");
+
+    }
+
 %>
 <form class="form-signin" method="post">
 
