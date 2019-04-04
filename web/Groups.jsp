@@ -25,7 +25,6 @@
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
 <h1 style="margin-top: 1%; margin-bottom: 1%">Groups</h1>
-<a style="margin-left: 10px" class="btn btn-sm btn-primary" href="./Home">Retour</a>
 
 <table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>

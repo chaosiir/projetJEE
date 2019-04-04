@@ -17,7 +17,6 @@
 <h1 style="margin-top: 1%; margin-bottom: 1%">Students</h1>
 <a style="margin-left: 10px"  class="btn btn-sm btn-primary" href="./Students/new">insert student</a>
 <button onclick="rafraichir_Ewok()" class="btn btn-sm btn-primary" type="submit" name="reload page">reload page</button>
-<a class="btn btn-sm btn-primary" href="./Home">Retour</a>
 <!-- button if we want to refresh page before automatic refresh-->
 <%
     Boolean resetButton = (Boolean) request.getAttribute("resetButton");

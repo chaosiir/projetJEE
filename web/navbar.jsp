@@ -50,7 +50,7 @@
                 }
             %>
             <%
-                if(rights==User.Rights.USER) {
+                if(rights==User.Rights.ADMIN) {
             %>
                 <%
                 if(pageName.equals("/Users.jsp")){ %>
