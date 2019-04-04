@@ -14,9 +14,9 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
-<h1>Users</h1>
+<h1 style="margin-top: 1%; margin-bottom: 1%">Users</h1>
 
-<table border="1">
+<table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>
         <th>ID</th>
         <th>Login</th>
@@ -35,7 +35,7 @@
         <td><%=user.getQuestion()%></td>
         <td>
             <form method="post" action="?userID=<%=user.getID()%>">
-            <select  name="rights" onchange="this.form.submit()">
+            <select class="form-control form-control-sm" name="rights" onchange="this.form.submit()">
                 <%
                     for(User.Rights right : User.Rights.values()){
                         if(user.getRights()==right){
