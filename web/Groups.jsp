@@ -24,10 +24,10 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
-<h1>Groups</h1>
-<a class="btn btn-sm btn-primary" href="./Home">Retour</a>
+<h1 style="margin-top: 1%; margin-bottom: 1%">Groups</h1>
+<a style="margin-left: 10px" class="btn btn-sm btn-primary" href="./Home">Retour</a>
 
-<table border="1">
+<table style="margin-top: 1%;width: 100% " class="table-striped table-bordered">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -45,24 +45,30 @@
         <td><%=group.getName()%></td>
         <td><%=group.getOwner().getLogin()%></td>
         <td><%=group.getCreationDate()%></td>
-        <td class="btn-group-sm">
-            <form action="" method="post">
+        <form action="" method="post">
+            <td class="btn-group btn-group-sm">
                 <button class="btn btn-sm btn-primary" type="submit" name="modify" value="<%=group.getID()%>">modify</button>
                 <button class="btn btn-sm btn-danger" type="submit" name="delete" value="<%=group.getID()%>">delete</button>
-            </form>
-        </td>
+            </td>
+        </form>
     </tr>
     <%
             }
     %>
 </table>
 <form action="" method="post" style="margin: 15px" >
-    <div class="row">
-    <button class="btn btn-sm btn-primary" type="submit" name="add"  PLACEHOLDER="Name" >Add a Group</button>
-    <div class="col-2">
-        <input  class="form-control-plaintext"  id="Name" name="Name"  PLACEHOLDER="Name" >
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-primary" type="submit" name="add"  PLACEHOLDER="Name" >Add a Group</button>
+        </div>
+        <input type="text" class="form-control" id="Name" name="Name"  placeholder="Name" aria-label="" aria-describedby="basic-addon1">
     </div>
-    </div>
+    <%--<div class="row">--%>
+    <%--<button class="btn btn-sm btn-primary" type="submit" name="add"  PLACEHOLDER="Name" >Add a Group</button>--%>
+    <%--<div class="col-2">--%>
+        <%--<input  class="form-control-plaintext"  id="Name" name="Name"  PLACEHOLDER="Name" >--%>
+    <%--</div>--%>
+    <%--</div>--%>
 </form>
 </body>
 </html>
