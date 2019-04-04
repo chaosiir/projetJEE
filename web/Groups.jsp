@@ -12,11 +12,20 @@
     <meta charset="UTF-8">
     <title>Groups</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" >
+    <% String alert=request.getParameter("alert");
+        if (alert!=null){
+        	%>
+        <script>
+            alert(<%=alert%>)
+        </script>
+    <%
+        }
+    %>
 </head>
 <body>
 <h1>Groups</h1>
 <a class="btn btn-sm btn-primary" href="./Home">Retour</a>
-<a class="btn btn-sm btn-primary" href="./Group" methods="Post" >Add a Group</a>
+
 <table border="1">
     <tr>
         <th>ID</th>
@@ -46,5 +55,13 @@
             }
     %>
 </table>
+<form action="" method="post" style="margin: 15px" >
+    <div class="row">
+    <button class="btn btn-sm btn-primary" type="submit" name="add"  PLACEHOLDER="Name" >Add a Group</button>
+    <div class="col-2">
+        <input  class="form-control-plaintext"  id="Name" name="Name"  PLACEHOLDER="Name" >
+    </div>
+    </div>
+</form>
 </body>
 </html>

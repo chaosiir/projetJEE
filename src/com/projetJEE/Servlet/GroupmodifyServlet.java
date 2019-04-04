@@ -23,7 +23,7 @@ public class GroupmodifyServlet extends HttpServlet {
 		String pageName = "/Groupmodif.jsp";
 		HttpSession session=request.getSession();
 		GroupServiceImpl bs = new GroupServiceImpl();
-		request.setAttribute("groupid", bs.getGroupByID((int)session.getAttribute("grouptomodify")));
+		session.setAttribute("group", bs.getGroupByID((int)session.getAttribute("grouptomodify")));
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
 		try {
 			rd.forward(request, response);
