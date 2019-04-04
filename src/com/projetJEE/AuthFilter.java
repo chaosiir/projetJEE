@@ -32,16 +32,28 @@ public class AuthFilter implements Filter {
 
         HttpSession session = req.getSession(true);//get session or create one
 
+
         User user = (User) session.getAttribute("user");
         Boolean auth = (Boolean) session.getAttribute("auth");
-        if (auth == null || !auth || user==null) {
-            System.out.println("authFilter : redirect to login -> auth:"+auth+" user:"+user);
+        if(auth==null)auth=false;
+
+        //filter unauthenticated clients
+        if (!auth && !publicPages.contains(req.getRequestURI())) {
+            System.out.println("authFilter : redirect to login -> auth:"+auth+" login:"+user.getLogin());
             goToLoginIfNeeded(req, res, chain);
             return;
         }
 
-        // if authenticated and on login page, redirect to /Home
+        //accept all request for unauthenticated clients on public pages
+        if(!auth && publicPages.contains(req.getRequestURI())){
+            chain.doFilter(request,response);
+            return;
+        }
+
+
+        // if authenticated and on public page, redirect to /Home
         if(publicPages.contains(req.getRequestURI())){
+            System.out.println("authFilter : redirect to home -> auth:"+auth+" user:"+user);
             res.sendRedirect(req.getContextPath()+"/Home");
             return;
         }
@@ -75,11 +87,11 @@ public class AuthFilter implements Filter {
 
     public void init(FilterConfig fConfig) throws ServletException {
         String contextPath = fConfig.getServletContext().getContextPath();
-        System.out.println("test filter init ==============================================================");
         publicPages = new ArrayList<>();
         loginURL = contextPath+ "/login";
         publicPages.add(loginURL);
         publicPages.add(contextPath+ "/register");
         publicPages.add(contextPath+ "/mdp");
+        publicPages.add(contextPath+ "/answer");
     }
 }
