@@ -17,6 +17,7 @@ public class DBManager {
 	private Driver driver;
 
 	private static String resourceBundle = "config";
+	private Connection connection;
 
 	private DBManager() {
 		properties = ResourceBundle.getBundle(resourceBundle);
@@ -39,14 +40,18 @@ public class DBManager {
 
 	public Connection getConnection() {
 
-		Connection connection = null;
 		try {
-            connection = DriverManager.getConnection(properties.getString("JDBC_URL"), properties.getString("DB_LOGIN"),
-                    properties.getString("DB_PASSWORD"));
-            //connection to the right database
-            String query = "USE sql7283170;";
-            Statement sta = connection.createStatement();
-            sta.executeQuery(query);
+			if(connection!=null && connection.isClosed()){
+				System.err.println("Connection Closed ===================== IMPORTANT");
+			}
+			if(connection==null || connection.isClosed()){
+				connection = DriverManager.getConnection(properties.getString("JDBC_URL"), properties.getString("DB_LOGIN"),
+						properties.getString("DB_PASSWORD"));
+				//connection to the right database
+				String query = "USE sql7283170;";
+				Statement sta = connection.createStatement();
+				sta.executeQuery(query);
+			}
 		} catch (SQLException sqle) { sqle.printStackTrace(); }
 		return connection;
 
@@ -80,7 +85,7 @@ public class DBManager {
 	}
 	/**
 	 * permet de tester la connexion à la DB
-	 * 
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
